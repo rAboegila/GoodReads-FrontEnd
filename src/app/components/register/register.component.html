@@ -1,0 +1,122 @@
+<section class="background-radial-gradient overflow-hidden">
+
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                    Sign Up to <br />
+                    <span style="color: hsl(218, 81%, 75%)">GoodReads</span>
+                </h1>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="card bg-glass">
+                    <div class="card-body px-4 py-5 px-md-5">
+
+                        <!-- firstName input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="firstName">First Name</label>
+
+                            <input name="firstName" formControlName="firstName" id="firstName" type="text" class="form-control"
+                                required minlength="3" maxlength="20"
+                                [ngClass]="myForm.get('firstName')?.touched ? myForm.get('firstName')?.errors?.['required'] || myForm.get('firstName')?.errors?.['minlength'] || myForm.get('firstName')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+
+                            <p *ngIf="myForm.get('firstName')?.touched && myForm.get('firstName')?.errors?.['required']"
+                                class="text-danger">
+                                First Name is required</p>
+                            <p *ngIf="myForm.get('firstName')?.touched && myForm.get('firstName')?.errors?.['minlength']"
+                                class="text-danger">
+                                First Name minLength is 3 characters</p>
+                            <p *ngIf="myForm.get('firstName')?.touched && myForm.get('firstName')?.errors?.['maxlength']"
+                                class="text-danger">
+                                First Name maxLength is 20 characters</p>
+
+                        </div>
+
+                        <!-- lastName input --> 
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="lastName">Last Name</label>
+
+                            <input name="lastName" formControlName="lastName" id="lastName" type="text" class="form-control"
+                                required minlength="3" maxlength="20"
+                                [ngClass]="myForm.get('lastName')?.touched ? myForm.get('lastName')?.errors?.['required'] || myForm.get('lastName')?.errors?.['minlength'] || myForm.get('lastName')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+
+                            <p *ngIf="myForm.get('lastName')?.touched && myForm.get('lastName')?.errors?.['required']"
+                                class="text-danger">
+                                Last Name is required</p>
+                            <p *ngIf="myForm.get('lastName')?.touched && myForm.get('lastName')?.errors?.['minlength']"
+                                class="text-danger">
+                                Last Name minLength is 3 characters</p>
+                            <p *ngIf="myForm.get('lastName')?.touched && myForm.get('lastName')?.errors?.['maxlength']"
+                                class="text-danger">
+                                Last Name maxLength is 20 characters</p>
+
+                        </div>
+
+                        <!-- username input --> 
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="username">Username</label>
+
+                            <input name="username" formControlName="username" id="username" type="text" class="form-control"
+                                required minlength="3" maxlength="20"
+                                [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+
+                            <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['minlength']"
+                                class="text-danger">
+                                Username minLength is 3 characters</p>
+                            <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['maxlength']"
+                                class="text-danger">
+                                Username maxLength is 20 characters</p>
+
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Your email</label>
+                            <input name="email" formControlName="email" id="email" type="email" class="form-control"
+                                required email
+                                [ngClass]="myForm.get('email')?.touched ? myForm.get('email')?.errors?.['required'] || myForm.get('email')?.errors?.['email'] ? 'not-valid' : 'valid' : ''" />
+                            <p *ngIf="myForm.get('email')?.touched && myForm.get('email')?.errors?.['required']"
+                                class="text-danger">
+                                Email is required</p>
+                            <p *ngIf="myForm.get('email')?.touched && myForm.get('email')?.errors?.['email']"
+                                class="text-danger">Email
+                                is invalid</p>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Password</label>
+                            <input name="password" formControlName="password" id="password" type="password"
+                                class="form-control" required minlength="6"
+                                [ngClass]="myForm.get('password')?.touched ? myForm.get('password')?.errors?.['required'] || myForm.get('password')?.errors?.['minlength'] ? 'not-valid' : 'valid' : ''" />
+                            <p *ngIf="myForm.get('password')?.touched && myForm.get('password')?.errors?.['required']"
+                                class="text-danger">
+                                Password is required</p>
+                            <p *ngIf="myForm.get('password')?.touched && myForm.get('password')?.errors?.['minlength']"
+                                class="text-danger">
+                                Password minLength is 8 characters</p>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary btn-block mb-4">
+                            Sign Up
+                        </button><br>
+
+                        <span style="color: hsl(219, 80%, 8%)">
+                            Already have an account?
+                            <span [routerLink]="['/login']" style="color: hsl(218, 85%, 56%)"
+                                class="register">Login</span>
+                        </span>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
