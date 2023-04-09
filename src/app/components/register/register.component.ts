@@ -14,6 +14,7 @@ export class RegisterComponent {
 
   user!: User;
   myForm: FormGroup;
+  image: any;
 
   constructor(private _userService: UserService, private _router: Router) {
 
@@ -27,21 +28,30 @@ export class RegisterComponent {
   }
 
   submitForm() {
-    this._userService.register(this.myForm.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    // this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-                    // this.router.navigate(['../login'], { relativeTo: this.route });
-                    this._router.navigate(['/']);
-                },
-                error: error => {
-                    // this.alertService.error(error);
-                    // this.loading = false;
-                    console.log(error);
-                }
-            });
+    const formData = new FormData();
+    formData.append('firstName', this.myForm.get('firstName')?.value);
+    formData.append('lastName', this.myForm.get('lastName')?.value);
+    formData.append('username', this.myForm.get('username')?.value);
+    formData.append('email', this.myForm.get('email')?.value);
+    formData.append('password', this.myForm.get('password')?.value);
+    formData.append('image', this.image);
 
-    // this._users.addNewUser(this.myForm.value);
+    this._userService.register(formData)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this._router.navigate(['/']);
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
+  }
+
+  uploadImage(event: any) {
+    if (event.target.files.length) {
+      const file = event.target.files[0];
+      this.image = file;
+    }
   }
 }

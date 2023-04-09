@@ -20,8 +20,8 @@
                         <div class="form-outline mb-4">
                             <label class="form-label" for="firstName">First Name</label>
 
-                            <input name="firstName" formControlName="firstName" id="firstName" type="text" class="form-control"
-                                required minlength="3" maxlength="20"
+                            <input name="firstName" formControlName="firstName" id="firstName" type="text"
+                                class="form-control" required minlength="3" maxlength="20"
                                 [ngClass]="myForm.get('firstName')?.touched ? myForm.get('firstName')?.errors?.['required'] || myForm.get('firstName')?.errors?.['minlength'] || myForm.get('firstName')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
 
                             <p *ngIf="myForm.get('firstName')?.touched && myForm.get('firstName')?.errors?.['required']"
@@ -36,12 +36,12 @@
 
                         </div>
 
-                        <!-- lastName input --> 
+                        <!-- lastName input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="lastName">Last Name</label>
 
-                            <input name="lastName" formControlName="lastName" id="lastName" type="text" class="form-control"
-                                required minlength="3" maxlength="20"
+                            <input name="lastName" formControlName="lastName" id="lastName" type="text"
+                                class="form-control" required minlength="3" maxlength="20"
                                 [ngClass]="myForm.get('lastName')?.touched ? myForm.get('lastName')?.errors?.['required'] || myForm.get('lastName')?.errors?.['minlength'] || myForm.get('lastName')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
 
                             <p *ngIf="myForm.get('lastName')?.touched && myForm.get('lastName')?.errors?.['required']"
@@ -56,12 +56,12 @@
 
                         </div>
 
-                        <!-- username input --> 
+                        <!-- username input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="username">Username</label>
 
-                            <input name="username" formControlName="username" id="username" type="text" class="form-control"
-                                required minlength="3" maxlength="20"
+                            <input name="username" formControlName="username" id="username" type="text"
+                                class="form-control" required minlength="3" maxlength="20"
                                 [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
 
                             <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['minlength']"
@@ -85,6 +85,7 @@
                             <p *ngIf="myForm.get('email')?.touched && myForm.get('email')?.errors?.['email']"
                                 class="text-danger">Email
                                 is invalid</p>
+                            <!-- <p *ngIf="errMsg" class="text-danger">{{errMsg}}</p> -->
                         </div>
 
                         <!-- Password input -->
@@ -100,6 +101,14 @@
                                 class="text-danger">
                                 Password minLength is 8 characters</p>
                         </div>
+
+                        <!-- Image input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="image">image</label>
+                            <input name="image" id="image" type="file"
+                                class="form-control" (change)="uploadImage($event)"/>
+                        </div>
+
 
                         <!-- Submit button -->
                         <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary btn-block mb-4">
