@@ -25,7 +25,6 @@ export class UserService {
   }
 
   login(email: string, password: string) {
-    // return this.http.post<User>(`${baseUrl}/auth/login`, { username: 'kminchelle', password: '0lelplR' })
     return this.http.post<User>(`${baseUrl}/auth/login`, { email, password })
       .pipe(map(user => {
         console.log("user: ", user);
@@ -43,8 +42,8 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  register(user: User) {
-    return this.http.post<User>(`${baseUrl}/auth/register`, user)
+  register(user: any) {
+    return this.http.post<any>(`${baseUrl}/auth/register`, user)
       .pipe(map(user => {
         console.log("user: ", user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -54,48 +53,11 @@ export class UserService {
       }));
   }
 
-  // getAll() {
-  // return this.http.get<User[]>(`${baseUrl}/users`);
-  // }
-  // 
-  // getById(id: string) {
-  // return this.http.get<User>(`${baseUrl}/users/${id}`);
-  // }
-
   getProfile() {
     return this.http.get<User>(`${baseUrl}/auth/me`).subscribe((user: User) => {
       console.log("getProfile: ", user);
-      // localStorage.setItem('user', JSON.stringify(user));
-      // this.userSubject.next(user);
       return user;
     }
     );
   }
-
-  // update(id: string, params: any) {
-  //   return this.http.put(`${baseUrl}/auth/${id}`, params)
-  //     .pipe(map(x => {
-  //       // update stored user if the logged in user updated their own record
-  //       if (id == this.userValue?.id) {
-  //         // update local storage
-  //         const user = { ...this.userValue, ...params };
-  //         localStorage.setItem('user', JSON.stringify(user));
-
-  //         // publish updated user to subscribers
-  //         this.userSubject.next(user);
-  //       }
-  //       return x;
-  //     }));
-  // }
-
-  // delete(id: string) {
-  //   return this.http.delete(`${baseUrl}/auth/${id}`)
-  //     .pipe(map(x => {
-  //       // auto logout if the logged in user deleted their own record
-  //       if (id == this.userValue?.id) {
-  //         this.logout();
-  //       }
-  //       return x;
-  //     }));
-  // }
 }

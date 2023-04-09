@@ -13,15 +13,15 @@ export class NavbarComponent {
 
   isLoggedIn: boolean = false;
   userRole: string = '';
-  userName: string = '';
+  name: string = '';
   userImage: string = '';
 
   constructor(private _userService: UserService, private _router: Router, public nav: NavbarService) {
     this._userService.user.subscribe(x => {
       this.isLoggedIn = !!x
-      this.userRole = x?.userRole || '';
-      this.userName = x?.userName || '';
-      this.userImage = `${uploadsUrl}/users/${x?.userImage}` || '';
+      this.userRole = x?.role || '';
+      this.name = x?.firstName + ' ' + x?.lastName || '';
+      this.userImage = `${uploadsUrl}/users/${x?.image}` || '';
     });
   }
 

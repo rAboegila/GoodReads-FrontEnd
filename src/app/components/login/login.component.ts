@@ -15,33 +15,22 @@ export class LoginComponent {
   users!: User[];
 
   constructor(private _userService: UserService, private _router: Router) {
-    // this.users = this._users.users;
   }
 
-  submitForm(form: NgForm):void {
-    // const loggedIn = this._users.isUserLoggedIn(form.value['email'], form.value['password']);
-    // if(!loggedIn){
-      // alert("User not found, You have to signup first");
-      // this._router.navigate(['signup']);
-      // return;
-    // }
-    // this._router.navigate(['']);
-    // form.reset();
-
+  submitForm(form: NgForm): void {
     this._userService.login(form.value['email'], form.value['password'])
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    // get return url from query parameters or default to home page
-                    // const returnUrl = this._router.snapshot.queryParams['returnUrl'] || '/';
-                    this._router.navigate(['/']);
-                },
-                error: error => {
-                    // this.alertService.error(error);
-                    // this.loading = false;
-                    console.log(error);
-                }
-            });
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          form.reset();
+          this._router.navigate(['/']);
+        },
+        error: error => {
+          alert("User not found, You have to signup first");
+          this._router.navigate(['/register']);
+          console.log(error);
+        }
+      });
 
   }
 
