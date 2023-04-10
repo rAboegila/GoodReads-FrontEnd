@@ -62,8 +62,11 @@
 
                             <input name="username" formControlName="username" id="username" type="text"
                                 class="form-control" required minlength="3" maxlength="20"
-                                [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+                                [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['required'] || myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
 
+                            <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['required']"
+                                class="text-danger">
+                                Username is required</p>
                             <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['minlength']"
                                 class="text-danger">
                                 Username minLength is 3 characters</p>
@@ -105,8 +108,8 @@
                         <!-- Image input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="image">image</label>
-                            <input name="image" id="image" type="file"
-                                class="form-control" (change)="uploadImage($event)"/>
+                            <input name="image" id="image" type="file" class="form-control"
+                                (change)="uploadImage($event)" />
                         </div>
 
 
