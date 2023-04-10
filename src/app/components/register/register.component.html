@@ -62,8 +62,11 @@
 
                             <input name="username" formControlName="username" id="username" type="text"
                                 class="form-control" required minlength="3" maxlength="20"
-                                [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+                                [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['required'] || myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
 
+                            <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['required']"
+                                class="text-danger">
+                                Username is required</p>
                             <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['minlength']"
                                 class="text-danger">
                                 Username minLength is 3 characters</p>
@@ -102,11 +105,27 @@
                                 Password minLength is 8 characters</p>
                         </div>
 
+                        <!-- Confirm Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password">Confirm Password</label>
+                            <input name="confirmPassword" formControlName="confirmPassword" id="confirmPassword"
+                                type="password" class="form-control" required minlength="6"
+                                [ngClass]="myForm.get('confirmPassword')?.touched ? myForm.get('confirmPassword')?.errors?.['required'] || myForm.get('confirmPassword')?.errors?.['minlength'] || passwordMatchError ? 'not-valid' : 'valid' : ''" />
+                            <p *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.errors?.['required']"
+                                class="text-danger">
+                                Password is required</p>
+                            <p *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.errors?.['minlength']"
+                                class="text-danger">
+                                Password minLength is 8 characters</p>
+                            <p *ngIf="myForm.get('confirmPassword')?.touched && passwordMatchError" class="text-danger">
+                                Password does not match</p>
+                        </div>
+
                         <!-- Image input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="image">image</label>
-                            <input name="image" id="image" type="file"
-                                class="form-control" (change)="uploadImage($event)"/>
+                            <input name="image" id="image" type="file" class="form-control"
+                                (change)="uploadImage($event)" />
                         </div>
 
 
