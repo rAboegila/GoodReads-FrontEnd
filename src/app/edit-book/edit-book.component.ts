@@ -146,7 +146,7 @@ export class EditBookComponent1 implements OnInit {
 
         this.EditbookForm = this.fb.group({
           name: [this.book.name, Validators.required],
-          categoryid: [null, Validators.required],
+          category: [null, Validators.required],
           author: [this.book.author, Validators.required],
           image: [null, Validators.required],
         });
@@ -184,7 +184,7 @@ export class EditBookComponent1 implements OnInit {
 
       },
       (err) => {
-        console.log('Error updating course');
+        console.log('Error updating book ');
       }
     );
   }

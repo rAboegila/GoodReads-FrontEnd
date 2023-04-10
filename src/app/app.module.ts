@@ -15,6 +15,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminComponent } from './components/admin/admin.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 import { AppComponent } from './app.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -37,7 +46,14 @@ import {  EditBookComponent1 } from './edit-book/edit-book.component';
     AddAuthorComponent,
     EditAuthorComponent,
     AddBookComponent,
-    EditBookComponent1
+    EditBookComponent1,
+    LoginComponent,
+    NavbarComponent,
+    RegisterComponent,
+    HomeComponent,
+    ProfileComponent,
+    AdminComponent,
+    NotFoundComponent
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
@@ -61,11 +77,16 @@ import {  EditBookComponent1 } from './edit-book/edit-book.component';
     BrowserModule,
     NgbModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  // providers: [],
-  providers: [NgbActiveModal],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [BookDialogComponent]
+  entryComponents: [BookDialogComponent],
+
 })
 export class AppModule { }
