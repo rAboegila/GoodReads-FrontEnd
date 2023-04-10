@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Books</h2>
+  <button>Add Book</button>
+  <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Author</th>
+          <th>Image</th>
+          <th>Avg Rating</th>
+          <th>Reviews</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.name }}</td>
+          <td>{{ book.category }}</td>
+          <td>{{ book.author }}</td>
+          <td>
+            <img  crossorigin="anonymous" [src]="url+book.image" alt="Book cover" width="50" height="50" />
+          </td>
+          <td>{{ book.avgRating }}</td>
+          <td>{{ book.reviews }}</td>
+          <td>
+            <button (click)="deleteBook(book._id!)">Delete</button>
+            <button>Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

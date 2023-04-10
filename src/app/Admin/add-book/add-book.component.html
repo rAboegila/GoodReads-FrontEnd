@@ -1,0 +1,26 @@
+
+<div class="container">
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" formControlName="name">
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select id="category" formControlName="category">
+      <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="author">Author</label>
+    <select id="author" formControlName="author">
+      <option *ngFor="let author of authors" [value]="author._id">{{ author.firstName }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input type="file" id="image" (change)="onImageSelected($event)">
+  </div>
+  <button type="submit">Add Book</button>
+</form>
+</div>
