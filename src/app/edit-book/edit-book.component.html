@@ -1,0 +1,31 @@
+<h1>edit</h1>
+
+<h2>Edit Book 444</h2>
+
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+
+<form [formGroup]="EditbookForm" >
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" id="name" formControlName="name">
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select id="category" formControlName="category">
+      <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="author">Author</label>
+    <select id="author" formControlName="author">
+      <option *ngFor="let author of authors" [value]="author._id">{{ author.firstName }}</option>
+    </select>
+    <!-- <h1 *ngFor="let author of authors" >      {{ author.lastName }}  </h1> -->
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input type="file" class="form-control-file" name="image" id="image" (change)="uploadImage($event)">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="updateBook(Book._id!,EditbookForm)">Save</button>
+  <a routerLink="/books" class="btn btn-secondary">Cancel</a>
+</form>

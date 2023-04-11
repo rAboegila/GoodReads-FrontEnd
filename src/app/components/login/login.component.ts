@@ -18,7 +18,7 @@ export class LoginComponent {
   }
 
   submitForm(form: NgForm): void {
-    this._userService.login(form.value['email'], form.value['password'])
+    this._userService.login(form.value['username'], form.value['password'])
       .pipe(first())
       .subscribe({
         next: () => {

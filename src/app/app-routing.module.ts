@@ -1,5 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoriesComponent } from './categories/categories.component';
+import { AuthorsListComponentComponent } from './Admin/authors-list-component/authors-list-component.component';
+import { AddAuthorComponent } from './add-author/add-author.component';
+import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { BookComponent } from './Admin/book/book.component';
+import { AddBookComponent } from './Admin/add-book/add-book.component';
+import { EditBookComponent1 } from './edit-book/edit-book.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,7 +22,16 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
-  { path: "**", component: NotFoundComponent }
+  { path: 'Category', component:CategoriesComponent},
+  {path: 'auhtor', component:AuthorsListComponentComponent,canActivate: [AdminGuard] },
+  {path: 'Addauhtor', component:AddAuthorComponent},
+  {path: 'EditAuhtor/:id', component:EditAuthorComponent},
+  {path: 'Books', component:BookComponent},
+  {path: 'AddBook', component:AddBookComponent},
+  {path: 'EditBook/:id', component:EditBookComponent1,canActivate: [AdminGuard]},
+  { path: "**", component: NotFoundComponent },
+
+
 ];
 
 @NgModule({

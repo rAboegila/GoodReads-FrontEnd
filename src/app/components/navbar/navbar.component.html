@@ -33,7 +33,7 @@
                     <a class="nav-link" [routerLink]="['login']">Login</a>
                 </li>
             </ul>
-            <ul *ngIf="isLoggedIn && userRole === 'user'" class="d-flex navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul *ngIf="isLoggedIn && userRole === 'user'|| userRole === 'admin'" class="d-flex navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link nav-img-link" [routerLink]="['profile']" routerLinkActive="active"><img crossorigin="anonymous" src="{{userImage}}" alt="profile-img" class="img-fluid nav-img"></a>
                 <li class="nav-item">
