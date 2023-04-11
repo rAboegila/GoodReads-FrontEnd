@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -24,7 +25,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './components/admin/admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-
 import { AppComponent } from './app.component';
 import { MatSelectModule } from '@angular/material/select';
 import { BookComponent } from './Admin/book/book.component';
@@ -34,7 +34,8 @@ import { AuthorDialogComponent } from './Admin/author-dialog/author-dialog.compo
 import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
-import {  EditBookComponent1 } from './edit-book/edit-book.component';
+import { EditBookComponent1 } from './edit-book/edit-book.component';
+import { RatingComponent } from './rating/rating.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,13 +54,15 @@ import {  EditBookComponent1 } from './edit-book/edit-book.component';
     HomeComponent,
     ProfileComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RatingComponent
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
     MatDatepickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatTooltipModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
