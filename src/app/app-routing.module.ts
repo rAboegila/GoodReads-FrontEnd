@@ -22,16 +22,14 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
-  { path: 'Category', component:CategoriesComponent},
-  {path: 'auhtor', component:AuthorsListComponentComponent,canActivate: [AdminGuard] },
-  {path: 'Addauhtor', component:AddAuthorComponent},
-  {path: 'EditAuhtor/:id', component:EditAuthorComponent},
-  {path: 'Books', component:BookComponent},
-  {path: 'AddBook', component:AddBookComponent},
-  {path: 'EditBook/:id', component:EditBookComponent1,canActivate: [AdminGuard]},
+  { path: 'Category', component: CategoriesComponent },
+  { path: 'auhtor', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
+  { path: 'Addauhtor', component: AddAuthorComponent },
+  { path: 'EditAuhtor/:id', component: EditAuthorComponent },
+  { path: 'Books', component: BookComponent },
+  { path: 'AddBook', component: AddBookComponent },
+  { path: 'EditBook/:id', component: EditBookComponent1, canActivate: [AdminGuard] },
   { path: "**", component: NotFoundComponent },
-
-
 ];
 
 @NgModule({
