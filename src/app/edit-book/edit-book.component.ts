@@ -14,7 +14,7 @@ import { Category } from '../_models/Category';
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent1 implements OnInit {
-  bookId: string = '';
+  bookId: string = ''
   book: Book = { name: '', category: '', author: '' };
   EditbookForm!: FormGroup;
   categories: Category[] = [];
@@ -53,6 +53,7 @@ export class EditBookComponent1 implements OnInit {
     ngOnInit(): void {
       this.activatedRoute.params.subscribe((params) => {
         const id = params['id'];
+        this.bookId=id;
         console.log(id);
         
         if (id) {
@@ -176,17 +177,20 @@ export class EditBookComponent1 implements OnInit {
     formdata.append('category', EditbookForm.value.category);
     formdata.append('author', EditbookForm.value.author);
 
-
-    this.bookService.updateBook(id,formdata).subscribe(
+    console.log(id);
+    
+    this.bookService.updateBook(this.bookId,formdata).subscribe(
       (res) => {
         // console.log(res);
-        this.router.navigate(['/dashboard/courses']);
-
+        console.log(res)
       },
       (err) => {
         console.log('Error updating book ');
       }
     );
+  }
+  id(id: any, formdata: FormData) {
+    throw new Error('Method not implemented.');
   }
  
   // getBook(): void {

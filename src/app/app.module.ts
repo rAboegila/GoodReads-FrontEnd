@@ -35,6 +35,10 @@ import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
 import {  EditBookComponent1 } from './edit-book/edit-book.component';
+import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury.component';
+import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
+import { BooksComponent } from './landingPage/books/books.component';
+import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,11 @@ import {  EditBookComponent1 } from './edit-book/edit-book.component';
     HomeComponent,
     ProfileComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    GetCategouryComponent,
+    GetCategoryByIdComponent,
+    BooksComponent,
+    BookDetailsComponent
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array

@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
-  { path: 'Category', component:CategoriesComponent},
+  { path: 'Category', component:CategoriesComponent,canActivate: [AdminGuard] },
   {path: 'auhtor', component:AuthorsListComponentComponent,canActivate: [AdminGuard] },
   {path: 'Addauhtor', component:AddAuthorComponent},
   {path: 'EditAuhtor/:id', component:EditAuthorComponent},

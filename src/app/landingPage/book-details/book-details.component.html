@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>Book Details</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <img src="{{book.image}}" alt="{{book.name}}" class="img-fluid">
+  </div>
+  <div class="col-md-6">
+    <h3>{{book.name}}</h3>
+    <p>Author: {{book.author}}</p>
+    <p>Category: {{book.category}}</p>
+    <p>Average Rating: {{book.avgRating}}</p>
+    <h4>Reviews:</h4>
+    <ul>
+      <li *ngFor="let review of book.reviews">{{review}}</li>
+    </ul>
+  </div>
+</div>

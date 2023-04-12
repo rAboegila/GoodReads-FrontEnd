@@ -1,0 +1,23 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>All Categories</h1>
+    </div>
+    <div class="col-md-6 text-right">
+      <a routerLink="/category/add" class="btn btn-primary">Add Category</a>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-deck">
+        <div class="card" *ngFor="let category of categories">
+          <div class="card-body">
+            <h5 class="card-title">{{category.name}}</h5>
+            <a routerLink="/category/{{category._id}}" class="card-link">View Category</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

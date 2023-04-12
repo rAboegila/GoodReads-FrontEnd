@@ -34,7 +34,7 @@ export class CategoriesComponent implements OnInit {
     const index = this.categories.indexOf(category);
     return index + 1;
   }
-  
+
 
   ngOnInit(): void {
     this.getCategories();
@@ -57,6 +57,7 @@ export class CategoriesComponent implements OnInit {
       name: category.name
     });
     this.showEditForm = true;
+    this.getCategories()
   }
 
   deleteCategory(category: Category): void {
@@ -67,6 +68,7 @@ export class CategoriesComponent implements OnInit {
           this.categories.splice(index, 1);
         }
         this.snackBar.open('Category deleted', 'Close', { duration: 2000 });
+        this.getCategories()
       }, err => {
         this.snackBar.open('Error deleting category', 'Close', { duration: 2000 });
       });
@@ -82,6 +84,8 @@ export class CategoriesComponent implements OnInit {
           this.categories[index] = res.data;
         }
         this.snackBar.open('Category updated', 'Close', { duration: 2000 });
+        this.getCategories()
+
       }, err => {
         this.snackBar.open('Error updating category', 'Close', { duration: 2000 });
       });
@@ -89,6 +93,8 @@ export class CategoriesComponent implements OnInit {
       this.categoryService.addCategory(category).subscribe(res => {
         this.categories.push(res.data);
         this.snackBar.open('Category added', 'Close', { duration: 2000 });
+        this.getCategories()
+
       }, err => {
         this.snackBar.open('Error adding category', 'Close', { duration: 2000 });
       });
