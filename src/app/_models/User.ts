@@ -1,3 +1,4 @@
+import { Book, BookShelf } from "./Book";
 export interface User {
     _id?: string;
     firstName?: string;
@@ -8,11 +9,13 @@ export interface User {
     role?: string;
     image?: string;
     token?: string;
-    books?: [];
+    books?: Library[];
 };
 
-export enum BookShelf {
-    READING = 'READING',
-    READ = 'READ',
-    WANT_TO_READ = 'WANT_TO_READ',
+export interface Library {
+    _id: string;
+    bookId: string;
+    rating: number;
+    shelve: BookShelf;
+    book?: Book;
 }
