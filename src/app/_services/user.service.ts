@@ -4,6 +4,7 @@ import { User } from '../_models/User';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { baseUrl } from './helper';
+import { BookShelf } from '../_models/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +62,18 @@ export class UserService {
       return user;
     }
     );
+  }
+
+  updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
+
+    // return this.http.get<User>(`${baseUrl}/user/${bookID}/book`, {updatedShelf, updatedRating})
+    return this.http.put<User>(`${baseUrl}/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
+      .pipe(map(user => {
+        this.userSubject.next(user);
+        return user;
+      }));
+
+    //`${baseUrl}/user/${bookID}/book`
+
   }
 }
