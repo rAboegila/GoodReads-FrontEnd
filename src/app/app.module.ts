@@ -42,6 +42,8 @@ import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { BookShelfComponent } from './book-shelf/book-shelf.component';
+import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,12 +67,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     GetCategouryComponent,
     GetCategoryByIdComponent,
     BooksComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    BookShelfComponent,
+    ShelfItemComponent
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
     MatDatepickerModule,
-    NgxPaginationModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatTooltipModule,
@@ -96,6 +99,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ],
 
   providers: [
