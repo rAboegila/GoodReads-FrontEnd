@@ -44,6 +44,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { BookShelfComponent } from './book-shelf/book-shelf.component';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+
 @NgModule({
   declarations: [
     AppComponent,
