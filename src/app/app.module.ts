@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,6 +39,8 @@ import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +68,7 @@ import { BookDetailsComponent } from './landingPage/book-details/book-details.co
   imports: [
     NgbModule, // add NgbModule to the imports array
     MatDatepickerModule,
+    NgxPaginationModule,
     MatNativeDateModule,
     MatDatepickerModule,
     BrowserModule,
@@ -78,23 +81,27 @@ import { BookDetailsComponent } from './landingPage/book-details/book-details.co
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
     MatSnackBarModule,
     BrowserModule,
     NgbModule,
+    NgbModalModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
+        FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
+
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [BookDialogComponent],
+  // entryComponents: [BookDialogComponent],
 
 })
 export class AppModule { }

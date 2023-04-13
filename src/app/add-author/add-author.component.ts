@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthorService } from '../_services/author.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-author',
   templateUrl: './add-author.component.html',
@@ -10,19 +11,29 @@ export class AddAuthorComponent implements OnInit {
   authorForm:FormGroup | undefined;
   errorMessage!:string;
   selectedImage: any;
-  constructor(private formBuilder: FormBuilder, private authorService: AuthorService) {
+  constructor(private formBuilder: FormBuilder, private authorService: AuthorService,private router: Router) {
     this.createForm();
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
+    // this.createForm()
+
+
   }
 
   createForm() {
+    // this.authorForm = this.formBuilder.group({
+    //   firstName: ['', Validators.required],
+    //   lastName: ['', Validators.required],
+    //   dob: ['', Validators.required],
+    //   image: ['']
+    // });
+
     this.authorForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      dob: ['', Validators.required],
-      image: ['']
+      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      dob: ['', [Validators.required]],
+      image: [''],
     });
   }
 
@@ -49,10 +60,13 @@ export class AddAuthorComponent implements OnInit {
           this.authorForm!.reset();
           this.selectedImage = null;
           this.errorMessage = '';
+          this.router.navigate(['auhtor']);
         },
         error => {
           console.log('Error creating author: ', error);
-          this.errorMessage = error.message;
+          this.errorMessage = 'Invalid value';
+          console.log(error);
+
         }
       );
   }

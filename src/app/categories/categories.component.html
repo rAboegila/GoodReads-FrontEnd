@@ -15,7 +15,7 @@
             <div *ngIf="categoryForm.get('name')!.hasError('required') && (categoryForm.get('name')!.dirty || categoryForm.get('name')!.touched)" class="invalid-feedback">
     Name is required
   </div>
-  
+
           </div>
           <button mat-button type="submit" [disabled]="categoryForm.invalid">Save</button>
           <button mat-button type="button" (click)="cancel()">Cancel</button>
@@ -41,8 +41,12 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="['_id', 'name', 'actions']"></tr>
         <tr mat-row *matRowDef="let row; columns: ['_id', 'name', 'actions'];"></tr>
+
       </table>
+      <div class="pagination">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
     </div>
   </div>
- 
+
 </div>

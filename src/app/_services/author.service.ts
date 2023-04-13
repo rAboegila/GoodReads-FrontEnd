@@ -43,11 +43,10 @@ export class AuthorService  {
     }
 
     deleteAuthor(id: string): Observable<any> {
-      const headers = new HttpHeaders({
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
-      });
-      return this.http.delete(`${this.API_URL}/authors/${id}`,{
-        headers
-      });
+      // const headers = new HttpHeaders({
+      //   Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
+      // });
+      console.log(id);
+      return this.http.delete(`${this.API_URL}/authors/${id}`)
     }
   }

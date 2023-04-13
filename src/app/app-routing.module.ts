@@ -6,13 +6,11 @@ import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { BookComponent } from './Admin/book/book.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
-import { EditBookComponent1 } from './edit-book/edit-book.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuard } from './guards/admin.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
@@ -21,15 +19,17 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
-  { path: 'Category', component:CategoriesComponent,canActivate: [AdminGuard] },
+  // { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
+
+  { path: 'cate', component:CategoriesComponent,canActivate: [AdminGuard] },
   {path: 'auhtor', component:AuthorsListComponentComponent,canActivate: [AdminGuard] },
-  {path: 'Addauhtor', component:AddAuthorComponent},
-  {path: 'EditAuhtor/:id', component:EditAuthorComponent},
+  { path: 'admin/add-author', component:AddAuthorComponent,canActivate: [AdminGuard] },
+  {path: 'edit-author/:id', component:EditAuthorComponent ,canActivate: [AdminGuard]},
   {path: 'Books', component:BookComponent},
   {path: 'AddBook', component:AddBookComponent},
-  {path: 'EditBook/:id', component:EditBookComponent1,canActivate: [AdminGuard]},
+  // {path: 'EditBook/:id', component:EditBookComponent1,canActivate: [AdminGuard]},
   { path: "**", component: NotFoundComponent },
+
 
 
 ];

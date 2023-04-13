@@ -1,10 +1,6 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { Category } from '../_models/Category';
 import { CategoryService } from '../_services/category.service';
 
@@ -20,6 +16,9 @@ export class CategoriesComponent implements OnInit {
   showAddForm = false;
   showEditForm = false;
   categoryToEdit: any
+  page: number = 1;
+  pageSize: number = 10;
+  collectionSize: number = 0;
 
   constructor(
     private categoryService: CategoryService,
@@ -29,6 +28,7 @@ export class CategoriesComponent implements OnInit {
     this.categoryForm = this.formBuilder.group({
       name: ['', Validators.required]
     });
+
   }
   generateCategoryId(category: Category): number {
     const index = this.categories.indexOf(category);
@@ -38,12 +38,23 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
+    // this.categoryService.getCategories().subscribe(res => {
+    //   this.categories = res.data;
+    //   this.collectionSize = res.length;
+    // });
+
   }
 
   getCategories(): void {
     this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;
+      this.collectionSize = res.data;
     });
+  }
+  get categoriesOnPage() {
+    const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    return this.categories.slice(start, end);
   }
 
   addCategory(): void {

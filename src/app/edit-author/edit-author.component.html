@@ -1,49 +1,55 @@
+
+
+
+
 <div class="author-modal" id="editAuthorModal">
   <div class="author-modal-dialog">
     <div class="author-modal-content">
       <div class="author-modal-header">
-        <h5 class="author-modal-title">Edit Author</h5>
-        <button type="button" class="author-modal-close" data-dismiss="author-modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h1 class="author-modal-title">Edit Author</h1>
+
       </div>
-      <form [formGroup]="authorForm!" (ngSubmit)="onSubmit()">
+      <form [formGroup]="authorFormEdit!" (ngSubmit)="onupdate()" class="p-3 border rounded">
         <div class="author-modal-body">
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName" required>
-            <!-- <div class="invalid-feedback" *ngIf="authorForm.controls['firstName']?.invalid && (authorForm.controls['firstName']?.dirty || authorForm.controls['firstName']?.touched)">
-              Please enter a first name.
-            </div> -->
+            <input type="text" class="form-control" id="firstName" name="Author.firstName"      formControlName="firstName" required>
+            <div *ngIf="authorFormEdit && authorFormEdit.get('firstName') && authorFormEdit.get('firstName')?.invalid && (authorFormEdit.get('firstName')?.dirty || authorFormEdit.get('firstName')?.touched)" class="alert alert-danger">
+              <div *ngIf="authorFormEdit && authorFormEdit.get('firstName')?.errors?.['required']">First name is required.</div>
+              <div *ngIf=" authorFormEdit &&  authorFormEdit.get('firstName')?.errors?.['minlength']">First name must be at least {{ authorFormEdit.get('firstName')?.errors?.['minlength'].requiredLength }} characters long.</div>
+              <div *ngIf=" authorFormEdit && authorFormEdit.get('firstName')?.errors?.['maxlength']">First name cannot be longer than {{ authorFormEdit.get('firstName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName"  name="lastName" formControlName="lastName" required>
-            <!-- <div class="invalid-feedback" *ngIf="authorForm.controls['lastName']?.invalid && (authorForm.controls['lastName']?.dirty || authorForm.controls['lastName']?.touched)">
-              Please enter a last name.
-            </div> -->
+            <input type="text" class="form-control" id="lastName"  name="Author.lastName"  name="lastName" formControlName="lastName" required>
+            <div *ngIf="authorFormEdit && authorFormEdit.get('lastName') && authorFormEdit.get('lastName')?.invalid && (authorFormEdit.get('lastName')?.dirty || authorFormEdit.get('lastName')?.touched)" class="alert alert-danger">
+              <div *ngIf="authorFormEdit && authorFormEdit.get('lastName')?.errors?.['required']">lastName  is required.</div>
+              <div *ngIf=" authorFormEdit &&  authorFormEdit.get('lastName')?.errors?.['minlength']">lastName must be at least {{ authorFormEdit.get('lastName')?.errors?.['minlength'].requiredLength }} characters long.</div>
+              <div *ngIf=" authorFormEdit && authorFormEdit.get('lastName')?.errors?.['maxlength']">lastName  cannot be longer than {{ authorFormEdit.get('lastName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="dob">Date of Birth</label>
-            <input type="date" class="form-control" id="dob"   name="dob" formControlName="dob" required>
-            <!-- <div class="invalid-feedback" *ngIf="authorForm.controls['dob']?.invalid && (authorForm.controls['dob']?.dirty || authorForm.controls['dob']?.touched)">
-              Please enter a valid date of birth.
-            </div> -->
+            <input type="date" class="form-control" id="dob"  name="Author.dob"  value="{{Author.dob | date:'yyyy-MM-dd'}}" name="dob" formControlName="dob" required>
+            <div *ngIf="authorFormEdit && authorFormEdit.get('dob')?.invalid && (authorFormEdit.get('dob')?.dirty || authorFormEdit.get('dob')?.touched)" class="alert alert-danger">
+              <div *ngIf="authorFormEdit &&  authorFormEdit.get('dob')?.errors?.['required']">Date of birth is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label>Image upload :</label>
             <div class="input-group col-xs-12">
-              <input formControlName="image" type="file" name="image" id="image" class="form-control" (change)="onFileSelected($event)">
+              <input formControlName="image" type="file" name="image" name="Author.image"  id="image" class="form-control" (change)="onFileSelected($event)">
             </div>
-            <!-- <div *ngIf="authorForm?.controls['image']?.invalid && (authorForm?.controls['image']?.dirty || authorForm?.controls['image']?.touched)" class="text-danger">
-            Please upload a valid image.
-            </div> -->
+          </div>
+          <div *ngIf="Author.image">
+            <label>Current Image:</label>
+            <img  crossorigin="anonymous" [src]="url+Author.image" width="100">
           </div>
         </div>
         <div class="author-modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="author-modal">Cancel</button>
-          <!-- <button type="submit" class="btn btn-primary" [disabled]="authorForm.invalid!">Save Changes</button> -->
-          <button type="submit" class="btn btn-primary" >Save Changes</button> 
+
+          <button type="submit" class="btn btn-primary mt-3" >Save Changes</button>
         </div>
       </form>
     </div>
