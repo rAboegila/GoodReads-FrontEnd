@@ -36,6 +36,8 @@ import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
 import { EditBookComponent1 } from './edit-book/edit-book.component';
 import { RatingComponent } from './rating/rating.component';
+import { BookShelfComponent } from './book-shelf/book-shelf.component';
+import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,9 @@ import { RatingComponent } from './rating/rating.component';
     ProfileComponent,
     AdminComponent,
     NotFoundComponent,
-    RatingComponent
+    RatingComponent,
+    BookShelfComponent,
+    ShelfItemComponent
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
