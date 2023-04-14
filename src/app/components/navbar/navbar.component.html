@@ -7,22 +7,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['Books']" routerLinkActive="active">Books</a>
+
+
+                <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
+                    <a class="nav-link " [routerLink]="['Books']" routerLinkActive="active">Books</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
                     <a class="nav-link" [routerLink]="['auhtor']" routerLinkActive="active">Authors</a>
                 </li>
-                <li class="nav-item">
+
+                <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
+                  <a class="nav-link" [routerLink]="['cate']" routerLinkActive="active">Categoury</a>
+                </li>
+
+
+
+
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
                     <a class="nav-link" routerLink="/showCategoury" >Categories</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
                     <a class="nav-link" >Authors</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
                   <a class="nav-link"  routerLink="/showBooks" >Books</a>
               </li>
-                <li class="nav-item">
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
                     <a class="nav-link" >Terms & Conditions</a>
                 </li>
             </ul>
