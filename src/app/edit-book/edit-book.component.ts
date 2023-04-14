@@ -31,7 +31,7 @@ export class EditBookComponent1 implements OnInit {
   selectedImage!: File | null;
   errorMessage = '';
   Book: Book = {
-    _id:'',
+    _id: '',
     name: '',
     category: '',
     author: {
@@ -43,7 +43,7 @@ export class EditBookComponent1 implements OnInit {
     },
     image: '',
     reviews: [],
-    avgRating:0,
+    avgRating: 0,
   };
   constructor(
     private fb: FormBuilder,
@@ -89,9 +89,9 @@ export class EditBookComponent1 implements OnInit {
         error => console.log(error)
       );
 
-      
+
     this.createEditbookForm();
-    }
+  }
 
     // this.getBook(id);
   //   this.createEditbookForm();
@@ -182,7 +182,7 @@ export class EditBookComponent1 implements OnInit {
   }
   files: any;
   submitted = false;
-  updateBook(id:string,EditbookForm: any) {
+  updateBook(id: string, EditbookForm: any) {
     this.submitted = true;
     if (this.EditbookForm.invalid) {
       console.log('form invalid');
@@ -229,30 +229,30 @@ export class EditBookComponent1 implements OnInit {
   // }
 
   // onSubmit(): void {
-    // const bookData = this.EditbookForm.value;
-    // const formData = new FormData();
-    // formData.append('name', bookData.name);
-    // formData.append('category', bookData.category);
-    // formData.append('author', bookData.author);
-    // if (this.selectedImage) {
-    //   formData.append('image', this.selectedImage, this.selectedImage.name);
-    // }
+  // const bookData = this.EditbookForm.value;
+  // const formData = new FormData();
+  // formData.append('name', bookData.name);
+  // formData.append('category', bookData.category);
+  // formData.append('author', bookData.author);
+  // if (this.selectedImage) {
+  //   formData.append('image', this.selectedImage, this.selectedImage.name);
+  // }
 
-    // this.bookService.updateBook(this.bookId, formData)
-    //   .subscribe(
-    //     data => {
-    //       console.log('Book updated successfully!');
-    //       console.log(data);
-    //       this.EditbookForm.reset();
-    //       this.selectedImage = null;
-    //       this.errorMessage = '';
-    //       this.router.navigate(['/books']);
-    //     },
-    //     error => {
-    //       console.log('Error updating book: ', error);
-    //       this.errorMessage = error.message;
-    //     }
-    //   );
+  // this.bookService.updateBook(this.bookId, formData)
+  //   .subscribe(
+  //     data => {
+  //       console.log('Book updated successfully!');
+  //       console.log(data);
+  //       this.EditbookForm.reset();
+  //       this.selectedImage = null;
+  //       this.errorMessage = '';
+  //       this.router.navigate(['/books']);
+  //     },
+  //     error => {
+  //       console.log('Error updating book: ', error);
+  //       this.errorMessage = error.message;
+  //     }
+  //   );
 
   //   const Book: Book = {
   //     name: this.EditbookForm!.value.name,
@@ -281,7 +281,7 @@ export class EditBookComponent1 implements OnInit {
   //     }
   //   );
   // }
-  }
+}
 
 
   // onImageSelected(event: any): void {
