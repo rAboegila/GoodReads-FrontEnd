@@ -44,8 +44,7 @@ export class RatingComponent {
   }
 
   showIcon(index: number) {
-    console.log(this.libItem.book?.name, " >> \n\t", this.libItem)
-
+    // console.log(this.libItem.book?.name, " >> \n\t", this.libItem)
     if (this.rating) {
       if (this.rating >= index + 1) {
         return 'star';

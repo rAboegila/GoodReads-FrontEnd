@@ -28,9 +28,11 @@ export class BookShelfComponent {
     });
 
 
-    this._userService.user.subscribe(x => {
+    this._userService.user.subscribe(data => {
 
-      this.myLib = x?.books || [];
+      this.myLib = data?.books || [];
+      console.log(data);
+      console.log("before populate", this.myLib);
       this.populateBooks();
     });
   }
