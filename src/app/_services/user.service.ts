@@ -45,7 +45,7 @@ export class UserService {
   }
 
   register(user: FormData) {
-    return this.http.post<any>(`${baseUrl}/auth/register`, user)
+    return this.http.post<User>(`${baseUrl}/auth/register`, user)
       .pipe(map(user => {
         // console.log("user: ", user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes

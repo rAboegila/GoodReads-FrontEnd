@@ -9,7 +9,7 @@ export interface Book {
   image?: string;
   avgRating?: number;
   reviews?: string[];
-  rating?: number;
+  totalRatings?: number;
   shelve?: BookShelf;
 }
 

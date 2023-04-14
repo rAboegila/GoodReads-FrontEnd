@@ -21,20 +21,19 @@ export class HomeComponent {
   bookImage: string = '';
 
   constructor(private _categoryService: CategoryService, private _authorService: AuthorService, private _bookService: BookService) { }
-  
+
   ngOnInit(): void {
     this._categoryService.getPopularCategory().subscribe(response => {
       this.popularCategories = response.Popularcategories;
       console.log(this.popularCategories);
     });
-    
+
     this._bookService.getPopularBooks().subscribe(response => {
       this.popularBooks = response.data.popularBooks;
       this.popularAuthors = response.data.popularAuthor;
-      
+
       // populate author fullname into book object
       this.popularBooks.forEach(book => {
-        let author:any = book.author;
         book.image = `${uploadsUrl}/books/${book?.image}`;
       });
 
