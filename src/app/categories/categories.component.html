@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row">
-    <button mat-button (click)="addCategory()">Add Category</button>
+    <button  class="btn btn-success" mat-button (click)="addCategory()">Add Category</button>
     <div *ngIf="showAddForm || showEditForm" class="row">
       <div class="col-12">
         <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
@@ -17,8 +17,8 @@
   </div>
 
           </div>
-          <button mat-button type="submit" [disabled]="categoryForm.invalid">Save</button>
-          <button mat-button type="button" (click)="cancel()">Cancel</button>
+          <button  class="btn btn-success" mat-button type="submit" [disabled]="categoryForm.invalid">Save</button>
+          <button class="btn btn-danger m-2" mat-button type="button" (click)="cancel()">Cancel</button>
         </form>
       </div>
     </div>
@@ -35,8 +35,8 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let category">
-            <button mat-button (click)="editCategory(category)">Edit</button>
-            <button mat-button (click)="deleteCategory(category)">Delete</button>
+            <button class="btn btn-info  m-2"  mat-button (click)="editCategory(category)">Edit</button>
+            <button  class="btn btn-danger m-2"   mat-button (click)="deleteCategory(category)">Delete</button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="['_id', 'name', 'actions']"></tr>

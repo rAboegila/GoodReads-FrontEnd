@@ -16,6 +16,7 @@ import { environment } from 'environments/environment.prod';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
+  currentPage = 1;
 
 
   categories: any[] = [];
