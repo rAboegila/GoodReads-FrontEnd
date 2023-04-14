@@ -45,7 +45,7 @@ export class UserService {
   }
 
   register(user: FormData) {
-    return this.http.post<User>(`${baseUrl}/auth/register`, user)
+    return this.http.post<User>(`${baseUrl}/api/auth/register`, user)
       .pipe(map(user => {
         // console.log("user: ", user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -56,13 +56,13 @@ export class UserService {
   }
 
   getProfile(): Observable<any> {
-    return this.http.get<User>(`${baseUrl}/auth/me`);
+    return this.http.get<User>(`${baseUrl}/api/auth/me`);
   }
 
   updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
 
     // return this.http.get<User>(`${baseUrl}/user/${bookID}/book`, {updatedShelf, updatedRating})
-    return this.http.put<User>(`${baseUrl}/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
+    return this.http.put<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
       .pipe(map(user => {
         this.userSubject.next(user);
         return user;

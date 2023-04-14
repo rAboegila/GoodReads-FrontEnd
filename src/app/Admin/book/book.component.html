@@ -22,6 +22,7 @@
             <img  crossorigin="anonymous" [src]="url+book.image" alt="Book cover" width="50" height="50" />
           </td>
           <td>{{ book.avgRating }}</td>
+          
           <td>{{ book.reviews }}</td>
           <td>
             <button (click)="deleteBook(book._id!)">Delete</button>

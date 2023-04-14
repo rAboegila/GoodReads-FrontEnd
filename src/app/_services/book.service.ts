@@ -46,6 +46,6 @@ export class BookService  {
   }
 
   getPopularBooks(): Observable<any> {
-    return this.http.get<any>(`${baseUrl}/authors/popular/books/popular`);
+    return this.http.get<any>(`${baseUrl}/api/authors/popular/books/popular`);
   }
 }

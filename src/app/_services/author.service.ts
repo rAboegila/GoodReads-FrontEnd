@@ -18,12 +18,10 @@ export class AuthorService  {
 
     constructor(private http: HttpClient) {}
     getAuthors(): Observable<any> {
-     const headers = new HttpHeaders({
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
-    });
-    return this.http.get<any>(`${this.API_URL}/authors`,{
-      headers
-    });
+    //  const headers = new HttpHeaders({
+    //   Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
+    // });
+    return this.http.get<any>(`${this.API_URL}/authors`)
   }
     // getAuthors(): Observable<any> {
     //   return this.http.get(`${this.API_URL}/authors`);
@@ -34,12 +32,10 @@ export class AuthorService  {
     }
 
     createAuthor(formData: FormData): Observable<any> {
-        const headers = new HttpHeaders({
-         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
-       });
-      return this.http.post(`${this.API_URL}/authors`, formData,{
-        headers
-      });
+      //   const headers = new HttpHeaders({
+      //    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
+      //  });
+      return this.http.post(`${this.API_URL}/authors`, formData,)
     }
 
     updateAuthor(id: string, formData: FormData): Observable<any> {
