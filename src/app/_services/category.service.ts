@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../_models/Category';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { baseUrl } from './helper';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class CategoryService {
   deleteCategory(categoryId: string): Observable<any> {
     const url = `${this.apiUrl}/${categoryId}`;
     return this.http.delete<any>(url);
+  }
+
+  getPopularCategory(): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/categories/popular`);
   }
 }

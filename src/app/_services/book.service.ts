@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../_models/Book';
+import { baseUrl } from './helper';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,5 +40,9 @@ export class BookService  {
 
   deleteBook(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  getPopularBooks(): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/authors/popular/books/popular`);
   }
 }

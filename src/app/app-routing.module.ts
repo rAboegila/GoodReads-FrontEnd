@@ -15,6 +15,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuard } from './guards/admin.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { SingleBookComponent } from './components/single-book/single-book.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -23,11 +25,13 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'Category', component: CategoriesComponent },
-  { path: 'auhtor', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
+  { path: 'auhtor', component: AuthorsListComponentComponent },
   { path: 'Addauhtor', component: AddAuthorComponent },
   { path: 'EditAuhtor/:id', component: EditAuthorComponent },
   { path: 'Books', component: BookComponent },
+  { path: 'books/:id', component: SingleBookComponent },
   { path: 'AddBook', component: AddBookComponent },
+  { path: 'aboutus', component: AboutusComponent },
   { path: 'EditBook/:id', component: EditBookComponent1, canActivate: [AdminGuard] },
   { path: "**", component: NotFoundComponent },
 ];

@@ -34,7 +34,11 @@ import { AuthorDialogComponent } from './Admin/author-dialog/author-dialog.compo
 import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
-import {  EditBookComponent1 } from './edit-book/edit-book.component';
+import { EditBookComponent1 } from './edit-book/edit-book.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SingleBookComponent } from './components/single-book/single-book.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,10 @@ import {  EditBookComponent1 } from './edit-book/edit-book.component';
     HomeComponent,
     ProfileComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AboutusComponent,
+    FooterComponent,
+    SingleBookComponent,
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
@@ -80,7 +87,7 @@ import {  EditBookComponent1 } from './edit-book/edit-book.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

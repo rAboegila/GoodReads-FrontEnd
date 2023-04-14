@@ -27,7 +27,7 @@ export class LoginComponent {
         },
         error: error => {
           alert("User not found, You have to signup first");
-          this._router.navigate(['/register']);
+          form.reset();
           console.log(error);
         }
       });

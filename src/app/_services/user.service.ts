@@ -42,7 +42,7 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  register(user: any) {
+  register(user: FormData) {
     return this.http.post<any>(`${baseUrl}/auth/register`, user)
       .pipe(map(user => {
         console.log("user: ", user);
@@ -53,11 +53,7 @@ export class UserService {
       }));
   }
 
-  getProfile() {
-    return this.http.get<User>(`${baseUrl}/auth/me`).subscribe((user: User) => {
-      console.log("getProfile: ", user);
-      return user;
-    }
-    );
+  getProfile(): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/auth/me`);
   }
 }
