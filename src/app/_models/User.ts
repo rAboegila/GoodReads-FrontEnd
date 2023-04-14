@@ -9,10 +9,7 @@ export interface User {
     role?: string;
     image?: string;
     token?: string;
-<<<<<<< HEAD
     createdAt?: Date;
-};
-=======
     books?: Library[];
 };
 
@@ -23,4 +20,3 @@ export interface Library {
     shelve: BookShelf;
     book?: Book;
 }
->>>>>>> rawan
