@@ -1,31 +1,32 @@
-<td>
-    <div class=" align-items-center">
-        <a href="#" class="avatar rounded-circle ">
-            <img alt="Image placeholder"
-                src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/bootstrap.jpg">
-        </a>
-    </div>
-</td>
-<td>
-    <div>
-        <span class="mb-0 text-sm fw-bold">Argon Design System</span>
-    </div>
-</td>
-<td>
-    $2,500 USD
-</td>
-<td style="padding-left: 0px;">
-    <app-rating></app-rating>
-</td>
-<td style="padding-left: 0px;">
-    <app-rating></app-rating>
-</td>
-<td [formGroup]='myForm'>
+<tr>
+    <td>
+        <div class=" align-items-center">
+            <a href="#" class="avatar rounded-circle ">
+                <img alt="Book Cover" src={{book.image}}>
+            </a>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span class="mb-0 text-sm fw-bold">{{book.name}}</span>
+        </div>
+    </td>
+    <td>
+        {{book.author}}
+    </td>
+    <td style="padding-left: 0px;">
+        <app-rating></app-rating>
+    </td>
+    <td style="padding-left: 0px;">
+        <app-rating></app-rating>
+    </td>
+    <td [formGroup]='myForm'>
 
-    <select formControlName="shelfSelect" id="shelf-select" class="form-select" aria-label="Default select example">
-        <option value="NOT SET" selected>Shelf</option>
-        <option value="READING">Reading</option>
-        <option value="READ">Read</option>
-        <option value="WANT_TO_READ">Want To Read</option>
-    </select>
-</td>
+        <select formControlName="shelfSelect" id="shelf-select" class="form-select" aria-label="Default select example">
+            <option value="NOT SET">Shelf</option>
+            <option value="READING">Reading</option>
+            <option value="READ">Read</option>
+            <option value="WANT_TO_READ">Want To Read</option>
+        </select>
+    </td>
+</tr>

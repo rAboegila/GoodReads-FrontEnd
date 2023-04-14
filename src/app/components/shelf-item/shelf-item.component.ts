@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { Book } from 'src/app/_models/Book';
 
 @Component({
   selector: 'app-shelf-item',
@@ -7,6 +8,7 @@ import { Form, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./shelf-item.component.css']
 })
 export class ShelfItemComponent {
+  @Input() book!: Book;
   myForm: FormGroup;
 
 
