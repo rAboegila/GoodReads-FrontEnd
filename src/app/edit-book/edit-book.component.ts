@@ -9,6 +9,7 @@ import { AuthorService } from '../_services/author.service';
 import { CategoryService } from '../_services/category.service';
 import { Category } from '../_models/Category';
 import { SelectControlValueAccessor } from '@angular/forms';
+import { environment } from 'environments/environment.prod';
 
 @Component({
   selector: 'app-edit-book',
@@ -16,7 +17,8 @@ import { SelectControlValueAccessor } from '@angular/forms';
   styleUrls: ['./edit-book.component.css'],
 })
 export class EditBookComponent1 implements OnInit {
-  url='http://localhost:5000/uploads/books/'
+  // url='http://localhost:5000/uploads/books/'
+  url=`${environment.url}books/`
   bookId: string = ''
   book: Book = { name: '', category: '', author: {
     _id:'',

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Book, BookDetiles } from 'src/app/_models/Book';
 import { BookService } from 'src/app/_services/book.service';
 import { Author } from '../../_models/Author';
+import { environment } from 'environments/environment.prod';
 
 @Component({
   selector: 'app-book-details',
@@ -10,8 +11,8 @@ import { Author } from '../../_models/Author';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  url='http://localhost:5000/uploads/books/'
-
+  // url='http://localhost:5000/uploads/books/'
+  url=`${environment.url}books/`
   book: BookDetiles= {
     name: '',
     category: {

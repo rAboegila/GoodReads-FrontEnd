@@ -6,6 +6,7 @@ import { AuthorService } from 'src/app/_services/author.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
 import { Router } from '@angular/router';
+import { environment } from 'environments/environment.prod';
 
 @Component({
   selector: 'app-authors-list-component',
@@ -17,7 +18,8 @@ export class AuthorsListComponentComponent implements OnInit
     currentPage = 1;
 
     authors: Author[] = [];
-    url='http://localhost:5000/uploads/authors/'
+    // url='http://localhost:5000/uploads/authors/'
+    url=`${environment.url}authors/`
 
     constructor(private authorService: AuthorService, private router: Router) {}
 

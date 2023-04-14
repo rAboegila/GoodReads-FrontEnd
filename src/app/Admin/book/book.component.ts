@@ -8,6 +8,7 @@ import { Category } from 'src/app/_models/Category';
 import { CategoryService } from 'src/app/_services/category.service';
 import { Author } from 'src/app/_models/Author';
 import { Router } from '@angular/router';
+import { environment } from 'environments/environment.prod';
 
 @Component({
   selector: 'app-book',
@@ -16,10 +17,11 @@ import { Router } from '@angular/router';
 })
 export class BookComponent implements OnInit {
 
-  
+
   categories: any[] = [];
   books!: Book[]
-  url='http://localhost:5000/uploads/books/'
+  // url='http://localhost:5000/uploads/books/'
+  url=`${environment.url}books/`
   constructor(private bookService: BookService ,private categoryService: CategoryService,private router: Router) { }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class BookComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       data => this.categories = data.data ,
       error => console.log(error)
-      
+
     );
   }
 
@@ -44,7 +46,7 @@ export class BookComponent implements OnInit {
           console.log(result.data);
           this.books = result.data;
           console.log(result);
-          
+
         },
         error => {
           console.error('Error getting books', error);
