@@ -22,7 +22,7 @@
                 <img crossorigin="anonymous" src="{{book.image}}" class="card-img-top img-fluid book-img" alt="...">
                 <div class="card-body my-3 book-card-body">
                     <h5 class="card-title fs-5 my-3">{{book.name}}</h5>
-                    <p class="card-text fs-6 fst-italic">By {{book.author}}</p>
+                    <p class="card-text fs-6 fst-italic">By {{book.author.firstName}} {{book.author.lastName}}</p>
                     <i class="fas fa-star"></i>
                     <span class="ms-1 f-5 fst-italic">{{book.avgRating}}%</span>
                 </div>

@@ -15,20 +15,22 @@ import { Category } from '../_models/Category';
 })
 export class EditBookComponent1 implements OnInit {
   bookId: string = '';
-  book: Book = { name: '', category: '', author: '' };
+  category: Category = { _id: '', name: '' };
+  author: Author = { _id: '', firstName: '', lastName: '', dob: new Date() };
+  book: Book = { name: '', category: this.category, author: this.author };
   EditbookForm!: FormGroup;
   categories: Category[] = [];
   authors: Author[] = [];
   selectedImage!: File | null;
   errorMessage = '';
   Book: Book = {
-    _id:'',
+    _id: '',
     name: '',
-    category: '',
-    author: '',
+    category: this.category,
+    author: this.author,
     image: '',
     reviews: [],
-    avgRating:0,
+    avgRating: 0,
   };
   constructor(
     private fb: FormBuilder,
@@ -49,40 +51,40 @@ export class EditBookComponent1 implements OnInit {
   //       this.getBook(id);
   //     }
   //   });
-    
-    ngOnInit(): void {
-      this.activatedRoute.params.subscribe((params) => {
-        const id = params['id'];
-        console.log(id);
-        
-        if (id) {
-          this.getBook(id);
-        }
-      });
-     
 
-      this.categoryService.getCategories().subscribe(
-        data => this.categories = data.data ,
-        error => console.log(error)
-        
-      );
-  
-      
-      this.authorService.getAuthors().subscribe(
-        data => this.authors = data.data,
-        error => console.log(error)
-      );
-    
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      const id = params['id'];
+      console.log(id);
+
+      if (id) {
+        this.getBook(id);
+      }
+    });
+
+
+    this.categoryService.getCategories().subscribe(
+      data => this.categories = data.data,
+      error => console.log(error)
+
+    );
+
+
+    this.authorService.getAuthors().subscribe(
+      data => this.authors = data.data,
+      error => console.log(error)
+    );
+
     this.createEditbookForm();
-    }
+  }
 
-    // this.getBook(id);    
+  // this.getBook(id);    
   //   this.createEditbookForm();
   //   this.getCategories();
   //   this.getAuthors();
 
   // }
- 
+
   onFileSelected(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectedImage = event.target.files[0];
@@ -150,7 +152,7 @@ export class EditBookComponent1 implements OnInit {
           author: [this.book.author, Validators.required],
           image: [null, Validators.required],
         });
-        
+
 
       },
       (err) => {
@@ -165,7 +167,7 @@ export class EditBookComponent1 implements OnInit {
   }
   files: any;
   submitted = false;
-  updateBook(id:string,EditbookForm: any) {
+  updateBook(id: string, EditbookForm: any) {
     this.submitted = true;
     if (this.EditbookForm.invalid) {
       console.log('form invalid');
@@ -177,7 +179,7 @@ export class EditBookComponent1 implements OnInit {
     formdata.append('author', EditbookForm.value.author);
 
 
-    this.bookService.updateBook(id,formdata).subscribe(
+    this.bookService.updateBook(id, formdata).subscribe(
       (res) => {
         // console.log(res);
         this.router.navigate(['/dashboard/courses']);
@@ -188,7 +190,7 @@ export class EditBookComponent1 implements OnInit {
       }
     );
   }
- 
+
   // getBook(): void {
   //   this.bookService.getBook(this.bookId)
   //     .subscribe(
@@ -208,30 +210,30 @@ export class EditBookComponent1 implements OnInit {
   // }
 
   // onSubmit(): void {
-    // const bookData = this.EditbookForm.value;
-    // const formData = new FormData();
-    // formData.append('name', bookData.name);
-    // formData.append('category', bookData.category);
-    // formData.append('author', bookData.author);
-    // if (this.selectedImage) {
-    //   formData.append('image', this.selectedImage, this.selectedImage.name);
-    // }
+  // const bookData = this.EditbookForm.value;
+  // const formData = new FormData();
+  // formData.append('name', bookData.name);
+  // formData.append('category', bookData.category);
+  // formData.append('author', bookData.author);
+  // if (this.selectedImage) {
+  //   formData.append('image', this.selectedImage, this.selectedImage.name);
+  // }
 
-    // this.bookService.updateBook(this.bookId, formData)
-    //   .subscribe(
-    //     data => {
-    //       console.log('Book updated successfully!');
-    //       console.log(data);
-    //       this.EditbookForm.reset();
-    //       this.selectedImage = null;
-    //       this.errorMessage = '';
-    //       this.router.navigate(['/books']);
-    //     },
-    //     error => {
-    //       console.log('Error updating book: ', error);
-    //       this.errorMessage = error.message;
-    //     }
-    //   );
+  // this.bookService.updateBook(this.bookId, formData)
+  //   .subscribe(
+  //     data => {
+  //       console.log('Book updated successfully!');
+  //       console.log(data);
+  //       this.EditbookForm.reset();
+  //       this.selectedImage = null;
+  //       this.errorMessage = '';
+  //       this.router.navigate(['/books']);
+  //     },
+  //     error => {
+  //       console.log('Error updating book: ', error);
+  //       this.errorMessage = error.message;
+  //     }
+  //   );
 
   //   const Book: Book = {
   //     name: this.EditbookForm!.value.name,
@@ -260,7 +262,7 @@ export class EditBookComponent1 implements OnInit {
   //     }
   //   );
   // }
-  }
+}
 
 
   // onImageSelected(event: any): void {

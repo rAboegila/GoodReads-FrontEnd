@@ -3,6 +3,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Book } from 'src/app/_models/Book';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { Library } from '../_models/User';
 
 @Component({
   selector: 'app-book-shelf',
@@ -10,7 +11,7 @@ import { Form, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./book-shelf.component.css']
 })
 export class BookShelfComponent {
-  myBooks: Book[] = [];
+  myBooks: Library[] = [];
   myForm: FormGroup;
 
   constructor(private _userService: UserService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
@@ -20,7 +21,6 @@ export class BookShelfComponent {
     });
 
     this._userService.user.subscribe(x => {
-
       this.myBooks = x?.books || [];
       console.log(this.myBooks);
     });

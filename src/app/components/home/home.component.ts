@@ -35,7 +35,6 @@ export class HomeComponent {
       // populate author fullname into book object
       this.popularBooks.forEach(book => {
         let author:any = book.author;
-        book.author = `${author.firstName} ${author.lastName}`;
         book.image = `${uploadsUrl}/books/${book?.image}`;
       });
 
