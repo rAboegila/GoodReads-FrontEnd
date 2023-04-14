@@ -14,9 +14,10 @@ import { BookService } from '../_services/book.service';
 })
 export class LibraryComponent {
   myLib: Library[] = [];
-  readingShelf: BookShelf = BookShelf.READING;
-  readShelf: BookShelf = BookShelf.READ;
-  wantToReadShelf: BookShelf = BookShelf.WANT_TO_READ;
+  public all: string = "ALL";
+  public read: string = "READ";
+  public reading: string = "READING";
+  public wantToRead: string = "WANT_TO_READ";
 
 
 

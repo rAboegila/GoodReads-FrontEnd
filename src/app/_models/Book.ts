@@ -17,4 +17,5 @@ export enum BookShelf {
   READING = 'READING',
   READ = 'READ',
   WANT_TO_READ = 'WANT_TO_READ',
+  ALL = 'ALL',
 }

@@ -13,7 +13,7 @@ export class RatingComponent {
   @Input('starCount') private starCount: number = 5;
   @Input('type') type!: string;
   @Input('color') color: string = 'accent';
-  @Output() ratingUpdated = new EventEmitter();
+  @Output() ratingUpdated = new EventEmitter<number>();
 
   private snackBarDuration: number = 2000;
   ratingArr: number[] = [];
@@ -35,7 +35,7 @@ export class RatingComponent {
       duration: this.snackBarDuration
     });
     this.rating = rating;
-    // this.ratingUpdated.emit(rating);
+    this.ratingUpdated.emit(rating);
     this._userService.updateLibrary(this.libItem.bookId, this.libItem.shelve, rating).subscribe(
       (res) => { console.log(res); }
 

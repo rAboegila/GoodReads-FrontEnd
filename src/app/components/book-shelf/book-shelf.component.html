@@ -31,14 +31,15 @@
                     {{libItem.book?.author?.lastName}}
                 </td>
                 <td style="padding-left: 0px;">
-                    <app-rating [libItem]="libItem" type='norm' [rating]="libItem.rating"></app-rating>
+                    <app-rating [libItem]="libItem" type='norm' (ratingUpdated)="setRatingValue(libItem,$event)"
+                        [rating]="libItem.rating"></app-rating>
                 </td>
                 <td style="padding-left: 0px;">
                     <app-rating [libItem]="libItem" type='avg' [rating]="libItem.book?.avgRating"></app-rating>
                 </td>
                 <td>
                     <select #shelfSelected [id]="'shelf-select'+i" class="form-select"
-                        aria-label="Default select example" (change)="setShelfValue(i,libItem, shelfSelected.value)">
+                        aria-label="Default select example" (change)="setShelfValue(libItem, shelfSelected.value)">
                         <option [selected]="libItem.shelve === 'READING' " value='READING'>
                             Reading
                         </option>
