@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from 'src/app/_models/Book';
+import { Book, BookDetiles } from 'src/app/_models/Book';
 import { BookService } from 'src/app/_services/book.service';
+import { Author } from '../../_models/Author';
 
 @Component({
   selector: 'app-book-details',
@@ -9,10 +10,21 @@ import { BookService } from 'src/app/_services/book.service';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  book: Book = {
+  url='http://localhost:5000/uploads/books/'
+
+  book: BookDetiles= {
     name: '',
-    category: undefined,
-    author: undefined
+    category: {
+      _id:'',
+      name:'',
+    },
+    author:{
+      _id:'',
+      firstName: '',
+      lastName: '',
+      dob: new Date(),
+      image: '',
+    },
   };
 
   constructor(private route: ActivatedRoute, private bookService: BookService) { }
@@ -20,7 +32,9 @@ export class BookDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.bookService.getBook(id as string).subscribe(data => {
-      this.book = data.book;
+      this.book = data.data;
+      console.log(this.book);
+      
     });
   }
 

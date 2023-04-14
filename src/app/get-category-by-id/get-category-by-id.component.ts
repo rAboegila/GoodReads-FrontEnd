@@ -15,7 +15,7 @@ export class GetCategoryByIdComponent implements OnInit {
   ngOnInit() {
     const categoryId = this.route.snapshot.params['id'];
     this.categoryService.getCategory(categoryId).subscribe(data => {
-      this.category = data;
+      this.category = data.data;
     });
   }
 

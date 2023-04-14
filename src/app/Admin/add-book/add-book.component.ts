@@ -18,7 +18,14 @@ export class AddBookComponent implements OnInit {
   selectedImage!: File;
   errorMessage = '';
 
-  constructor(private bookService: BookService, private categoryService: CategoryService, private authorService: AuthorService) { }
+  constructor(private bookService: BookService, private categoryService: CategoryService, private authorService: AuthorService,private router: Router) { 
+    this.bookForm = new FormGroup({
+      name: new FormControl(''),
+      category: new FormControl(''),
+      author: new FormControl(''),
+      image: new FormControl('')
+    });
+  }
 
   ngOnInit(): void {
     this.bookForm = new FormGroup({
@@ -61,6 +68,8 @@ export class AddBookComponent implements OnInit {
           this.bookForm!.reset();
           this.selectedImage!= null;
           this.errorMessage = '';
+          this.router.navigate(['Books']);
+
         },
         error => {
           console.log('Error creating book: ', error);

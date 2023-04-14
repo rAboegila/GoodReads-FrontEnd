@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Books</h2>
-  <button>Add Book</button>
+  <button routerLink="/AddBook" >Add Book</button>
   <table class="table table-responsive table-striped">
       <thead>
         <tr>
@@ -16,8 +16,8 @@
       <tbody>
         <tr *ngFor="let book of books">
           <td>{{ book.name }}</td>
-          <td>{{ book.category }}</td>
-          <td>{{ book.author }}</td>
+          <td *ngFor="let category of categories">{{ category.name }}</td>
+          <td>{{ book.author.firstName }}</td>
           <td>
             <img  crossorigin="anonymous" [src]="url+book.image" alt="Book cover" width="50" height="50" />
           </td>
@@ -25,7 +25,7 @@
           <td>{{ book.reviews }}</td>
           <td>
             <button (click)="deleteBook(book._id!)">Delete</button>
-            <button>Edit</button>
+            <button (click)="onEditClick(book._id!)" >Edit</button>
           </td>
         </tr>
       </tbody>

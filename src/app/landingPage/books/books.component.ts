@@ -10,12 +10,12 @@ import { BookService } from 'src/app/_services/book.service';
 export class BooksComponent implements OnInit {
   books: Book[] = [];
 hover: any;
-
+url='http://localhost:5000/uploads/books/'
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
     this.bookService.getBooks(1).subscribe(data => {
-      this.books = data.books;
+      this.books = data.data;
     });
   }
 
