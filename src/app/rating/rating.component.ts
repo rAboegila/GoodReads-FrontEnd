@@ -35,7 +35,7 @@ export class RatingComponent {
       duration: this.snackBarDuration
     });
     this.rating = rating;
-    this.ratingUpdated.emit(rating);
+    // this.ratingUpdated.emit(rating);
     this._userService.updateLibrary(this.libItem.bookId, this.libItem.shelve, rating).subscribe(
       (res) => { console.log(res); }
 

@@ -41,10 +41,11 @@ import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-i
 import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-import { BookShelfComponent } from './book-shelf/book-shelf.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LibraryComponent } from './library/library.component';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,8 +70,10 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
     GetCategoryByIdComponent,
     BooksComponent,
     BookDetailsComponent,
+    LibraryComponent,
+    ShelfItemComponent,
     BookShelfComponent,
-    ShelfItemComponent
+
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
@@ -101,6 +104,8 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    MatTabsModule,
+    MatFormFieldModule
   ],
 
   providers: [

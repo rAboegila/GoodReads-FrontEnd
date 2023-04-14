@@ -28,12 +28,10 @@ export class UserService {
 
   login(username: string, password: string) {
     return this.http.post<User>(`${baseUrl}/auth/login`, { username, password })
-      .pipe(map(user => {
-        // console.log("user: ", user);
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-        return user;
+      .pipe(map(res => {
+        localStorage.setItem('user', JSON.stringify(res));
+        this.userSubject.next(res);
+        return res;
       }));
   }
 
@@ -56,21 +54,18 @@ export class UserService {
   }
 
   getProfile() {
-    return this.http.get<User>(`${baseUrl}/auth/me`).subscribe((user: User) => {
-      console.log("getProfile: ", user);
-      this.userSubject.next(user);
-      return user;
-    }
-    );
+    return this.http.get<User>(`${baseUrl}/auth/me`);
   }
 
   updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
 
     // return this.http.get<User>(`${baseUrl}/user/${bookID}/book`, {updatedShelf, updatedRating})
     return this.http.put<User>(`${baseUrl}/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
-      .pipe(map(user => {
-        this.userSubject.next(user);
-        return user;
+      .pipe(map(res => {
+        this.userSubject.next(res.data);
+        console.log("in service update lib", res.data);
+        localStorage.setItem('user', JSON.stringify(res.data));
+        return res;
       }));
 
     //`${baseUrl}/user/${bookID}/book`

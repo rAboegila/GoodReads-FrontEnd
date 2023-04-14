@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book, BookDetiles } from 'src/app/_models/Book';
+import { Book } from 'src/app/_models/Book';
 import { BookService } from 'src/app/_services/book.service';
 import { Author } from '../../_models/Author';
 
@@ -10,16 +10,16 @@ import { Author } from '../../_models/Author';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  url='http://localhost:5000/uploads/books/'
+  url = 'http://localhost:5000/uploads/books/'
 
-  book: BookDetiles= {
+  book: Book = {
     name: '',
     category: {
-      _id:'',
-      name:'',
+      _id: '',
+      name: '',
     },
-    author:{
-      _id:'',
+    author: {
+      _id: '',
       firstName: '',
       lastName: '',
       dob: new Date(),
@@ -34,7 +34,7 @@ export class BookDetailsComponent implements OnInit {
     this.bookService.getBook(id as string).subscribe(data => {
       this.book = data.data;
       console.log(this.book);
-      
+
     });
   }
 

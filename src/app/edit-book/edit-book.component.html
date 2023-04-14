@@ -4,34 +4,44 @@
 
 <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 
-<form [formGroup]="EditbookForm" >
+<form [formGroup]="EditbookForm">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" name="book.name"  id="name" formControlName="name">
+    <input type="text" class="form-control" name="book.name" id="name" formControlName="name">
   </div>
-  <div *ngIf="EditbookForm && EditbookForm.get('name') && EditbookForm.get('name')?.invalid && (EditbookForm.get('name')?.dirty || EditbookForm.get('name')?.touched)" class="alert alert-danger">
+  <div
+    *ngIf="EditbookForm && EditbookForm.get('name') && EditbookForm.get('name')?.invalid && (EditbookForm.get('name')?.dirty || EditbookForm.get('name')?.touched)"
+    class="alert alert-danger">
     <div *ngIf="EditbookForm && EditbookForm.get('name')?.errors?.['required']"> name is required.</div>
-    <div *ngIf=" EditbookForm &&  EditbookForm.get('name')?.errors?.['minlength']"> name must be at least {{ EditbookForm.get('name')?.errors?.['minlength'].requiredLength }} characters long.</div>
-    <div *ngIf=" EditbookForm && EditbookForm.get('name')?.errors?.['maxlength']"> name cannot be longer than {{ EditbookForm.get('name')?.errors?.['maxlength'].requiredLength }} characters.</div>
+    <div *ngIf=" EditbookForm &&  EditbookForm.get('name')?.errors?.['minlength']"> name must be at least {{
+      EditbookForm.get('name')?.errors?.['minlength'].requiredLength }} characters long.</div>
+    <div *ngIf=" EditbookForm && EditbookForm.get('name')?.errors?.['maxlength']"> name cannot be longer than {{
+      EditbookForm.get('name')?.errors?.['maxlength'].requiredLength }} characters.</div>
   </div>
   <div class="form-group">
     <label for="category" class="form-control" formControlName="category">Category</label>
     <select id="category" class="form-control" formControlName="category">
-      <option class="form-control" *ngFor="let category of categories" [value]="category._id" [selected]="book.category">{{ category.name }}</option>
+      <option class="form-control" *ngFor="let category of categories" [value]="category._id"
+        [selected]="book.category">{{ category.name }}</option>
     </select>
 
-    <div *ngIf="EditbookForm && EditbookForm.get('category') && EditbookForm.get('category')?.invalid && (EditbookForm.get('category')?.dirty || EditbookForm.get('category')?.touched)" class="alert alert-danger">
+    <div
+      *ngIf="EditbookForm && EditbookForm.get('category') && EditbookForm.get('category')?.invalid && (EditbookForm.get('category')?.dirty || EditbookForm.get('category')?.touched)"
+      class="alert alert-danger">
       <div *ngIf="EditbookForm && EditbookForm.get('category')?.errors?.['required']">Category is required.</div>
     </div>
 
- 
+
   </div>
-  <div class="form-group" >
+  <div class="form-group">
     <label for="author" class="form-control">Author</label>
-    <select id="author"  class="form-control" formControlName="author">
-      <option class="form-control"  *ngFor="let author of authors" [value]="author._id" [selected]="book.author._id">{{ author.firstName }}</option>
+    <select id="author" class="form-control" formControlName="author">
+      <option class="form-control" *ngFor="let author of authors" [value]="author._id" [selected]="book.author._id">{{
+        author.firstName }}</option>
     </select>
-    <div *ngIf="EditbookForm && EditbookForm.get('author') && EditbookForm.get('author')?.invalid && (EditbookForm.get('author')?.dirty || EditbookForm.get('category')?.touched)" class="alert alert-danger">
+    <div
+      *ngIf="EditbookForm && EditbookForm.get('author') && EditbookForm.get('author')?.invalid && (EditbookForm.get('author')?.dirty || EditbookForm.get('category')?.touched)"
+      class="alert alert-danger">
       <div *ngIf="EditbookForm && EditbookForm.get('author')?.errors?.['required']">Author is required.</div>
     </div>
 
@@ -45,15 +55,16 @@
   <div class="form-group">
     <label>Image upload :</label>
     <div class="input-group col-xs-12">
-      <input formControlName="image" type="file" name="image" name="book.image"  id="image" class="form-control" (change)="uploadImage($event)">
+      <input formControlName="image" type="file" name="image" name="book.image" id="image" class="form-control"
+        (change)="uploadImage($event)">
     </div>
   </div>
 
   <div *ngIf="book.image">
     <label>Current Image:</label>
-    <img  crossorigin="anonymous" [src]="url+book.image" width="100">
+    <img crossorigin="anonymous" [src]="url+book.image" width="100">
   </div>
 
-  <button type="submit" class="btn btn-primary my-3" (click)="updateBook(Book._id!,EditbookForm)">Save</button>
+  <button type="submit" class="btn btn-primary my-3" (click)="updateBook(book._id!,EditbookForm)">Save</button>
   <a routerLink="/Books" class="btn btn-secondary">Cancel</a>
 </form>

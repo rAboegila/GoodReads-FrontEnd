@@ -19,7 +19,7 @@ import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
-import { BookShelfComponent } from './book-shelf/book-shelf.component';
+import { LibraryComponent } from './library/library.component';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: "profile/shelves", component: BookShelfComponent, canActivate: [AuthGuard] },
+  { path: "profile/shelves", component: LibraryComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
 
   { path: 'cate', component: CategoriesComponent, canActivate: [AdminGuard] },
