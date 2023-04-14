@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -24,7 +25,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './components/admin/admin.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-
 import { AppComponent } from './app.component';
 import { MatSelectModule } from '@angular/material/select';
 import { BookComponent } from './Admin/book/book.component';
@@ -38,6 +38,9 @@ import { EditBookComponent1 } from './edit-book/edit-book.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SingleBookComponent } from './components/single-book/single-book.component';
+import { RatingComponent } from './rating/rating.component';
+import { BookShelfComponent } from './book-shelf/book-shelf.component';
+import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 
 @NgModule({
   declarations: [
@@ -61,12 +64,16 @@ import { SingleBookComponent } from './components/single-book/single-book.compon
     AboutusComponent,
     FooterComponent,
     SingleBookComponent,
+    RatingComponent,
+    BookShelfComponent,
+    ShelfItemComponent,
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
     MatDatepickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatTooltipModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

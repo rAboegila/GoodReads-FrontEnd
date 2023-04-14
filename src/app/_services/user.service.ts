@@ -4,6 +4,7 @@ import { User } from '../_models/User';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { baseUrl } from './helper';
+import { BookShelf } from '../_models/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { baseUrl } from './helper';
 export class UserService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
+  public myUser: User | any;
 
   constructor(
     private router: Router,
@@ -27,7 +29,7 @@ export class UserService {
   login(username: string, password: string) {
     return this.http.post<User>(`${baseUrl}/auth/login`, { username, password })
       .pipe(map(user => {
-        console.log("user: ", user);
+        // console.log("user: ", user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
@@ -45,7 +47,7 @@ export class UserService {
   register(user: FormData) {
     return this.http.post<any>(`${baseUrl}/auth/register`, user)
       .pipe(map(user => {
-        console.log("user: ", user);
+        // console.log("user: ", user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
@@ -54,6 +56,19 @@ export class UserService {
   }
 
   getProfile(): Observable<any> {
-    return this.http.get<any>(`${baseUrl}/auth/me`);
+    return this.http.get<User>(`${baseUrl}/auth/me`);
+  }
+
+  updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
+
+    // return this.http.get<User>(`${baseUrl}/user/${bookID}/book`, {updatedShelf, updatedRating})
+    return this.http.put<User>(`${baseUrl}/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
+      .pipe(map(user => {
+        this.userSubject.next(user);
+        return user;
+      }));
+
+    //`${baseUrl}/user/${bookID}/book`
+
   }
 }

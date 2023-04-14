@@ -8,6 +8,7 @@ import { UserService } from 'src/app/_services/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent {
 
   user: User | null;
