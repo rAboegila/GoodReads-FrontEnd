@@ -10,7 +10,7 @@
 
 
                 <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
-                    <a class="nav-link " [routerLink]="['Books']" routerLinkActive="active">Books</a>
+                    <a class="nav-link  "  [routerLink]="['Books']" routerLinkActive="active">Books</a>
                 </li>
                 <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
                     <a class="nav-link" [routerLink]="['auhtor']" routerLinkActive="active">Authors</a>
@@ -51,7 +51,7 @@
                     <a class="nav-link" [routerLink]="['profile']" routerLinkActive="active">{{name}}</a>
                 </li>
                 <li *ngIf="isLoggedIn" class="nav-item">
-                    <a class="nav-link" (click)="logout()">Logout</a>
+                    <a class="nav-link"  class="btn btn-danger" (click)="logout()">Logout</a>
                 </li>
             </ul>
 
