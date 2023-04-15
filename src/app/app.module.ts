@@ -34,7 +34,8 @@ import { AuthorDialogComponent } from './Admin/author-dialog/author-dialog.compo
 import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
-import {  EditBookComponent1 } from './edit-book/edit-book.component';
+import { EditBookComponent1 } from './edit-book/edit-book.component';
+import { RatingComponent } from './rating/rating.component';
 import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury.component';
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
@@ -43,10 +44,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SingleBookComponent } from './components/single-book/single-book.component';
-import { RatingComponent } from './rating/rating.component';
-import { BookShelfComponent } from './book-shelf/book-shelf.component';
-import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 
+import { MatTabsModule } from '@angular/material/tabs';
+import { LibraryComponent } from './library/library.component';
+import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +69,7 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
     ProfileComponent,
     AdminComponent,
     NotFoundComponent,
+    RatingComponent,
     GetCategouryComponent,
     GetCategoryByIdComponent,
     BooksComponent,
@@ -74,13 +78,15 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
     FooterComponent,
     SingleBookComponent,
     RatingComponent,
-    BookShelfComponent,
     ShelfItemComponent,
+    LibraryComponent,
+    ShelfItemComponent,
+    BookShelfComponent,
+
   ],
   imports: [
     NgbModule, // add NgbModule to the imports array
     MatDatepickerModule,
-    NgxPaginationModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatTooltipModule,
@@ -94,7 +100,6 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
@@ -104,9 +109,12 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
     NgbModalModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-        FormsModule,
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+    MatTabsModule,
+    MatFormFieldModule
   ],
 
   providers: [

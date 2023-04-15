@@ -16,11 +16,11 @@ export class BookDetailsComponent implements OnInit {
   book: BookDetiles= {
     name: '',
     category: {
-      _id:'',
-      name:'',
+      _id: '',
+      name: '',
     },
-    author:{
-      _id:'',
+    author: {
+      _id: '',
       firstName: '',
       lastName: '',
       dob: new Date(),
@@ -35,7 +35,7 @@ export class BookDetailsComponent implements OnInit {
     this.bookService.getBook(id as string).subscribe(data => {
       this.book = data.data;
       console.log(this.book);
-      
+
     });
   }
 

@@ -1,5 +1,6 @@
 import { Book, BookShelf } from "./Book";
 export interface User {
+    data: any;
     _id?: string;
     firstName?: string;
     lastName?: string;

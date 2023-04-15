@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../_models/User';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseUrl } from './helper';
 import { BookShelf } from '../_models/Book';
 
@@ -61,11 +61,18 @@ export class UserService {
 
   updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
 
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzlhY2JlNjUyZTU4ODRkNTlkNGQ1OSIsImlhdCI6MTY4MTUxODMzNCwiZXhwIjoxNjg0MTEwMzM0fQ.SwLSyeq61rhmaNSLNurpwXuTs9e2arF0JCvRiDmLc1A',
+    });
     // return this.http.get<User>(`${baseUrl}/user/${bookID}/book`, {updatedShelf, updatedRating})
-    return this.http.put<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
-      .pipe(map(user => {
-        this.userSubject.next(user);
-        return user;
+    return this.http.put<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating },{
+      headers
+    })
+      .pipe(map(res => {
+        this.userSubject.next(res.data);
+        console.log("in service update lib", res.data);
+        localStorage.setItem('user', JSON.stringify(res.data));
+        return res;
       }));
 
     //`${baseUrl}/user/${bookID}/book`

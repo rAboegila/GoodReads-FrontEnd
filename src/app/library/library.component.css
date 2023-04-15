@@ -1,3 +1,4 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 :root {
   --blue: #5e72e4;
   --indigo: #5603ad;
@@ -63,9 +64,11 @@ body {
   text-align: left;
   color: #525f7f;
 }
-
-[tabindex="-1"]:focus {
-  outline: 0 !important;
+::ng-deep mat-mdc-button-touch-target,
+::ng-deep .mat-mdc-focus-indicator,
+::ng-deep .mat-mdc-button-ripple {
+  position: unset !important;
+  transform: translate(0%, -10%) !important;
 }
 
 h2,
