@@ -32,26 +32,6 @@ export class LibraryComponent {
     this.myLib = data;
   }
 
-  // setShelfValue(bookIndex: number, libItem: Library, value: string) {
-  //   // const rawValue = this.myForm.controls['shelfSelect'].getRawValue();
-  //   const rawValue = value;
-  //   console.log("new Value", rawValue);
-
-  //   const newValue: BookShelf = rawValue === 'READ' ? BookShelf.READ : rawValue === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
-  //   // this.myForm.controls['shelfSelect'].setValue(newValue);
-  //   this._userService.updateLibrary(libItem.bookId, libItem.shelve, libItem.rating).subscribe((res) => {
-  //     console.log("set shelf response", res);
-  //   })
-  //   this._userService.getProfile().subscribe((res) => {
-  //     //this.updateLibrary(res);
-  //     console.log("res", res);
-  //     console.log("res.data.books", res.data.books);
-  //     this.myLib = res?.data?.books || [];
-  //     this.populateBooks();
-
-  //   })
-  // }
-
   private updateLibrary(data: any) {
     this.myLib = data?.books || [];
     console.log("user", data);

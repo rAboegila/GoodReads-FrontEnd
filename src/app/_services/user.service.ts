@@ -59,13 +59,8 @@ export class UserService {
 
   updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
 
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzlhY2JlNjUyZTU4ODRkNTlkNGQ1OSIsImlhdCI6MTY4MTUxODMzNCwiZXhwIjoxNjg0MTEwMzM0fQ.SwLSyeq61rhmaNSLNurpwXuTs9e2arF0JCvRiDmLc1A',
-    });
-    // return this.http.get<User>(`${baseUrl}/user/${bookID}/book`, {updatedShelf, updatedRating})
-    return this.http.put<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating },{
-      headers
-    })
+
+    return this.http.put<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
       .pipe(map(res => {
         this.userSubject.next(res.data);
 
