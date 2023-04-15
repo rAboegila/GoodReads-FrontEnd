@@ -27,7 +27,6 @@ export class LoginComponent {
         },
         error: error => {
           alert("User not found, You have to signup first");
-          form.reset();
           console.log(error);
         }
       });

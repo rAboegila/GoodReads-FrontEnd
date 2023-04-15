@@ -25,7 +25,6 @@ export class HomeComponent {
   ngOnInit(): void {
     this._categoryService.getPopularCategory().subscribe(response => {
       this.popularCategories = response.Popularcategories;
-      console.log(this.popularCategories);
     });
 
     this._bookService.getPopularBooks().subscribe(response => {

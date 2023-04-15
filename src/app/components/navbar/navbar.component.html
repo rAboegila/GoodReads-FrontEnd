@@ -24,13 +24,13 @@
 
 
                 <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
-                    <a class="nav-link" routerLink="/showCategoury" >Categories</a>
+                    <a class="nav-link" routerLink="/showCategoury" routerLinkActive="active">Categories</a>
                 </li>
                 <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
-                    <a class="nav-link"  routerLink="/showAuthor" >Authors</a>
+                    <a class="nav-link"  routerLink="/showAuthor" routerLinkActive="active">Authors</a>
                 </li>
                 <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
-                  <a class="nav-link"  routerLink="/showBooks" >Books</a>
+                  <a class="nav-link"  routerLink="/showBooks" routerLinkActive="active">Books</a>
               </li>
                 <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
                     <a class="nav-link" >Terms & Conditions</a>
