@@ -43,8 +43,6 @@ import { BookDetailsComponent } from './landingPage/book-details/book-details.co
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SingleBookComponent } from './components/single-book/single-book.component';
-
 import { MatTabsModule } from '@angular/material/tabs';
 import { LibraryComponent } from './library/library.component';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
@@ -52,7 +50,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
-import { BookItemComponent } from './components/book-item/book-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +76,6 @@ import { BookItemComponent } from './components/book-item/book-item.component';
     BookDetailsComponent,
     AboutusComponent,
     FooterComponent,
-    SingleBookComponent,
     RatingComponent,
     ShelfItemComponent,
     LibraryComponent,
@@ -87,7 +83,6 @@ import { BookItemComponent } from './components/book-item/book-item.component';
     BookShelfComponent,
     AuthorListComponent,
     AuthorDetailsComponent,
-    BookItemComponent,
 
   ],
   imports: [
