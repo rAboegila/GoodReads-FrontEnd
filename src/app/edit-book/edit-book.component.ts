@@ -11,6 +11,8 @@ import { Category } from '../_models/Category';
 import { SelectControlValueAccessor } from '@angular/forms';
 import { environment } from 'environments/environment.prod';
 
+
+
 @Component({
   selector: 'app-edit-book',
   templateUrl: './edit-book.component.html',
@@ -30,8 +32,8 @@ export class EditBookComponent1 implements OnInit {
   EditbookForm!: FormGroup;
   categories: Category[] = [];
   authors: Author[] = [];
+  errorMessage :string | undefined;
   selectedImage!: File | null;
-  errorMessage = '';
   Book: Book = {
     _id: '',
     name: '',
@@ -190,7 +192,10 @@ export class EditBookComponent1 implements OnInit {
       console.log('form invalid');
     }
     const formdata = new FormData();
-    formdata.append('image', this.files, this.files.name);
+    // formdata.append('image', this.files, this.files.name);
+    if (this.files) {
+      formdata.append('image', this.files, this.files.name);
+    }
     formdata.append('name', EditbookForm.value.name);
     formdata.append('category', EditbookForm.value.category);
     formdata.append('author', EditbookForm.value.author);
@@ -201,10 +206,14 @@ export class EditBookComponent1 implements OnInit {
       (res) => {
         // console.log(res);
         this.router.navigate(['Books']);
+        this.EditbookForm!.reset();
+        this.selectedImage!= null;
+        this.errorMessage = '';
         console.log(res)
       },
       (err) => {
         console.log('Error updating book ');
+        this.errorMessage = 'Invalid value';
       }
     );
   }

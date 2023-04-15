@@ -138,6 +138,7 @@ export class EditAuthorComponent {
       (error) => {
         console.log(error);
         this.errorMessage = 'Invalid value';
+
        }
     );
   }
