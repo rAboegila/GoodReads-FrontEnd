@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row my-4 m-auto">
+        <div class="col-md-6 col-sm-12 card-header m-auto ps-4">
+            <img crossorigin="anonymous" src="{{url+author.image}}" alt="{{author.firstName + author.lastName}}"
+                class="img-fluid author-img p-2">
+        </div>
+        <div class="col-md-6 col-sm-12 card-block m-auto px-2">
+            <h2 class="author-title fs-1 mb-3">{{author.firstName}} {{author.lastName}}</h2>
+            <h3 class="author-detail fst-italic">{{author.dob | date}}</h3>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <h2 class="mb-5 mt-5 ps-5 fs-2">Author's Books</h2>
+    <div *ngFor="let lib of myLib" class="card flex-row flex-wrap shadow m-3 p-3">
+        <div class="card-header border-0 shadow m-3">
+            <img crossorigin="anonymous" src={{url+lib.book?.image}} alt="{{lib.book?.name}}" class="img-fluid">
+        </div>
+        <div class="row card-block p-4">
+            <div class="col">
+                <h4 class="card-title fs-4 book-name">{{lib.book?.name}}</h4>
+                <p class="card-text fst-italic">{{lib.book?.totalRatings}} ratings</p>
+                <p class="card-text fst-italic">{{lib.book?.avgRating}}</p>
+                <app-rating [libItem]="lib" type='avg' [rating]="lib.book?.avgRating"></app-rating>
+            </div>
+            <div class="col">
+                <app-rating [libItem]="lib" type='norm' (ratingUpdated)="setRatingValue(lib,$event)"
+                [rating]="lib.rating"></app-rating>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

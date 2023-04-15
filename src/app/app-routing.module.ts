@@ -21,6 +21,7 @@ import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
 import { LibraryComponent } from './library/library.component';
 import { AuthorListComponent } from './author-list/author-list.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'category/:id', component: GetCategoryByIdComponent, canActivate: [AuthGuard] },
   { path: 'showBooks', component: BooksComponent, canActivate: [AuthGuard] },
   { path: 'showAuthor', component: AuthorListComponent, canActivate: [AuthGuard] },
+  { path: 'author-details/:id', component: AuthorDetailsComponent, canActivate: [AuthGuard] },
   { path: 'book-details/:id', component: BookDetailsComponent, canActivate: [AuthGuard] },
   { path: "**", component: NotFoundComponent },
 ];

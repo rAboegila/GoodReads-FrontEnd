@@ -1,0 +1,14 @@
+.author-img{
+    width: 60%;
+    height: 70%;
+}
+
+.author-title{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: darkcyan;
+}
+
+.book-name{
+    color: darkcyan;
+}
