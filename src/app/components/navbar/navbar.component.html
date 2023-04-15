@@ -27,7 +27,7 @@
                     <a class="nav-link" routerLink="/showCategoury" >Categories</a>
                 </li>
                 <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
-                    <a class="nav-link" >Authors</a>
+                    <a class="nav-link"  routerLink="/showAuthor" >Authors</a>
                 </li>
                 <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
                   <a class="nav-link"  routerLink="/showBooks" >Books</a>
