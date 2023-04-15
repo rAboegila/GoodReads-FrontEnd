@@ -9,6 +9,10 @@
         <h1 class="author-modal-title">Edit Author</h1>
 
       </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
       <form [formGroup]="authorFormEdit!" (ngSubmit)="onupdate()" class="p-3 border rounded">
         <div class="author-modal-body">
           <div class="form-group">
@@ -47,7 +51,7 @@
             <img  crossorigin="anonymous" [src]="url+Author.image" width="100">
           </div>
         </div>
-        
+
         <div class="author-modal-footer">
 
           <button type="submit" class="btn btn-primary mt-3" >Save Changes</button>

@@ -12,9 +12,10 @@ import { environment } from 'environments/environment.prod';
 })
 export class EditAuthorComponent {
   authorFormEdit: FormGroup | undefined;
-  errorMessage!: string;
   selectedImage: any;
   authorID:any;
+  errorMessage :string | undefined;
+
   // url='http://localhost:5000/uploads/authors/'
   url=`${environment.url}authors/`
 
@@ -114,11 +115,14 @@ export class EditAuthorComponent {
         // this.activeModal.close();
         this.router.navigate(['auhtor']);
         // this.errorMessage = '';
+        this.authorFormEdit!.reset();
+        this.selectedImage!= null;
+        this.errorMessage = '';
 
       },
       (error) => {
         console.log(error);
-        // this.errorMessage = 'Invalid value';
+        this.errorMessage = 'Invalid value';
        }
     );
   }
