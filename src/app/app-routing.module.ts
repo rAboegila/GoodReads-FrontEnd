@@ -19,7 +19,10 @@ import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
-import { BookShelfComponent } from './book-shelf/book-shelf.component';
+import { LibraryComponent } from './library/library.component';
+import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
+import { AuthorListComponent } from './author-list/author-list.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -39,6 +42,7 @@ const routes: Routes = [
   {path: 'showCategoury', component:GetCategouryComponent,canActivate: [AuthGuard]},
   {path: 'category/:id', component:GetCategoryByIdComponent,canActivate: [AuthGuard]},
   {path: 'showBooks', component:BooksComponent,canActivate: [AuthGuard]},
+  {path: 'showAuthor', component:AuthorListComponent,canActivate: [AuthGuard]},
   {path: 'book-details/:id', component:BookDetailsComponent,canActivate: [AuthGuard]},
 
   { path: "**", component: NotFoundComponent },
