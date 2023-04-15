@@ -56,7 +56,6 @@ export class RegisterComponent {
     formData.append('image', this.image);
 
     this._userService.register(formData)
-      .pipe(first())
       .subscribe({
         next: () => {
           this._router.navigate(['/']);

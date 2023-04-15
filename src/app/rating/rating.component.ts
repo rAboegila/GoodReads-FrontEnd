@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Library } from '../_models/User';
+import { Book, BookShelf } from '../_models/Book';
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
@@ -9,7 +10,7 @@ import { Library } from '../_models/User';
 })
 export class RatingComponent {
   @Input('rating') rating!: number | undefined;
-  @Input('libItem') libItem!: Library;
+  @Input('libItem') libItem!: Library | Book;
   @Input('starCount') private starCount: number = 5;
   @Input('type') type!: string;
   @Input('color') color: string = 'accent';
@@ -36,10 +37,18 @@ export class RatingComponent {
     });
     this.rating = rating;
     this.ratingUpdated.emit(rating);
-    this._userService.updateLibrary(this.libItem.bookId, this.libItem.shelve, rating).subscribe(
-      (res) => { console.log(res); }
+    if ("bookId" in this.libItem) {
+      this._userService.updateLibrary(this.libItem.bookId, this.libItem.shelve, rating).subscribe(
+        (res) => { console.log(res); }
 
-    );
+      );
+    }
+    else if("name" in this.libItem && this.libItem._id){
+      this._userService.updateLibrary(this.libItem._id, BookShelf.ALL, rating).subscribe(
+        (res) => { console.log(res); }
+
+      );
+    }
     return false;
   }
 
