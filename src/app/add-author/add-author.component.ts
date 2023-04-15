@@ -33,7 +33,7 @@ export class AddAuthorComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       dob: ['', [Validators.required]],
-      image: [''],
+      image: [[''],[Validators.required]]
     });
   }
 
