@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -12,26 +12,25 @@ import { Library } from 'src/app/_models/User';
   templateUrl: './book-shelf.component.html',
   styleUrls: ['./book-shelf.component.css']
 })
-export class BookShelfComponent {
-  myLib: Library[] = [];
-  @Input() filter = '';
-  @Output() updatedLib = new EventEmitter<Library[]>();
+export class BookShelfComponent implements OnInit {
 
+  myLib: Library[] = [];
+  @Input() shelf!: string;
+  @Output() updatedLib = new EventEmitter<Library[]>();
 
   constructor(private _userService: UserService, private _bookService: BookService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
 
+  }
+
+  ngOnInit(): void {
     this._userService.user.subscribe(data => {
-      console.log("constructor data", data);
       this.updateLibrary(data);
 
     });
   }
-
   setShelfValue(libItem: Library, rawValue: string) {
     const newValue: BookShelf = rawValue === 'READ' ? BookShelf.READ : rawValue === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
     this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
-      console.log("set shelf response", res);
-      console.log("res.data.books (shelf)", res.data.books);
       this.myLib = res?.data?.books;
 
     })
@@ -40,8 +39,6 @@ export class BookShelfComponent {
 
   setRatingValue(libItem: Library, newRating: number) {
     this._userService.updateLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
-      console.log("set rating response", res);
-      console.log("res.data.books (rating)", res.data.books);
       this.myLib = res?.data?.books;
 
     })
@@ -51,7 +48,7 @@ export class BookShelfComponent {
     this.myLib = data?.books || data?.data.books || [];
     if (this.myLib) {
       this.populateBooks();
-      this.filterLibrary();
+      this.filterLibrary(this.shelf);
     }
   }
 
@@ -67,16 +64,16 @@ export class BookShelfComponent {
 
   }
 
-  private filterLibrary() {
-    console.log("filter value", this.filter);
-    if (this.filter != 'ALL') {
-
-      const oldValue = this.filter;
-      const myFilter = oldValue === 'READ' ? BookShelf.READ : oldValue === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
-      console.log('inside if filter funtion');
-
-      this.myLib = this.myLib.filter((libItem) => { libItem.shelve === myFilter })
-      console.log("after filter", this.myLib);
+  private filterLibrary(filter: string) {
+    if (filter != 'ALL') {
+      const oldValue = filter;
+      let filteredLib: Library[] = [];
+      this.myLib.forEach((item) => {
+        if (item.shelve === filter) {
+          filteredLib.push(item)
+        }
+      })
+      this.myLib = filteredLib;
     }
   }
 }

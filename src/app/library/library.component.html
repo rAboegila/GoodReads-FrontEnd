@@ -13,16 +13,16 @@
                         <!-- <h3 class="mb-0">All Books</h3> -->
                         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
                             <mat-tab label="All Books">
-                                <app-book-shelf [filter]="all" (updatedLib)="updateLib($event)"></app-book-shelf>
+                                <app-book-shelf [shelf]="all" (updatedLib)="updateLib($event)"></app-book-shelf>
                             </mat-tab>
                             <mat-tab label="Read">
-                                <app-book-shelf [filter]="read" (updatedLib)="updateLib($event)"></app-book-shelf>
+                                <app-book-shelf [shelf]="read" (updatedLib)="updateLib($event)"></app-book-shelf>
                             </mat-tab>
                             <mat-tab label="Reading">
-                                <app-book-shelf [filter]="reading" (updatedLib)="updateLib($event)"></app-book-shelf>
+                                <app-book-shelf [shelf]="reading" (updatedLib)="updateLib($event)"></app-book-shelf>
                             </mat-tab>
                             <mat-tab label="Want To Read">
-                                <app-book-shelf [filter]="wantToRead" (updatedLib)="updateLib($event)"></app-book-shelf>
+                                <app-book-shelf [shelf]="wantToRead" (updatedLib)="updateLib($event)"></app-book-shelf>
 
                             </mat-tab>
 

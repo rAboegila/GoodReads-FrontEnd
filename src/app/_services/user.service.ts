@@ -45,8 +45,6 @@ export class UserService {
   register(user: any) {
     return this.http.post<any>(`${baseUrl}/auth/register`, user)
       .pipe(map(user => {
-        // console.log("user: ", user);
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
         return user;
@@ -63,12 +61,18 @@ export class UserService {
     return this.http.put<User>(`${baseUrl}/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
       .pipe(map(res => {
         this.userSubject.next(res.data);
-        console.log("in service update lib", res.data);
+
+        if (localStorage.getItem('user')) {
+          const data: any = localStorage.getItem('user');
+          const token = JSON.parse(data).token;
+          const success = JSON.parse(data).success;
+          res.data.success = success;
+          res.data.token = token;
+        }
         localStorage.setItem('user', JSON.stringify(res.data));
         return res;
       }));
 
-    //`${baseUrl}/user/${bookID}/book`
 
   }
 }
