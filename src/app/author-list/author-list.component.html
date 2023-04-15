@@ -1,6 +1,8 @@
 <div class="container pt-5">
   <div class="row">
-    <div class="col-md-4" *ngFor="let author of authors">
+
+    <!-- <div class="col-md-4" *ngFor="let author of authors | paginate: { itemsPerPage: 10, currentPage: currentPage }"> -->
+      < <div class="col-md-4" *ngFor="let author of authors">
       <div class="card mb-4 shadow-sm">
         <img crossorigin="anonymous" class="card-img-top" src="{{url+author.image }}" alt="{{ author.firstName }} {{ author.lastName }}">
         <div class="card-body">
@@ -9,6 +11,9 @@
         </div>
       </div>
     </div>
+
+    <!-- <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls> -->
+
   </div>
 
 </div>

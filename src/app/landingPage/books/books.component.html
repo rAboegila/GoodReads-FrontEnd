@@ -6,7 +6,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let book of books">
+    <div class="col-md-4 mb-4" *ngFor="let book of books  | paginate: { itemsPerPage: 10, currentPage: currentPage }">
+
       <div class="card h-100">
         <img  crossorigin="anonymous" class="card-img-top" src="{{url+book.image}}" alt="{{book.name}}" [style.transform]="hover ? 'scale(1.1)' : 'none'" (mouseover)="hover = true" (mouseout)="hover = false">
         <div class="card-body">
@@ -14,8 +15,13 @@
           <p class="card-text">Author: {{book.author.firstName}}</p>
           <a [routerLink]="['/book-details', book._id]" class="btn btn-success">View Details</a>
         </div>
+
       </div>
     </div>
+
+    <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls>
+
   </div>
 
 </div>
+

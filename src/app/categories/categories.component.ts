@@ -19,6 +19,8 @@ export class CategoriesComponent implements OnInit {
   page: number = 1;
   pageSize: number = 10;
   collectionSize: number = 0;
+  public totalItems: number = 0;
+  // public dataSource: any[] = []; // your data source
 
   constructor(
     private categoryService: CategoryService,
@@ -42,9 +44,15 @@ export class CategoriesComponent implements OnInit {
     //   this.categories = res.data;
     //   this.collectionSize = res.length;
     // });
+    // this.loadData();
 
   }
-
+  // loadData() {
+  //   // ...
+  //   this.dataSource = data; // set your data source
+  //   this.totalItems = data.length; // set total number of items
+  //   // ...
+  // }
   getCategories(): void {
     this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;

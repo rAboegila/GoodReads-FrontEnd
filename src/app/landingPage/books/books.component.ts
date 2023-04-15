@@ -11,6 +11,8 @@ import { BookService } from 'src/app/_services/book.service';
 export class BooksComponent implements OnInit {
   books: Book[] = [];
 hover: any;
+currentPage = 1;
+
 // url='http://localhost:5000/uploads/books/'
 url=`${environment.url}books/`
 

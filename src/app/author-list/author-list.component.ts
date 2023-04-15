@@ -11,12 +11,14 @@ export class AuthorListComponent {
   constructor(private authorService: AuthorService) { }
   authors: any[] | undefined;
   url=`${environment.url}authors/`;
+  currentPage = 1;
+
   ngOnInit(): void {
     this.authorService.getAuthors()
       .subscribe(data => {
         this.authors = data.data;
         console.log(this.authors);
-        
+
       });
   }
 }
