@@ -67,16 +67,29 @@ export class BookShelfComponent {
 
   }
 
+  // private filterLibrary() {
+  //   console.log("filter value", this.filter);
+  //   if (this.filter != 'ALL') {
+
+  //     const oldValue = this.filter;
+  //     const myFilter = oldValue === 'READ' ? BookShelf.READ : oldValue === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
+  //     console.log('inside if filter funtion');
+
+  //     this.myLib = this.myLib.filter((libItem) => { libItem.shelve === myFilter })
+  //     console.log("after filter", this.myLib);
+  //   }
+  // }
+
   private filterLibrary() {
     console.log("filter value", this.filter);
-    // if (this.filter != 'ALL') {
+    // if (this.filter !== 'ALL') {
+    //   const myFilter = this.filter === 'READ' ? BookShelf.READ : this.filter === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
+    //   console.log('inside if filter function');
 
-    //   const oldValue = this.filter;
-    //   const myFilter = oldValue === 'READ' ? BookShelf.READ : oldValue === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
-    //   console.log('inside if filter funtion');
-
-    //   this.myLib = this.myLib.filter((libItem) => { libItem.shelve === myFilter })
+    //   this.myLib = this.myLib.filter((libItem) => libItem.shelve === myFilter);
     //   console.log("after filter", this.myLib);
     // }
   }
+
+  
 }

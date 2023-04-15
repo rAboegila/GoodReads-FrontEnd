@@ -41,4 +41,8 @@ export class CategoryService {
   getPopularCategory(): Observable<any> {
     return this.http.get<any>(`${baseUrl}/api/categories/popular`);
   }
+  getBookCategory(categoryId: string): Observable<any> {
+    const url = `${this.apiUrl}/${categoryId}/books`;
+    return this.http.get<any>(url);
+  }
 }
