@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../_models/User';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseUrl } from './helper';
 import { BookShelf } from '../_models/Book';
 
@@ -27,11 +27,13 @@ export class UserService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<User>(`${baseUrl}/auth/login`, { username, password })
-      .pipe(map(res => {
-        localStorage.setItem('user', JSON.stringify(res));
-        this.userSubject.next(res);
-        return res;
+    return this.http.post<User>(`${baseUrl}/api/auth/login`, { username, password })
+      .pipe(map(user => {
+        // console.log("user: ", user);
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
       }));
   }
 
@@ -42,8 +44,8 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  register(user: any) {
-    return this.http.post<any>(`${baseUrl}/auth/register`, user)
+  register(user: FormData) {
+    return this.http.post<User>(`${baseUrl}/api/auth/register`, user)
       .pipe(map(user => {
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
@@ -51,14 +53,19 @@ export class UserService {
       }));
   }
 
-  getProfile() {
-    return this.http.get<User>(`${baseUrl}/auth/me`);
+  getProfile(): Observable<any> {
+    return this.http.get<User>(`${baseUrl}/api/auth/me`);
   }
 
   updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
 
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzlhY2JlNjUyZTU4ODRkNTlkNGQ1OSIsImlhdCI6MTY4MTUxODMzNCwiZXhwIjoxNjg0MTEwMzM0fQ.SwLSyeq61rhmaNSLNurpwXuTs9e2arF0JCvRiDmLc1A',
+    });
     // return this.http.get<User>(`${baseUrl}/user/${bookID}/book`, {updatedShelf, updatedRating})
-    return this.http.put<User>(`${baseUrl}/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
+    return this.http.put<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating },{
+      headers
+    })
       .pipe(map(res => {
         this.userSubject.next(res.data);
 

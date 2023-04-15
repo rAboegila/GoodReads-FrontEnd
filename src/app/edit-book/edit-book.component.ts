@@ -9,6 +9,7 @@ import { AuthorService } from '../_services/author.service';
 import { CategoryService } from '../_services/category.service';
 import { Category } from '../_models/Category';
 import { SelectControlValueAccessor } from '@angular/forms';
+import { environment } from 'environments/environment.prod';
 
 @Component({
   selector: 'app-edit-book',
@@ -16,26 +17,27 @@ import { SelectControlValueAccessor } from '@angular/forms';
   styleUrls: ['./edit-book.component.css'],
 })
 export class EditBookComponent1 implements OnInit {
-  url = 'http://localhost:5000/uploads/books/'
+  // url='http://localhost:5000/uploads/books/'
+  url=`${environment.url}books/`
   bookId: string = ''
-  // book: Book = { name: '', category: '', author: {
-  //   _id:'',
-  //   firstName: '',
-  //   lastName: '',
-  //   dob: new Date(),
-  //   image: '',
-  // } };
+  book: Book = { name: '', category: '', author: {
+    _id:'',
+    firstName: '',
+    lastName: '',
+    dob: new Date(),
+    image: '',
+  } };
   EditbookForm!: FormGroup;
   categories: Category[] = [];
   authors: Author[] = [];
   selectedImage!: File | null;
   errorMessage = '';
-  book: Book = {
+  Book: Book = {
     _id: '',
     name: '',
-    category: { name: "" },
+    category: '',
     author: {
-      _id: '',
+      _id:'',
       firstName: '',
       lastName: '',
       dob: new Date(),
@@ -65,35 +67,35 @@ export class EditBookComponent1 implements OnInit {
   //     }
   //   });
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      const id = params['id'];
-      this.bookId = id;
-      console.log(id);
+    ngOnInit(): void {
+      this.activatedRoute.params.subscribe((params) => {
+        const id = params['id'];
+        this.bookId=id;
+        console.log(id);
 
-      if (id) {
-        this.getBook(id);
-      }
-    });
-
-
-    this.categoryService.getCategories().subscribe(
-      data => this.categories = data.data,
-      error => console.log(error)
-
-    );
+        if (id) {
+          this.getBook(id);
+        }
+      });
 
 
-    this.authorService.getAuthors().subscribe(
-      data => this.authors = data.data,
-      error => console.log(error)
-    );
+      this.categoryService.getCategories().subscribe(
+        data => this.categories = data.data ,
+        error => console.log(error)
+
+      );
+
+
+      this.authorService.getAuthors().subscribe(
+        data => this.authors = data.data,
+        error => console.log(error)
+      );
 
 
     this.createEditbookForm();
   }
 
-  // this.getBook(id);
+    // this.getBook(id);
   //   this.createEditbookForm();
   //   this.getCategories();
   //   this.getAuthors();
@@ -159,7 +161,7 @@ export class EditBookComponent1 implements OnInit {
     this.bookService.getBook(id).subscribe(
       (res) => {
         this.book = res;
-        this.book = res.data
+      this.book=res.data
 
         this.EditbookForm = this.fb.group({
           name: [this.book.name, Validators.required],
@@ -195,7 +197,7 @@ export class EditBookComponent1 implements OnInit {
 
     console.log(id);
 
-    this.bookService.updateBook(this.bookId, formdata).subscribe(
+    this.bookService.updateBook(this.bookId,formdata).subscribe(
       (res) => {
         // console.log(res);
         this.router.navigate(['Books']);

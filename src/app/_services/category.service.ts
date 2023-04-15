@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { Category } from '../_models/Category';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { baseUrl } from './helper';
+import { environment } from 'environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private apiUrl = 'http://localhost:5000/api/categories';
+  // private apiUrl = 'http://localhost:5000/api/categories';
+
+  private apiUrl = `${environment.baseUrl}/categories`;
 
   constructor(private http: HttpClient) { }
 
@@ -32,5 +36,13 @@ export class CategoryService {
   deleteCategory(categoryId: string): Observable<any> {
     const url = `${this.apiUrl}/${categoryId}`;
     return this.http.delete<any>(url);
+  }
+
+  getPopularCategory(): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/api/categories/popular`);
+  }
+  getBookCategory(categoryId: string): Observable<any> {
+    const url = `${this.apiUrl}/${categoryId}/books`;
+    return this.http.get<any>(url);
   }
 }

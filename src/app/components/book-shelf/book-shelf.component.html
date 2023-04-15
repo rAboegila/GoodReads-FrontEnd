@@ -38,15 +38,20 @@
                     <app-rating [libItem]="libItem" type='avg' [rating]="libItem.book?.avgRating"></app-rating>
                 </td>
                 <td>
+                  <!-- <select #shelfSelected [id]="'shelf-select' + i" class="form-select"
+                            aria-label="Default select example"
+                            [ngClass]="{'form-select-reading': libItem.shelve === 'READING', 'form-select-read': libItem.shelve === 'READ', 'form-select-want-to-read': libItem.shelve === 'WANT_TO_READ'}"
+                            (change)="setShelfValue(libItem, shelfSelected.value)"> -->
+                            
                     <select #shelfSelected [id]="'shelf-select'+i" class="form-select"
                         aria-label="Default select example" (change)="setShelfValue(libItem, shelfSelected.value)">
-                        <option [selected]="libItem.shelve === 'READING' " value='READING'>
+                        <option [selected]="libItem.shelve === 'READING' "[value]="'READING'">
                             Reading
                         </option>
-                        <option [selected]="libItem.shelve === 'READ' " value='READ'>
+                        <option [selected]="libItem.shelve === 'READ'" [value]="'READ'" >
                             Read
                         </option>
-                        <option [selected]="libItem.shelve === 'WANT_TO_READ' " value='WANT_TO_READ'>
+                        <option [selected]="libItem.shelve === 'WANT_TO_READ' " [value]="'WANT_TO_READ'">
                             Want To Read</option>
                     </select>
                     <!-- 

@@ -41,11 +41,16 @@ import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-i
 import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SingleBookComponent } from './components/single-book/single-book.component';
+
 import { MatTabsModule } from '@angular/material/tabs';
 import { LibraryComponent } from './library/library.component';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
+import { AuthorListComponent } from './author-list/author-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,9 +75,15 @@ import { BookShelfComponent } from './components/book-shelf/book-shelf.component
     GetCategoryByIdComponent,
     BooksComponent,
     BookDetailsComponent,
+    AboutusComponent,
+    FooterComponent,
+    SingleBookComponent,
+    RatingComponent,
+    ShelfItemComponent,
     LibraryComponent,
     ShelfItemComponent,
     BookShelfComponent,
+    AuthorListComponent,
 
   ],
   imports: [

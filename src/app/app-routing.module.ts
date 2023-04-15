@@ -21,26 +21,29 @@ import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
 import { LibraryComponent } from './library/library.component';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
+import { AuthorListComponent } from './author-list/author-list.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: "profile/shelves", component: LibraryComponent, canActivate: [AuthGuard] },
+  { path: "profile/shelves", component: BookShelfComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
 
-  { path: 'cate', component: CategoriesComponent, canActivate: [AdminGuard] },
-  { path: 'auhtor', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
-  { path: 'admin/add-author', component: AddAuthorComponent, canActivate: [AdminGuard] },
-  { path: 'edit-author/:id', component: EditAuthorComponent, canActivate: [AdminGuard] },
-  { path: 'Books', component: BookComponent, canActivate: [AdminGuard] },
-  { path: 'AddBook', component: AddBookComponent, canActivate: [AdminGuard] },
-  { path: 'EditBook/:id', component: EditBookComponent1, canActivate: [AdminGuard] },
-  { path: 'showCategoury', component: GetCategouryComponent, canActivate: [AdminGuard] },
-  { path: 'category/:id', component: GetCategoryByIdComponent, canActivate: [AdminGuard] },
-  { path: 'showBooks', component: BooksComponent, canActivate: [AdminGuard] },
-  { path: 'book-details/:id', component: BookDetailsComponent, canActivate: [AdminGuard] },
+  { path: 'cate', component:CategoriesComponent,canActivate: [AdminGuard] },
+  {path: 'auhtor', component:AuthorsListComponentComponent,canActivate: [AdminGuard] },
+  { path: 'admin/add-author', component:AddAuthorComponent,canActivate: [AdminGuard] },
+  {path: 'edit-author/:id', component:EditAuthorComponent ,canActivate: [AdminGuard]},
+  {path: 'Books', component:BookComponent,canActivate: [AdminGuard]},
+  {path: 'AddBook', component:AddBookComponent,canActivate: [AdminGuard]},
+  {path: 'EditBook/:id', component:EditBookComponent1,canActivate: [AdminGuard]},
+  {path: 'showCategoury', component:GetCategouryComponent,canActivate: [AuthGuard]},
+  {path: 'category/:id', component:GetCategoryByIdComponent,canActivate: [AuthGuard]},
+  {path: 'showBooks', component:BooksComponent,canActivate: [AuthGuard]},
+  {path: 'showAuthor', component:AuthorListComponent,canActivate: [AuthGuard]},
+  {path: 'book-details/:id', component:BookDetailsComponent,canActivate: [AuthGuard]},
 
   { path: "**", component: NotFoundComponent },
 

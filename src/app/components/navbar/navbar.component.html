@@ -1,49 +1,57 @@
 <nav *ngIf="nav.visible" class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" >GoodReads</a>
+        <a *ngIf="this.userRole !== 'admin'" class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">GoodReads</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" >Home</a>
+
+
+                <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
+                    <a class="nav-link  "  [routerLink]="['Books']" routerLinkActive="active">Books</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" >About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/showCategoury" >Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" >Authors</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link"  routerLink="/showBooks" >Books</a>
-              </li>
-                <li class="nav-item">
-                    <a class="nav-link" >Terms & Conditions</a>
+                <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
+                    <a class="nav-link" [routerLink]="['auhtor']" routerLinkActive="active">Authors</a>
                 </li>
 
+                <li *ngIf="isLoggedIn && userRole === 'admin'"  class="nav-item">
+                  <a class="nav-link" [routerLink]="['cate']" routerLinkActive="active">Categoury</a>
+                </li>
+
+
+
+
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
+                    <a class="nav-link" routerLink="/showCategoury" >Categories</a>
+                </li>
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
+                    <a class="nav-link"  routerLink="/showAuthor" >Authors</a>
+                </li>
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
+                  <a class="nav-link"  routerLink="/showBooks" >Books</a>
+              </li>
+                <li *ngIf="isLoggedIn && userRole === 'user'"  class="nav-item">
+                    <a class="nav-link" >Terms & Conditions</a>
+                </li>
             </ul>
-            
-            <ul *ngIf="!isLoggedIn" class="d-flex navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['register']">SignUp</a>
+
+            <ul class="d-flex navbar-nav ms-auto mb-2 mb-lg-0">
+                <li *ngIf="!isLoggedIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['register']" routerLinkActive="active">SignUp</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['login']">Login</a>
+                <li *ngIf="!isLoggedIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['login']" routerLinkActive="active">Login</a>
                 </li>
-            </ul>
-            <ul *ngIf="isLoggedIn && userRole === 'user'|| userRole === 'admin'" class="d-flex navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link nav-img-link" [routerLink]="['profile']" routerLinkActive="active"><img crossorigin="anonymous" src="{{userImage}}" alt="profile-img" class="img-fluid nav-img"></a>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['profile']">{{name}}</a>
+                <li *ngIf="isLoggedIn && userRole === 'user'" class="nav-item">
+                    <a class="nav-link nav-img-link" [routerLink]="['profile']" routerLinkActive="active"><img
+                            crossorigin="anonymous" src="{{userImage}}" alt="profile-img" class="img-fluid nav-img"></a>
+                <li *ngIf="isLoggedIn && userRole === 'user'" class="nav-item">
+                    <a class="nav-link" [routerLink]="['profile']" routerLinkActive="active">{{name}}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" (click)="logout()">Logout</a>
+                <li *ngIf="isLoggedIn" class="nav-item">
+                    <a class="nav-link"  class="btn btn-danger" (click)="logout()">Logout</a>
                 </li>
             </ul>
 

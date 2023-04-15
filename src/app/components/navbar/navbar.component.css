@@ -12,3 +12,9 @@
 .nav-img-link{
     padding: 0px;
 }
+
+.active{
+    color: darkcyan;
+    font: bold;
+    text-shadow: 1px 1px darkcyan;
+}

@@ -10,6 +10,7 @@ export interface User {
     role?: string;
     image?: string;
     token?: string;
+    createdAt?: Date;
     books?: Library[];
 };
 

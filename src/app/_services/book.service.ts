@@ -2,12 +2,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../_models/Book';
+import { baseUrl } from './helper';
+import { environment } from 'environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
 export class BookService  {
 
-  private apiUrl = 'http://localhost:5000/api/books';
+  // private apiUrl = 'http://localhost:5000/api/books';
+
+  private apiUrl = `${environment.baseUrl}/books`;
 
   constructor(private http: HttpClient) { }
 
@@ -39,5 +43,9 @@ export class BookService  {
 
   deleteBook(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  getPopularBooks(): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/api/authors/popular/books/popular`);
   }
 }

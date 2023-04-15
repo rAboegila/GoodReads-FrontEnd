@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorService } from '../_services/author.service';
 import { Author } from '../_models/Author';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'environments/environment.prod';
 @Component({
   selector: 'app-edit-author',
   templateUrl: './edit-author.component.html',
@@ -14,7 +15,9 @@ export class EditAuthorComponent {
   errorMessage!: string;
   selectedImage: any;
   authorID:any;
-  url='http://localhost:5000/uploads/authors/'
+  // url='http://localhost:5000/uploads/authors/'
+  url=`${environment.url}authors/`
+
   Author: Author = {
     _id:'',
     firstName: '',
