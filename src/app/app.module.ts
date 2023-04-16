@@ -124,7 +124,7 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     MatTabsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    // NgToastModule,
+    NgToastModule,
   ],
 
   providers: [
