@@ -18,7 +18,7 @@ export class AuthorsListComponentComponent implements OnInit
   {
     currentPage = 1;
     private subscription!: Subscription ;
-
+    private subscription2!:Subscription;
     authors: Author[] = [];
     // url='http://localhost:5000/uploads/authors/'
     url=`${environment.url}authors/`
@@ -34,7 +34,7 @@ export class AuthorsListComponentComponent implements OnInit
     }
 
     getAuthors(): void {
-      this.authorService.getAuthors().subscribe((response) => {
+      this.subscription2= this.authorService.getAuthors().subscribe((response) => {
         if (response.success) {
           this.authors = response.data;
         }
@@ -61,6 +61,9 @@ export class AuthorsListComponentComponent implements OnInit
     ngOnDestroy() {
       if (this.subscription) {
         this.subscription.unsubscribe();
+      }
+      if (this.subscription2) {
+        this.subscription2.unsubscribe();
       }
     }
   }
