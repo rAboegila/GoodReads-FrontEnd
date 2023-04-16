@@ -6,7 +6,7 @@ import { Book, BookShelf } from 'src/app/_models/Book';
 import { Library } from 'src/app/_models/User';
 import { AuthorService } from 'src/app/_services/author.service';
 import { UserService } from 'src/app/_services/user.service';
-import { NgToastService } from 'ng-angular-popup'
+// import { NgToastService } from 'ng-angular-popup'
 
 @Component({
   selector: 'app-author-details',
@@ -21,7 +21,7 @@ export class AuthorDetailsComponent {
   userLib: Library[] = [];
   author: Author = { _id: '', firstName: '', lastName: '', dob: new Date(), image: '' };
 
-  constructor(private _activatedRoute: ActivatedRoute, private _authorService: AuthorService, private _userService: UserService, private _toast: NgToastService) { }
+  constructor(private _activatedRoute: ActivatedRoute, private _authorService: AuthorService, private _userService: UserService) { }
 
   ngOnInit(): void {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
@@ -117,11 +117,11 @@ export class AuthorDetailsComponent {
             lib.new = false;
           }
         });
-        this._toast.success({ detail: 'Book Added To Your Shelves', summary: "Your Library Updated", duration: 5000 });
+        // this._toast.success({ detail: 'Book Added To Your Shelves', summary: "Your Library Updated", duration: 5000 });
       })
     } else {
       this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
-        this._toast.success({ detail: 'Shelve updated successfully', summary: "Your Library Updated", duration: 5000 });
+        // this._toast.success({ detail: 'Shelve updated successfully', summary: "Your Library Updated", duration: 5000 });
       })
     }
   }

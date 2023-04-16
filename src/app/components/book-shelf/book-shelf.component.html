@@ -19,7 +19,7 @@
             <tr *ngFor="let libItem of myLib;index as i">
                 <td>
                     <div class=" align-items-center">
-                        <a href="#" class="avatar rounded-circle ">
+                        <a routerLink="/book-details/{{libItem.book?._id}}" class="avatar rounded-circle ">
                             <img crossorigin="anonymous" alt="Book Cover" [src]="getBookImage(libItem)">
                         </a>
                     </div>

@@ -23,11 +23,13 @@ import { BookShelfComponent } from './components/book-shelf/book-shelf.component
 import { AuthorListComponent } from './author-list/author-list.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
+  { path: "about", component: AboutUsComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "profile/shelves", component: UserLibraryComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },

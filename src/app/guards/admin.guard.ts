@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../_services/user.service';
-import { NgToastService } from 'ng-angular-popup';
+// import { NgToastService } from 'ng-angular-popup';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  constructor(private _router: Router, private _userService: UserService, private _toast: NgToastService) { }
+  constructor(private _router: Router, private _userService: UserService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
 
     // not logged in so redirect to home page with unauthorized alert message
     this._router.navigate(['/']);
-    this._toast.error({ detail: "Unauthorized!", summary: "You are not an administrator!", duration: 5000 });
+    // this._toast.error({ detail: "Unauthorized!", summary: "You are not an administrator!", duration: 5000 });
     return false;
   }
 
