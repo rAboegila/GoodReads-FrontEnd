@@ -1,1 +1,82 @@
-<p>home works!</p>
+<section class="carousel">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="container">
+                <h1 class="head-title">Welcome To Good<b>Reads</b></h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="popular-books container pb-5">
+
+    <div class="popular-container d-flex align-items-center justify-content-between">
+        <h2 class="fs-2 fw-bold popular">Popular Books</h2>
+        <div class="view-all" [routerLink]="['showBooks']">All Books > </div>
+    </div>
+
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 m-2 justify-content-center">
+        <div *ngFor="let book of popularBooks" class="col">
+            <div class="card h-100 book-card shadow">
+                <img crossorigin="anonymous" src="{{book.image}}" class="card-img-top img-fluid book-img shadow-sm"
+                    alt="{{book.name}}" [routerLink]="['book-details', book._id]">
+                <div class="card-body my-3 book-card-body">
+                    <h5 class="card-title fs-5 my-3">{{book.name}}</h5>
+                    <p class="card-text fs-6 fst-italic">By {{book.author.firstName}} {{book.author.lastName}}</p>
+                    <i class="fas fa-star"></i>
+                    <span class="ms-1 f-5 fst-italic">{{book.avgRating}}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="popular-authors container pb-5">
+
+    <div class="popular-container d-flex align-items-center justify-content-between">
+        <h2 class="fs-2 fw-bold popular">Popular Authors</h2>
+        <div class="view-all" [routerLink]="['showAuthor']">View All > </div>
+    </div>
+
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 justify-content-center">
+        <div *ngFor="let author of popularAuthors" class="col">
+            <div class="card h-100 author-card shadow">
+                <img crossorigin="anonymous" src="{{author.image}}" class="card-img-top img-fluid author-img shadow-sm"
+                    alt="{{author.firstName}} {{author.lastName}}" [routerLink]="['author-details', author._id]">
+                <div class="card-body">
+                    <h5 class="card-title fs-5 my-2 author-title">{{author.firstName}} {{author.lastName}}
+                    </h5>
+                    <p class="card-text fs-6 fst-italic my-3">{{author.dob}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="popular-categories container pb-5">
+
+    <div class="popular-container d-flex align-items-center justify-content-between">
+        <h2 class="fs-2 fw-bold popular">Popular Categories</h2>
+        <div class="view-all" [routerLink]="['showCategoury']">View All > </div>
+    </div>
+
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4 justify-content-center">
+        <div *ngFor="let category of popularCategories" class="col">
+            <div class="card h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title fs-4 fw-semibold my-2 mb-4 category-title"
+                        [routerLink]="['category', category._id]">{{category.name}}</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

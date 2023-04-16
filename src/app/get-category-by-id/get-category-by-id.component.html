@@ -1,0 +1,25 @@
+<div class="container mt-3" *ngIf="category">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">{{category.name}}</h1>
+
+
+
+          <hr>
+          <div *ngFor="let book of books">
+            <h1> BOOK NAME : {{book.name}}</h1>
+            <hr>
+
+            <div class="col-md-6 py-2">
+              <img  crossorigin="anonymous" src="{{url+book.image}}" alt="{{book.name}}" class="img-fluid">
+            </div>
+
+
+          <a routerLink="/showCategoury" class="card-link btn btn-primary">Back to All Categories</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

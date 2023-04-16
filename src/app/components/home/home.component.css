@@ -1,0 +1,126 @@
+* {
+    font-family: "Playfair Display", serif;
+}
+
+.carousel {
+    background: linear-gradient(rgba(147, 127, 129, .5), rgba(147, 127, 129, .8)), url(../../../assets/images/background.avif);
+    height: 80vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: hidden;
+}
+
+.head-title{
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    text-align: center;
+    margin: auto;
+    margin-top: 20rem;
+    margin-bottom: 2.5rem;
+    color: rgb(222, 222, 222);
+    text-shadow: 0.4px 0.5px darkcyan;
+}
+
+h2 {
+    font-family: "Playfair Display", serif;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: darkcyan;
+    text-shadow: 0.4px 0.5px darkcyan;
+}
+
+.book-card {
+    /* border: 0; */
+    background-color: transparent;
+    /* text-align: center; */
+}
+
+.book-img {
+    width: 70%;
+    height: 17rem;
+    margin: auto;
+    margin-top: 1.7rem;
+}
+
+.book-card-body{
+    width: 80%;
+}
+
+.card-title {
+    color: darkcyan;
+}
+
+.card-text {
+    color: rgb(50, 82, 82);
+}
+
+.author-img {
+    max-width: 12rem;
+    height: 12rem;
+    max-height: 12rem;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.author-card {
+    border: 0;
+    background-color: transparent;
+    text-align: center;
+}
+
+.card {
+    overflow: hidden;
+}
+
+img {
+    opacity: 1;
+    transition: opacity 0.4s, transform 0.4s;
+    cursor: pointer;
+}
+
+img:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+.fa-star {
+    font-size: 1.1rem;
+    color: #fbd309;
+    margin: auto;
+    margin-top: 0.7rem;
+    text-shadow: 0.4px 0.5px #c7be91bf;
+}
+
+.view-all {
+    width: 8rem;
+    color: black;
+    font-size: 1rem;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    transition: 0.2s;
+    padding-right: 2rem;
+}
+
+.view-all:hover {
+    color: #fbd309;
+    cursor: pointer;
+}
+
+.popular {
+    padding-left: 10%;
+}
+
+.category-title {
+    /* transition: transform 0.4s; */
+    cursor: pointer;
+    /* padding-left: 1rem; */
+}
+
+.category-title:hover {
+    color: #fbd309;
+    /* transform: scale(1.03); */
+}

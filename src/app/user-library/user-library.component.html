@@ -1,0 +1,38 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+<div class="main-content">
+    <div class="container mt-7">
+        <!-- Table -->
+        <h2 class="mb-5">My Library</h2>
+
+        <div class="row">
+
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <!-- <h3 class="mb-0">All Books</h3> -->
+                        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+                            <mat-tab label="All Books">
+                                <app-book-shelf [shelf]="all" (updatedLib)="updateLib($event)"></app-book-shelf>
+                            </mat-tab>
+                            <mat-tab label="Read">
+                                <app-book-shelf [shelf]="read" (updatedLib)="updateLib($event)"></app-book-shelf>
+                            </mat-tab>
+                            <mat-tab label="Reading">
+                                <app-book-shelf [shelf]="reading" (updatedLib)="updateLib($event)"></app-book-shelf>
+                            </mat-tab>
+                            <mat-tab label="Want To Read">
+                                <app-book-shelf [shelf]="wantToRead" (updatedLib)="updateLib($event)"></app-book-shelf>
+
+                            </mat-tab>
+
+                        </mat-tab-group>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

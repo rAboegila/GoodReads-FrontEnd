@@ -32,12 +32,12 @@
                         <div class="form-outline mb-4">
                             <label class="form-label" for="password">Password</label>
                             <input ngModel name="password" #password="ngModel" id="password" type="password"
-                                class="form-control" required minlength="6"
+                                class="form-control" required minlength="8"
                                 [ngClass]="password.touched ? password.errors?.['required'] || password.errors?.['minlength'] ? 'not-valid' : 'valid' : ''" />
                             <p *ngIf="password.touched && password.errors?.['required']" class="text-danger">
                                 Password is required</p>
                             <p *ngIf="password.touched && password.errors?.['minlength']" class="text-danger">
-                                Password minLength is 6 characters</p>
+                                Password minLength is 8 characters</p>
                         </div>
 
                         <!-- Submit button -->

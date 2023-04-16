@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorService } from '../_services/author.service';
 import { Author } from '../_models/Author';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'environments/environment.prod';
 @Component({
   selector: 'app-edit-author',
   templateUrl: './edit-author.component.html',
   styleUrls: ['./edit-author.component.css']
 })
-export class EditAuthorComponent implements OnInit {
-  authorForm: FormGroup | undefined;
-  errorMessage!: string;
+export class EditAuthorComponent {
+  authorFormEdit: FormGroup | undefined;
   selectedImage: any;
+  authorID:any;
+  errorMessage :string | undefined;
+
+  // url='http://localhost:5000/uploads/authors/'
+  url=`${environment.url}authors/`
+
   Author: Author = {
     _id:'',
     firstName: '',
@@ -22,15 +28,18 @@ export class EditAuthorComponent implements OnInit {
   };
   constructor(
     private formBuilder: FormBuilder,
-    public activeModal: NgbActiveModal,
+    // public activeModal: NgbActiveModal,
     private authorService: AuthorService,
     private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
- 
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
+      this.authorID=params['id']
+      console.log(params['id']);
       if (id) {
         this.getAuthor(id);
       }
@@ -40,15 +49,17 @@ export class EditAuthorComponent implements OnInit {
   getAuthor(id: string) {
     this.authorService.getAuthorById(id).subscribe(
       (res) => {
-        this.Author = res;
+        this.Author = res.data;
+        console.log(res.data);
+
         // console.log(this.course);
-        this.authorForm = this.formBuilder.group({
+        this.authorFormEdit = this.formBuilder.group({
           firstName: [this.Author.firstName, Validators.required],
           lastName: [this.Author.lastName, Validators.required],
           dob: [null, Validators.required],
           image: [null, Validators.required],
         });
-        
+
 
       },
       (err) => {
@@ -59,7 +70,7 @@ export class EditAuthorComponent implements OnInit {
   }
 
   // ngOnInit(): void {
-  //   this.authorForm = this.formBuilder.group({
+  //   this.authorFormEdit = this.formBuilder.group({
   //     firstName: [this.data.author.firstName, Validators.required],
   //     lastName: [this.data.author.lastName, Validators.required],
   //     dob: [new Date(this.data.author.dob).toISOString().slice(0, 10), Validators.required],
@@ -67,11 +78,12 @@ export class EditAuthorComponent implements OnInit {
   //   });
   // }
 
+
   createForm() {
-    this.authorForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      dob: ['', Validators.required],
+    this.authorFormEdit = this.formBuilder.group({
+      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      dob: ['', [Validators.required]],
       image: [''],
     });
   }
@@ -82,39 +94,60 @@ export class EditAuthorComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+
+  onupdate() {
     const author: Author = {
-      firstName: this.authorForm!.value.firstName,
-      lastName: this.authorForm!.value.lastName,
-      dob: this.authorForm!.value.dob,
+      firstName: this.authorFormEdit!.value.firstName,
+      lastName: this.authorFormEdit!.value.lastName,
+      dob: this.authorFormEdit!.value.dob,
       image: '',
     };
 
     const formData = new FormData();
     formData.append('firstName', author.firstName);
     formData.append('lastName', author.lastName);
-    formData.append('dob', author.dob.toString());
+    // formData.append('dob', author.dob.toString());
+    if (this.authorFormEdit) {
+      const authorData = this.authorFormEdit.value;
+      authorData.id = this.Author._id;
+      // const formData = new FormData();
+      for (const key of Object.keys(authorData)) {
+        if (key !== 'image') {
+          formData.append(`Author.${key}`, authorData[key]);
+        } else {
+          formData.append(key, authorData[key]);
+        }
+      }
+      }
+
     if (this.selectedImage) {
       formData.append('image', this.selectedImage, this.selectedImage.name);
     }
 
-    this.authorService.createAuthor(formData).subscribe(
+    this.authorService.updateAuthor(this.authorID,formData).subscribe(
       (response) => {
         console.log(response);
-        this.activeModal.close();
+        // this.activeModal.close();
+        this.router.navigate(['auhtor']);
+        // this.errorMessage = '';
+        this.authorFormEdit!.reset();
+        this.selectedImage!= null;
+        this.errorMessage = '';
+
       },
       (error) => {
         console.log(error);
-        this.errorMessage = error.message;
-      }
+        this.errorMessage = 'Invalid value';
+
+       }
     );
   }
 
   updateAuthor() {
     const author: Author = {
-      firstName: this.authorForm!.value.firstName,
-      lastName: this.authorForm!.value.lastName,
-      dob: this.authorForm!.value.dob,
+      firstName: this.authorFormEdit!.value.firstName,
+      lastName: this.authorFormEdit!.value.lastName,
+      dob: this.authorFormEdit!.value.dob,
       image: '',
     };
 
@@ -130,7 +163,9 @@ export class EditAuthorComponent implements OnInit {
     this.authorService.updateAuthor(authorId, formData).subscribe(
       (response) => {
         console.log(response);
-        this.activeModal.close();
+        // this.activeModal.close();
+        this.errorMessage = '';
+
       },
       (error) => {
         console.log(error);

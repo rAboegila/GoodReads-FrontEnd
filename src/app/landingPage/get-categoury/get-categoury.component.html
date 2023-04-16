@@ -1,0 +1,34 @@
+<div class="container mt-3">
+  <div class="row">
+
+    
+    <div class="search pt-5 my-5">
+
+      <input type="text" [(ngModel)]="searchTerm"  class="form-control search-input"  placeholder="Search by Category">
+    <button class="m-3 btn btn-info" (click)="clearSearchTerm()">Clear</button>
+
+  </div>
+
+
+    <div class="col-md-6">
+      <h1>All Categories</h1>
+    </div>
+
+   
+    
+
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-deck">
+        <div class="card" *ngFor="let category of categories |filter:searchTerm">
+          <div class="card-body">
+            <h1 class="card-title">{{category.name}}</h1>
+            <a routerLink="/category/{{category._id}}" class="card-link btn-info btn">View Category</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

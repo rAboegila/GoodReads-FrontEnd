@@ -1,12 +1,9 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { Category } from '../_models/Category';
 import { CategoryService } from '../_services/category.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,6 +17,11 @@ export class CategoriesComponent implements OnInit {
   showAddForm = false;
   showEditForm = false;
   categoryToEdit: any
+  page: number = 1;
+  pageSize: number = 10;
+  collectionSize: number = 0;
+  public totalItems: number = 0;
+    private subscription!: Subscription ;
 
   constructor(
     private categoryService: CategoryService,
@@ -29,21 +31,30 @@ export class CategoriesComponent implements OnInit {
     this.categoryForm = this.formBuilder.group({
       name: ['', Validators.required]
     });
+
   }
   generateCategoryId(category: Category): number {
     const index = this.categories.indexOf(category);
     return index + 1;
   }
-  
+
 
   ngOnInit(): void {
     this.getCategories();
-  }
+  
 
+  }
+ 
   getCategories(): void {
-    this.categoryService.getCategories().subscribe(res => {
+    this.subscription =this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;
+      this.collectionSize = res.data;
     });
+  }
+  get categoriesOnPage() {
+    const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    return this.categories.slice(start, end);
   }
 
   addCategory(): void {
@@ -57,6 +68,7 @@ export class CategoriesComponent implements OnInit {
       name: category.name
     });
     this.showEditForm = true;
+    this.getCategories()
   }
 
   deleteCategory(category: Category): void {
@@ -67,6 +79,7 @@ export class CategoriesComponent implements OnInit {
           this.categories.splice(index, 1);
         }
         this.snackBar.open('Category deleted', 'Close', { duration: 2000 });
+        this.getCategories()
       }, err => {
         this.snackBar.open('Error deleting category', 'Close', { duration: 2000 });
       });
@@ -82,6 +95,8 @@ export class CategoriesComponent implements OnInit {
           this.categories[index] = res.data;
         }
         this.snackBar.open('Category updated', 'Close', { duration: 2000 });
+        this.getCategories()
+
       }, err => {
         this.snackBar.open('Error updating category', 'Close', { duration: 2000 });
       });
@@ -89,6 +104,8 @@ export class CategoriesComponent implements OnInit {
       this.categoryService.addCategory(category).subscribe(res => {
         this.categories.push(res.data);
         this.snackBar.open('Category added', 'Close', { duration: 2000 });
+        this.getCategories()
+
       }, err => {
         this.snackBar.open('Error adding category', 'Close', { duration: 2000 });
       });
@@ -102,4 +119,11 @@ export class CategoriesComponent implements OnInit {
     this.showEditForm = false;
     this.categoryForm.reset();
   }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
 }

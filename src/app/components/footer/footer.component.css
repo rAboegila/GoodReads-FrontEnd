@@ -1,0 +1,16 @@
+.ul-design li a {
+    text-decoration: none;
+    color: #848484;
+}
+
+.ul-design li {
+    padding: 5px;
+}
+
+.footer-style {
+    background-color: #F9F9FB;
+}
+
+.icons:hover {
+    color: #fbd309;
+}

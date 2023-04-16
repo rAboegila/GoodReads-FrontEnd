@@ -1,7 +1,7 @@
 
 <div class="container">
   <h2>Authors</h2>
-  <button (click)="openAddAuthorModal()">Add Author</button>
+  <button  class="btn btn-success"  routerLink="/admin/add-author" (click)="openAddAuthorModal()">Add Author</button>
   <table class="table table-responsive table-striped">
     <thead>
       <tr>
@@ -13,16 +13,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let author of authors">
+      <tr *ngFor="let author of authors | paginate: { itemsPerPage: 10, currentPage: currentPage }">
         <td><img crossorigin="anonymous" [src]="url+author.image" width="50" height="50" alt="Author Image"></td>
         <td>{{ author.firstName }}</td>
         <td>{{ author.lastName }}</td>
         <td>{{ author.dob | date }}</td>
         <td>
-          <button (click)="openEditAuthorModal(author)">Edit</button>
-          <button (click)="deleteAuthor(author._id!)">Delete</button>
+          <!-- <button [routerLink]="'/admin/edit-author/' + author._id">Edit</button> -->
+          <button   class="btn btn-info  m-2"  (click)="onEditClick(author._id!)">Editt</button>
+          <button  class="btn btn-danger m-2"  (click)="deleteAuthor(author._id!)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
 </div>

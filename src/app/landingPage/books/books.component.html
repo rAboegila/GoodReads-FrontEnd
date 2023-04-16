@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="search pt-5 my-5">
+
+      <input type="text" [(ngModel)]="searchTerm"  class="form-control search-input"  placeholder="Search by books">
+    <button class="m-3 btn btn-info" (click)="clearSearchTerm()">Clear</button>
+
+  </div>
+
+    <div class="col-md-12">
+      <h2>All Books</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let book of books |filter:searchTerm | paginate: { itemsPerPage: 10, currentPage: currentPage }">
+
+      <div class="card h-100">
+        <img  crossorigin="anonymous" class="card-img-top" src="{{url+book.image}}" alt="{{book.name}}" [style.transform]="hover ? 'scale(1.1)' : 'none'" (mouseover)="hover = true" (mouseout)="hover = false">
+        <div class="card-body">
+          <h5 class="card-title">{{book.name}}</h5>
+          <p class="card-text">Author: {{book.author.firstName}}</p>
+          <a [routerLink]="['/book-details', book._id]" class="btn btn-success">View Details</a>
+        </div>
+
+      </div>
+    </div>
+
+    <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls>
+
+  </div>
+
+</div>
+

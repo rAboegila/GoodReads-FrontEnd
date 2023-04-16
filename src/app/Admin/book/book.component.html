@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Books</h2>
-  <button>Add Book</button>
+  <button  class="btn btn-success" routerLink="/AddBook" >Add Book</button>
   <table class="table table-responsive table-striped">
       <thead>
         <tr>
@@ -14,20 +14,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of books">
+        <!--       <tr *ngFor="let author of authors | paginate: { itemsPerPage: 10, currentPage: currentPage }"> -->
+        <tr *ngFor="let book of books  | paginate: { itemsPerPage: 10, currentPage: currentPage }">
           <td>{{ book.name }}</td>
-          <td>{{ book.category }}</td>
-          <td>{{ book.author }}</td>
+          <td >{{ book.category.name }}</td>
+          <td>{{ book.author.firstName }}</td>
           <td>
             <img  crossorigin="anonymous" [src]="url+book.image" alt="Book cover" width="50" height="50" />
           </td>
           <td>{{ book.avgRating }}</td>
+          
           <td>{{ book.reviews }}</td>
           <td>
-            <button (click)="deleteBook(book._id!)">Delete</button>
-            <button>Edit</button>
+            <button class="btn btn-danger m-2"  (click)="deleteBook(book._id!) ">Delete</button>
+            <button  class="btn btn-info  m-2" (click)="onEditClick(book._id!)" >Edit</button>
           </td>
         </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+
 </div>
