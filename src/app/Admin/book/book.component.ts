@@ -9,6 +9,7 @@ import { CategoryService } from 'src/app/_services/category.service';
 import { Author } from 'src/app/_models/Author';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment.prod';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -18,6 +19,7 @@ import { environment } from 'environments/environment.prod';
 export class BookComponent implements OnInit {
   currentPage = 1;
 
+  private bookSubscription!: Subscription;
 
   categories: any[] = [];
   books!: Book[]
@@ -41,7 +43,7 @@ export class BookComponent implements OnInit {
 
 
   getBooks(): void {
-    this.bookService.getBooks(1)
+    this.bookSubscription = this.bookService.getBooks(1)
       .subscribe(
         result => {
           console.log(result.data);
@@ -67,5 +69,12 @@ export class BookComponent implements OnInit {
         }
       );
   }
+
+  ngOnDestroy() {
+    if (this.bookSubscription) {
+      this.bookSubscription.unsubscribe();
+    }
+  }
+  
 
 }
