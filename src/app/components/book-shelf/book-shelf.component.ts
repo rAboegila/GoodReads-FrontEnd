@@ -6,6 +6,7 @@ import { BookShelf } from 'src/app/_models/Book';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookService } from 'src/app/_services/book.service';
 import { Library } from 'src/app/_models/User';
+import { uploadsUrl } from 'src/app/_services/helper';
 
 @Component({
   selector: 'app-book-shelf',
@@ -15,6 +16,7 @@ import { Library } from 'src/app/_models/User';
 export class BookShelfComponent implements OnInit {
 
   myLib: Library[] = [];
+  isLoading = true;
   @Input() shelf!: string;
   @Output() updatedLib = new EventEmitter<Library[]>();
 
@@ -25,7 +27,8 @@ export class BookShelfComponent implements OnInit {
   ngOnInit(): void {
     this._userService.user.subscribe(data => {
       this.updateLibrary(data);
-
+      console.log(this.myLib);
+      this.isLoading = false;
     });
   }
   setShelfValue(libItem: Library, rawValue: string) {
@@ -64,6 +67,12 @@ export class BookShelfComponent implements OnInit {
 
   }
 
+  getBookImage(libItem: Library): string {
+    if (libItem.book) {
+      return `${uploadsUrl}/books/${libItem.book.image}`;
+    }
+    else return '';
+  }
   private filterLibrary(filter: string) {
     if (filter != 'ALL') {
       const oldValue = filter;

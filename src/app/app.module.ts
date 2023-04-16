@@ -35,22 +35,24 @@ import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
 import { EditBookComponent1 } from './edit-book/edit-book.component';
-import { RatingComponent } from './rating/rating.component';
 import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury.component';
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
-import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
+import { BookDetailsOldComponent } from './landingPage/book-details-old/book-details-old.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SingleBookComponent } from './components/single-book/single-book.component';
-
+import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { LibraryComponent } from './library/library.component';
+import { UserLibraryComponent } from './user-library/user-library.component';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
+import { RatingComponent } from './rating/rating.component';
+import { LoginRedirectDialogComponent } from './components/login-redirect-dialog/login-redirect-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,20 +72,21 @@ import { AuthorListComponent } from './author-list/author-list.component';
     ProfileComponent,
     AdminComponent,
     NotFoundComponent,
-    RatingComponent,
     GetCategouryComponent,
     GetCategoryByIdComponent,
     BooksComponent,
-    BookDetailsComponent,
+    BookDetailsOldComponent,
     AboutusComponent,
     FooterComponent,
     SingleBookComponent,
-    RatingComponent,
     ShelfItemComponent,
-    LibraryComponent,
+    UserLibraryComponent,
     ShelfItemComponent,
     BookShelfComponent,
     AuthorListComponent,
+    RatingComponent,
+    BookDetailsComponent,
+    LoginRedirectDialogComponent,
 
   ],
   imports: [
@@ -116,7 +119,9 @@ import { AuthorListComponent } from './author-list/author-list.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     MatTabsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule
+
   ],
 
   providers: [
