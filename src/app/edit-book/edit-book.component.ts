@@ -60,14 +60,7 @@ export class EditBookComponent1 implements OnInit {
 
   ) { }
 
-  // ngOnInit(): void {
-  //   // this.bookId = this.route.snapshot.params['id'];
-  //   this.activatedRoute.params.subscribe((params) => {
-  //   const id = params['id'];
-  //     if (id) {
-  //       this.getBook(id);
-  //     }
-  //   });
+ 
 
     ngOnInit(): void {
       this.activatedRoute.params.subscribe((params) => {
@@ -97,13 +90,7 @@ export class EditBookComponent1 implements OnInit {
     this.createEditbookForm();
   }
 
-    // this.getBook(id);
-  //   this.createEditbookForm();
-  //   this.getCategories();
-  //   this.getAuthors();
-
-  // }
-
+   
   onFileSelected(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectedImage = event.target.files[0];
@@ -118,47 +105,7 @@ export class EditBookComponent1 implements OnInit {
     });
   }
 
-  // getCategories(): void {
-  //   this.categoryService.getCategories()
-  //     .subscribe(
-  //       data => {
-  //         this.categories = data.categories;
-  //       },
-  //       error => {
-  //         console.log('Error fetching categories: ', error);
-  //       }
-  //     );
-  // }
-
-  // getAuthors(): void {
-  //   this.authorService.getAuthors()
-  //     .subscribe(
-  //       data => {
-  //         this.authors = data;
-  //       },
-  //       error => {
-  //         console.log('Error fetching authors: ', error);
-  //       }
-  //     );
-  // }
-
-  // getBook(id: string) {
-  //   this.bookService.getBook(id)
-  //     .subscribe(
-  //       data => {
-  //         this.book = data.book;
-  //         this.EditbookForm.setValue({
-  //           name: this.book.name,
-  //           category: this.book.category,
-  //           author: this.book.author,
-  //           image: ''
-  //         });
-  //       },
-  //       error => {
-  //         console.log('Error fetching book: ', error);
-  //       }
-  //     );
-  // }
+  
   getBook(id: string) {
     this.bookService.getBook(id).subscribe(
       (res) => {
@@ -221,92 +168,4 @@ export class EditBookComponent1 implements OnInit {
     throw new Error('Method not implemented.');
   }
 
-  // getBook(): void {
-  //   this.bookService.getBook(this.bookId)
-  //     .subscribe(
-  //       data => {
-  //         this.book = data.book;
-  //         this.EditbookForm.setValue({
-  //           name: this.book.name,
-  //           category: this.book.category,
-  //           author: this.book.author,
-  //           image: ''
-  //         });
-  //       },
-  //       error => {
-  //         console.log('Error fetching book: ', error);
-  //       }
-  //     );
-  // }
-
-  // onSubmit(): void {
-  // const bookData = this.EditbookForm.value;
-  // const formData = new FormData();
-  // formData.append('name', bookData.name);
-  // formData.append('category', bookData.category);
-  // formData.append('author', bookData.author);
-  // if (this.selectedImage) {
-  //   formData.append('image', this.selectedImage, this.selectedImage.name);
-  // }
-
-  // this.bookService.updateBook(this.bookId, formData)
-  //   .subscribe(
-  //     data => {
-  //       console.log('Book updated successfully!');
-  //       console.log(data);
-  //       this.EditbookForm.reset();
-  //       this.selectedImage = null;
-  //       this.errorMessage = '';
-  //       this.router.navigate(['/books']);
-  //     },
-  //     error => {
-  //       console.log('Error updating book: ', error);
-  //       this.errorMessage = error.message;
-  //     }
-  //   );
-
-  //   const Book: Book = {
-  //     name: this.EditbookForm!.value.name,
-  //     category: this.EditbookForm!.value.category,
-  //     author: this.EditbookForm!.value.author,
-  //     image: '',
-  //   };
-
-  //   const formData = new FormData();
-  //   formData.append('name', Book.name);
-  //   formData.append('category',Book.category!);
-  //   formData.append('author', Book.author!);
-  //   if (this.selectedImage) {
-  //     formData.append('image', this.selectedImage, this.selectedImage.name);
-  //   }
-
-  //   const authorId = ''; // Set the author ID to the ID of the author you want to update
-  //   this.bookService.updateBook(authorId, formData).subscribe(
-  //     (response) => {
-  //       console.log(response);
-  //       // this.activeModal.close();
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //       this.errorMessage = error.message;
-  //     }
-  //   );
-  // }
 }
-
-
-  // onImageSelected(event: any): void {
-  //   if (event.target.files && event.target.files.length) {
-  //     const file = event.target.files[0];
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-
-  //     reader.onload = () => {
-  //       this.selectedImage = file;
-  //       this.EditbookForm.patchValue({
-  //         image: reader.result
-  //       });
-  //     };
-  //   }
-  // }
-// }
