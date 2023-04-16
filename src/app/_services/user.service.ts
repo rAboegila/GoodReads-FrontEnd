@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseUrl } from './helper';
 import { BookShelf } from '../_models/Book';
-import { BookDialogComponent } from '../book-dialog/book-dialog.component';
 
 @Injectable({
   providedIn: 'root'

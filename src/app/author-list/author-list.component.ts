@@ -10,19 +10,19 @@ import { Subscription } from 'rxjs';
 })
 export class AuthorListComponent {
   currentPage = 1;
-  searchTerm: string ='';
-  private subscription!: Subscription ;
-
+  searchTerm: string = '';
+  private subscription!: Subscription;
+  isLoading: boolean = true;
   constructor(private authorService: AuthorService) { }
-  authors!: any[] 
-  url=`${environment.url}authors/`;
+  authors!: any[]
+  url = `${environment.url}authors/`;
 
   ngOnInit(): void {
-    this.subscription=this.authorService.getAuthors()
+    this.subscription = this.authorService.getAuthors()
       .subscribe(data => {
         this.authors = data.data;
         console.log(this.authors);
-
+        this.isLoading = true;
       });
   }
 
@@ -34,6 +34,6 @@ export class AuthorListComponent {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    
+
   }
 }

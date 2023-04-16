@@ -3,13 +3,13 @@
 html,
 body {
   height: 100%;
-}
-body {
   background: rgb(248, 246, 234);
 
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

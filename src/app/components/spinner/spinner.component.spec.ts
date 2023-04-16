@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthorDialogComponent } from './author-dialog.component';
+import { SpinnerComponent } from './spinner.component';
 
-describe('AuthorDialogComponent', () => {
-  let component: AuthorDialogComponent;
-  let fixture: ComponentFixture<AuthorDialogComponent>;
+describe('SpinnerComponent', () => {
+  let component: SpinnerComponent;
+  let fixture: ComponentFixture<SpinnerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthorDialogComponent ]
+      declarations: [ SpinnerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AuthorDialogComponent);
+    fixture = TestBed.createComponent(SpinnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
