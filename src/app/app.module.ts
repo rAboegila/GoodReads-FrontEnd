@@ -46,13 +46,13 @@ import { SingleBookComponent } from './components/single-book/single-book.compon
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { UserLibraryComponent } from './user-library/user-library.component';
-import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { RatingComponent } from './rating/rating.component';
 import { LoginRedirectDialogComponent } from './components/login-redirect-dialog/login-redirect-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +85,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RatingComponent,
     BookDetailsComponent,
     LoginRedirectDialogComponent,
-    ShelfItemComponent
+    ShelfItemComponent,
 
   ],
   imports: [
