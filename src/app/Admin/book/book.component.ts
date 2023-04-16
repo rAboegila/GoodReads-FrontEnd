@@ -20,6 +20,8 @@ export class BookComponent implements OnInit {
   currentPage = 1;
 
   private bookSubscription!: Subscription;
+  private cateSubscription!: Subscription;
+  private deleteSubscription!:Subscription;
 
   categories: any[] = [];
   books!: Book[]
@@ -29,7 +31,7 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooks();
-    this.categoryService.getCategories().subscribe(
+    this.cateSubscription=this.categoryService.getCategories().subscribe(
       data => this.categories = data.data ,
       error => console.log(error)
 
@@ -58,7 +60,7 @@ export class BookComponent implements OnInit {
   }
 
   deleteBook(id: string): void {
-    this.bookService.deleteBook(id)
+    this.deleteSubscription=this.bookService.deleteBook(id)
       .subscribe(
         result => {
           console.log('Book deleted successfully', result);
@@ -74,6 +76,13 @@ export class BookComponent implements OnInit {
     if (this.bookSubscription) {
       this.bookSubscription.unsubscribe();
     }
+    if (this.cateSubscription) {
+      this.bookSubscription.unsubscribe();
+    }
+    if (this.deleteSubscription) {
+      this.bookSubscription.unsubscribe();
+    }
+
   }
   
 
