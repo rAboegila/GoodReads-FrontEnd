@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthorService } from '../_services/author.service';
 import { environment } from 'environments/environment.prod';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-author-list',
@@ -8,15 +9,31 @@ import { environment } from 'environments/environment.prod';
   styleUrls: ['./author-list.component.css']
 })
 export class AuthorListComponent {
+  currentPage = 1;
+  searchTerm: string ='';
+  private subscription!: Subscription ;
+
   constructor(private authorService: AuthorService) { }
-  authors: any[] | undefined;
+  authors!: any[] 
   url=`${environment.url}authors/`;
+
   ngOnInit(): void {
-    this.authorService.getAuthors()
+    this.subscription=this.authorService.getAuthors()
       .subscribe(data => {
         this.authors = data.data;
         console.log(this.authors);
-        
+
       });
+  }
+
+  clearSearchTerm() {
+    this.searchTerm = '';
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    
   }
 }

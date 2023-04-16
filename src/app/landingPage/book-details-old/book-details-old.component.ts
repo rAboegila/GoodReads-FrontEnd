@@ -4,6 +4,7 @@ import { Book, BookDetiles } from 'src/app/_models/Book';
 import { BookService } from 'src/app/_services/book.service';
 import { Author } from '../../_models/Author';
 import { environment } from 'environments/environment.prod';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-book-details-old',
@@ -12,8 +13,8 @@ import { environment } from 'environments/environment.prod';
 })
 export class BookDetailsOldComponent implements OnInit {
   // url='http://localhost:5000/uploads/books/'
-  url=`${environment.url}books/`
-  book: BookDetiles= {
+  url = `${environment.url}books/`
+  book: BookDetiles = {
     name: '',
     category: {
       _id: '',
@@ -32,11 +33,17 @@ export class BookDetailsOldComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.bookService.getBook(id as string).subscribe(data => {
+    this.subscription = this.bookService.getBook(id as string).subscribe(data => {
       this.book = data.data;
       console.log(this.book);
 
     });
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

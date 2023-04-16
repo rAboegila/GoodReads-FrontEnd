@@ -53,6 +53,9 @@ import { RatingComponent } from './rating/rating.component';
 import { LoginRedirectDialogComponent } from './components/login-redirect-dialog/login-redirect-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +92,8 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
 
   ],
   imports: [
-    NgbModule, // add NgbModule to the imports array
+    Ng2SearchPipeModule,
+    NgbModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatDatepickerModule,

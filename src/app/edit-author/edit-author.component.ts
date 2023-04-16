@@ -12,9 +12,10 @@ import { environment } from 'environments/environment.prod';
 })
 export class EditAuthorComponent {
   authorFormEdit: FormGroup | undefined;
-  errorMessage!: string;
   selectedImage: any;
   authorID:any;
+  errorMessage :string | undefined;
+
   // url='http://localhost:5000/uploads/authors/'
   url=`${environment.url}authors/`
 
@@ -77,6 +78,7 @@ export class EditAuthorComponent {
   //   });
   // }
 
+
   createForm() {
     this.authorFormEdit = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
@@ -92,6 +94,7 @@ export class EditAuthorComponent {
     }
   }
 
+
   onupdate() {
     const author: Author = {
       firstName: this.authorFormEdit!.value.firstName,
@@ -103,7 +106,20 @@ export class EditAuthorComponent {
     const formData = new FormData();
     formData.append('firstName', author.firstName);
     formData.append('lastName', author.lastName);
-    formData.append('dob', author.dob.toString());
+    // formData.append('dob', author.dob.toString());
+    if (this.authorFormEdit) {
+      const authorData = this.authorFormEdit.value;
+      authorData.id = this.Author._id;
+      // const formData = new FormData();
+      for (const key of Object.keys(authorData)) {
+        if (key !== 'image') {
+          formData.append(`Author.${key}`, authorData[key]);
+        } else {
+          formData.append(key, authorData[key]);
+        }
+      }
+      }
+
     if (this.selectedImage) {
       formData.append('image', this.selectedImage, this.selectedImage.name);
     }
@@ -114,11 +130,15 @@ export class EditAuthorComponent {
         // this.activeModal.close();
         this.router.navigate(['auhtor']);
         // this.errorMessage = '';
+        this.authorFormEdit!.reset();
+        this.selectedImage!= null;
+        this.errorMessage = '';
 
       },
       (error) => {
         console.log(error);
-        // this.errorMessage = 'Invalid value';
+        this.errorMessage = 'Invalid value';
+
        }
     );
   }

@@ -9,6 +9,7 @@ import { CategoryService } from 'src/app/_services/category.service';
 import { Author } from 'src/app/_models/Author';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment.prod';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -18,6 +19,9 @@ import { environment } from 'environments/environment.prod';
 export class BookComponent implements OnInit {
   currentPage = 1;
 
+  private bookSubscription!: Subscription;
+  private cateSubscription!: Subscription;
+  private deleteSubscription!:Subscription;
 
   categories: any[] = [];
   books!: Book[]
@@ -27,7 +31,7 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooks();
-    this.categoryService.getCategories().subscribe(
+    this.cateSubscription=this.categoryService.getCategories().subscribe(
       data => this.categories = data.data ,
       error => console.log(error)
 
@@ -41,7 +45,7 @@ export class BookComponent implements OnInit {
 
 
   getBooks(): void {
-    this.bookService.getBooks(1)
+    this.bookSubscription = this.bookService.getBooks(1)
       .subscribe(
         result => {
           console.log(result.data);
@@ -56,7 +60,7 @@ export class BookComponent implements OnInit {
   }
 
   deleteBook(id: string): void {
-    this.bookService.deleteBook(id)
+    this.deleteSubscription=this.bookService.deleteBook(id)
       .subscribe(
         result => {
           console.log('Book deleted successfully', result);
@@ -67,5 +71,19 @@ export class BookComponent implements OnInit {
         }
       );
   }
+
+  ngOnDestroy() {
+    if (this.bookSubscription) {
+      this.bookSubscription.unsubscribe();
+    }
+    if (this.cateSubscription) {
+      this.bookSubscription.unsubscribe();
+    }
+    if (this.deleteSubscription) {
+      this.bookSubscription.unsubscribe();
+    }
+
+  }
+  
 
 }

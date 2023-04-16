@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Category } from 'src/app/_models/Category';
 import { CategoryService } from 'src/app/_services/category.service';
 
@@ -9,13 +10,23 @@ import { CategoryService } from 'src/app/_services/category.service';
 })
 export class GetCategouryComponent implements OnInit {
   categories: Category[] | undefined;
+  searchTerm: string ='';
+  private subscription!: Subscription;
+
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe(data => {
+    this.subscription = this.categoryService.getCategories().subscribe(data => {
       this.categories = data.data;
     });
   }
-
+  clearSearchTerm() {
+    this.searchTerm = '';
+  }
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

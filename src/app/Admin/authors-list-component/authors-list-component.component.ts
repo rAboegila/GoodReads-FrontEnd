@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment.prod';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-authors-list-component',
@@ -16,7 +17,8 @@ import { environment } from 'environments/environment.prod';
 export class AuthorsListComponentComponent implements OnInit
   {
     currentPage = 1;
-
+    private subscription!: Subscription ;
+    private subscription2!:Subscription;
     authors: Author[] = [];
     // url='http://localhost:5000/uploads/authors/'
     url=`${environment.url}authors/`
@@ -32,7 +34,7 @@ export class AuthorsListComponentComponent implements OnInit
     }
 
     getAuthors(): void {
-      this.authorService.getAuthors().subscribe((response) => {
+      this.subscription2= this.authorService.getAuthors().subscribe((response) => {
         if (response.success) {
           this.authors = response.data;
         }
@@ -49,10 +51,19 @@ export class AuthorsListComponentComponent implements OnInit
 
     deleteAuthor(_id: string): void {
       console.log(_id);
-      this.authorService.deleteAuthor(_id).subscribe((response) => {
+      this.subscription=this.authorService.deleteAuthor(_id).subscribe((response) => {
         if (response.success) {
           this.getAuthors();
         }
       });
+    }
+
+    ngOnDestroy() {
+      if (this.subscription) {
+        this.subscription.unsubscribe();
+      }
+      if (this.subscription2) {
+        this.subscription2.unsubscribe();
+      }
     }
   }
