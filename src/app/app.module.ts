@@ -38,7 +38,6 @@ import { EditBookComponent1 } from './edit-book/edit-book.component';
 import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury.component';
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
-import { BookDetailsOldComponent } from './landingPage/book-details-old/book-details-old.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -78,7 +77,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     GetCategouryComponent,
     GetCategoryByIdComponent,
     BooksComponent,
-    BookDetailsOldComponent,
     AboutusComponent,
     FooterComponent,
     SingleBookComponent,

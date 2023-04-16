@@ -18,7 +18,6 @@ import { AdminComponent } from './components/admin/admin.component';
 import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury.component';
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
-import { BookDetailsOldComponent } from './landingPage/book-details-old/book-details-old.component';
 import { UserLibraryComponent } from './user-library/user-library.component';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
