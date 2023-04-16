@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgToastModule } from 'ng-angular-popup'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -50,6 +51,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,14 +117,14 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     ReactiveFormsModule,
     NgxPaginationModule,
     MatTabsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgToastModule,
   ],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  // entryComponents: [BookDialogComponent],
 
 })
 export class AppModule { }
