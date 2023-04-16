@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgToastModule } from 'ng-angular-popup'
+// import { NgToastModule } from 'ng-angular-popup';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,7 +40,7 @@ import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -78,7 +78,7 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     GetCategouryComponent,
     GetCategoryByIdComponent,
     BooksComponent,
-    AboutusComponent,
+    AboutUsComponent,
     FooterComponent,
     UserLibraryComponent,
     BookShelfComponent,
@@ -124,7 +124,7 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     MatTabsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    NgToastModule,
+    // NgToastModule,
   ],
 
   providers: [

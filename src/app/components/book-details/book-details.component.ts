@@ -83,13 +83,18 @@ export class BookDetailsComponent implements OnInit {
       });
   }
   findBook() {
+
+
     const libIndex = this.userLib?.findIndex(
       (elem) => elem.bookId === this.book?._id
     );
-    if (libIndex && libIndex > 0) {
+
+    if (libIndex != undefined && libIndex >= 0) {
       this.libItem = this.userLib?.at(libIndex);
       this.shelf = String(this.libItem?.shelve);
     }
+
+
   }
   reviewIsEmpty(): boolean {
     if (this.book?.reviews) {
