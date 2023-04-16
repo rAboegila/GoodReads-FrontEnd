@@ -8,10 +8,11 @@ import { environment } from 'environments/environment.prod';
   styleUrls: ['./author-list.component.css']
 })
 export class AuthorListComponent {
+  currentPage = 1;
+
   constructor(private authorService: AuthorService) { }
   authors: any[] | undefined;
   url=`${environment.url}authors/`;
-  currentPage = 1;
 
   ngOnInit(): void {
     this.authorService.getAuthors()
