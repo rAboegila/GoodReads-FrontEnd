@@ -12,7 +12,7 @@ export class BooksComponent implements OnInit {
   books: Book[] = [];
 hover: any;
 currentPage = 1;
-
+searchTerm: string ='';
 // url='http://localhost:5000/uploads/books/'
 url=`${environment.url}books/`
 
@@ -22,6 +22,10 @@ url=`${environment.url}books/`
     this.bookService.getBooks(1).subscribe(data => {
       this.books = data.data;
     });
+  }
+
+  clearSearchTerm() {
+    this.searchTerm = '';
   }
 
 }
