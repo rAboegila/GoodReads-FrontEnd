@@ -6,11 +6,11 @@ import { Author } from '../../_models/Author';
 import { environment } from 'environments/environment.prod';
 
 @Component({
-  selector: 'app-book-details',
-  templateUrl: './book-details.component.html',
-  styleUrls: ['./book-details.component.css']
+  selector: 'app-book-details-old',
+  templateUrl: './book-details-old.component.html',
+  styleUrls: ['./book-details-old.component.css']
 })
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsOldComponent implements OnInit {
   // url='http://localhost:5000/uploads/books/'
   url=`${environment.url}books/`
   book: BookDetiles= {

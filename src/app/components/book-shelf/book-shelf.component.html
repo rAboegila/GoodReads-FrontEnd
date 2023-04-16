@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="overlay"><mat-progress-spinner class="loader" *ngIf="isLoading" mode="indeterminate"
+        diameter="50"></mat-progress-spinner>
+</div>
 <div class="table-responsive">
     <table class="table align-items-center table-flush">
         <thead class="thead-light">
@@ -17,7 +20,7 @@
                 <td>
                     <div class=" align-items-center">
                         <a href="#" class="avatar rounded-circle ">
-                            <img crossorigin="anonymous" alt="Book Cover" src={{libItem.book?.image}}>
+                            <img crossorigin="anonymous" alt="Book Cover" [src]="getBookImage(libItem)">
                         </a>
                     </div>
                 </td>
