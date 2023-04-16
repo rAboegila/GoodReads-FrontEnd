@@ -9,9 +9,10 @@ import { environment } from 'environments/environment.prod';
 })
 export class AuthorListComponent {
   currentPage = 1;
+  searchTerm: string ='';
 
   constructor(private authorService: AuthorService) { }
-  authors: any[] | undefined;
+  authors!: any[] 
   url=`${environment.url}authors/`;
 
   ngOnInit(): void {
@@ -21,5 +22,9 @@ export class AuthorListComponent {
         console.log(this.authors);
 
       });
+  }
+
+  clearSearchTerm() {
+    this.searchTerm = '';
   }
 }

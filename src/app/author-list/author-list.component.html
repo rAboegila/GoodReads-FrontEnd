@@ -1,8 +1,15 @@
 <div class="container pt-5">
   <div class="row">
 
-    <!-- <div class="col-md-4" *ngFor="let author of authors | paginate: { itemsPerPage: 10, currentPage: currentPage }"> -->
-      < <div class="col-md-4" *ngFor="let author of authors" >
+    <div class="search pt-5 my-5">
+
+      <input type="text" [(ngModel)]="searchTerm"  class="form-control search-input"  placeholder="Search by authors">
+    <button class="m-3 btn btn-info" (click)="clearSearchTerm()">Clear</button>
+
+  </div>
+
+
+      < <div class="col-md-4" *ngFor="let author of authors |filter:searchTerm | paginate: { itemsPerPage: 10, currentPage: currentPage }" >
       <div class="card mb-4 shadow-sm">
         <img crossorigin="anonymous" class="card-img-top" src="{{url+author.image }}" alt="{{ author.firstName }} {{ author.lastName }}">
         <div class="card-body">
@@ -12,7 +19,7 @@
       </div>
     </div>
 
-    <!-- <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls> -->
+    <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls>
 
   </div>
 
