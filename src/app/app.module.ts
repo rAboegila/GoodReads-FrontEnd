@@ -51,6 +51,7 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { AuthorListComponent } from './author-list/author-list.component';
 
   ],
   imports: [
-    NgbModule, // add NgbModule to the imports array
+    Ng2SearchPipeModule,
+    NgbModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatDatepickerModule,

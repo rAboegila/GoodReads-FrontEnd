@@ -9,6 +9,8 @@ import { CategoryService } from 'src/app/_services/category.service';
 })
 export class GetCategouryComponent implements OnInit {
   categories: Category[] | undefined;
+  searchTerm: string ='';
+
 
   constructor(private categoryService: CategoryService) { }
 
@@ -17,5 +19,7 @@ export class GetCategouryComponent implements OnInit {
       this.categories = data.data;
     });
   }
-
+  clearSearchTerm() {
+    this.searchTerm = '';
+  }
 }
