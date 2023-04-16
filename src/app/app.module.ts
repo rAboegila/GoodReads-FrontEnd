@@ -79,14 +79,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AboutusComponent,
     FooterComponent,
     SingleBookComponent,
-    ShelfItemComponent,
     UserLibraryComponent,
-    ShelfItemComponent,
     BookShelfComponent,
     AuthorListComponent,
     RatingComponent,
     BookDetailsComponent,
     LoginRedirectDialogComponent,
+    ShelfItemComponent
 
   ],
   imports: [

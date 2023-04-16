@@ -20,7 +20,7 @@ import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-i
 import { BooksComponent } from './landingPage/books/books.component';
 import { BookDetailsOldComponent } from './landingPage/book-details-old/book-details-old.component';
 import { UserLibraryComponent } from './user-library/user-library.component';
-import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+import { ShelfItemComponent } from './components/shelf-item-o/shelf-item.component';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
