@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgToastModule } from 'ng-angular-popup'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -118,7 +117,6 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     NgxPaginationModule,
     MatTabsModule,
     MatFormFieldModule,
-    NgToastModule,
   ],
 
   providers: [

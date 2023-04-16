@@ -13,3 +13,19 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.success-snackbar {
+  --mdc-snackbar-container-color: var(--success);
+}
+
+.error-snackbar {
+  --mdc-snackbar-container-color: var(--danger);
+}
+
+.warning-snackbar {
+  --mdc-snackbar-container-color: var(--warning);
+}
+
+.info-snackbar {
+  --mdc-snackbar-container-color: var(--info);
+}

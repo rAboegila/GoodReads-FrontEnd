@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/user.service';
-import { NgToastService } from 'ng-angular-popup'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent {
 
   users!: User[];
 
-  constructor(private _userService: UserService, private _router: Router, private _toast: NgToastService) {
+  constructor(private _userService: UserService, private _router: Router, private snackBar: MatSnackBar) {
   }
 
   submitForm(form: NgForm): void {
@@ -23,15 +23,15 @@ export class LoginComponent {
         next: () => {
           form.reset();
           this._router.navigate(['/']);
-          this._toast.success({ detail: "You have successfully logged in", summary: "Login Success", duration: 5000 });
+          // Snackbar that opens with success background
+          this.snackBar.open('You have successfully logged in!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
         },
         error: res => {
           if (res.error.errors) {
             res.error.errors.forEach((error: any) => {
-              this._toast.error({ detail: "Failed To Login!", summary: (error.msg ? error.msg : error).split(',')[1], duration: 5000 });
+              this.snackBar.open((error.msg ? error.msg : error), 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
             })
           }
-
         }
       });
 
