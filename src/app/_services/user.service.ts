@@ -90,4 +90,20 @@ export class UserService {
         return res;
       }));
   }
+
+  addBookToLibrary(bookID: string, shelf: string) {
+    return this.http.post<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: shelf })
+      .pipe(map(res => {
+        this.userSubject.next(res.data);
+        if (localStorage.getItem('user')) {
+          const data: any = localStorage.getItem('user');
+          const token = JSON.parse(data).token;
+          const success = JSON.parse(data).success;
+          res.data.success = success;
+          res.data.token = token;
+        }
+        localStorage.setItem('user', JSON.stringify(res.data));
+        return res;
+      }));
+  }
 }

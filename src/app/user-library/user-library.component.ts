@@ -8,11 +8,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookService } from '../_services/book.service';
 
 @Component({
-  selector: 'app-library',
-  templateUrl: './library.component.html',
-  styleUrls: ['./library.component.css']
+  selector: 'app-user-library',
+  templateUrl: './user-library.component.html',
+  styleUrls: ['./user-library.component.css']
 })
-export class LibraryComponent {
+export class UserLibraryComponent {
   myLib: Library[] = [];
 
   all = "ALL";

@@ -8,17 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-author.component.css']
 })
 export class AddAuthorComponent implements OnInit {
-  authorForm:FormGroup | undefined;
-  errorMessage!:string;
+  authorForm: FormGroup | undefined;
+  errorMessage!: string;
   selectedImage: any;
-  constructor(private formBuilder: FormBuilder, private authorService: AuthorService,private router: Router) {
+  isLoading: boolean = true;
+  constructor(private formBuilder: FormBuilder, private authorService: AuthorService, private router: Router) {
     this.createForm();
   }
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
-    // this.createForm()
-
-
+    this.isLoading = false;
   }
 
   createForm() {
@@ -33,7 +31,7 @@ export class AddAuthorComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       dob: ['', [Validators.required]],
-      image: [''],
+      image: [[''], [Validators.required]]
     });
   }
 

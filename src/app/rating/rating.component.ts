@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Library } from '../_models/User';
+import { Library } from 'src/app/_models/User';
 import { Book, BookShelf } from '../_models/Book';
 @Component({
   selector: 'app-rating',
@@ -43,7 +43,7 @@ export class RatingComponent {
 
       );
     }
-    else if("name" in this.libItem && this.libItem._id){
+    else if ("name" in this.libItem && this.libItem._id) {
       this._userService.updateLibrary(this.libItem._id, BookShelf.ALL, rating).subscribe(
         (res) => { console.log(res); }
 

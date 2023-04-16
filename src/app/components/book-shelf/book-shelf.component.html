@@ -1,3 +1,5 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
 <div class="table-responsive">
     <table class="table align-items-center table-flush">
         <thead class="thead-light">
@@ -16,8 +18,8 @@
             <tr *ngFor="let libItem of myLib;index as i">
                 <td>
                     <div class=" align-items-center">
-                        <a href="#" class="avatar rounded-circle ">
-                            <img crossorigin="anonymous" alt="Book Cover" src={{libItem.book?.image}}>
+                        <a routerLink="/book-details/{{libItem.book?._id}}" class="avatar rounded-circle ">
+                            <img crossorigin="anonymous" alt="Book Cover" [src]="getBookImage(libItem)">
                         </a>
                     </div>
                 </td>

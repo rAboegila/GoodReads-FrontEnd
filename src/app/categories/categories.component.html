@@ -1,3 +1,5 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
@@ -5,19 +7,21 @@
     </div>
   </div>
   <div class="row">
-    <button  class="btn btn-success" mat-button (click)="addCategory()">Add Category</button>
+    <button class="btn btn-success" mat-button (click)="addCategory()">Add Category</button>
     <div *ngIf="showAddForm || showEditForm" class="row">
       <div class="col-12">
         <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label>Name</label>
-            <input type="text" formControlName="name" class="form-control" required>
-            <div *ngIf="categoryForm.get('name')!.hasError('required') && (categoryForm.get('name')!.dirty || categoryForm.get('name')!.touched)" class="invalid-feedback">
-    Name is required
-  </div>
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" class="form-control" required>
+            <div
+              *ngIf="categoryForm.get('name')!.hasError('required') && (categoryForm.get('name')!.dirty || categoryForm.get('name')!.touched)"
+              class="invalid-feedback">
+              Name is required
+            </div>
 
           </div>
-          <button  class="btn btn-success" mat-button type="submit" [disabled]="categoryForm.invalid">Save</button>
+          <button class="btn btn-success" mat-button type="submit" [disabled]="categoryForm.invalid">Save</button>
           <button class="btn btn-danger m-2" mat-button type="button" (click)="cancel()">Cancel</button>
         </form>
       </div>
@@ -35,17 +39,14 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let category">
-            <button class="btn btn-info  m-2"  mat-button (click)="editCategory(category)">Edit</button>
-            <button  class="btn btn-danger m-2"   mat-button (click)="deleteCategory(category)">Delete</button>
+            <button class="btn btn-info  m-2" mat-button (click)="editCategory(category)">Edit</button>
+            <button class="btn btn-danger m-2" mat-button (click)="deleteCategory(category)">Delete</button>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="['_id', 'name', 'actions']"></tr>
         <tr mat-row *matRowDef="let row; columns: ['_id', 'name', 'actions'];"></tr>
 
       </table>
-      <div class="pagination">
-        <pagination-controls (pageChange)="page = $event"></pagination-controls>
-      </div>
     </div>
   </div>
 

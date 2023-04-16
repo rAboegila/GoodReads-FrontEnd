@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Category } from '../_models/Category';
 import { CategoryService } from '../_services/category.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class CategoriesComponent implements OnInit {
   page: number = 1;
   pageSize: number = 10;
   collectionSize: number = 0;
-
+  public totalItems: number = 0;
+  private subscription!: Subscription;
+  isLoading: boolean = true;
   constructor(
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
@@ -38,17 +41,15 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
-    // this.categoryService.getCategories().subscribe(res => {
-    //   this.categories = res.data;
-    //   this.collectionSize = res.length;
-    // });
+
 
   }
 
   getCategories(): void {
-    this.categoryService.getCategories().subscribe(res => {
+    this.subscription = this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;
       this.collectionSize = res.data;
+      this.isLoading = false;
     });
   }
   get categoriesOnPage() {
@@ -119,4 +120,11 @@ export class CategoriesComponent implements OnInit {
     this.showEditForm = false;
     this.categoryForm.reset();
   }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgToastModule } from 'ng-angular-popup';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,37 +29,38 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AppComponent } from './app.component';
 import { MatSelectModule } from '@angular/material/select';
 import { BookComponent } from './Admin/book/book.component';
-import { BookDialogComponent } from './book-dialog/book-dialog.component';
 import { AuthorsListComponentComponent } from './Admin/authors-list-component/authors-list-component.component';
-import { AuthorDialogComponent } from './Admin/author-dialog/author-dialog.component';
 import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
 import { EditBookComponent1 } from './edit-book/edit-book.component';
-import { RatingComponent } from './rating/rating.component';
 import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury.component';
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
-import { BookDetailsComponent } from './landingPage/book-details/book-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { LibraryComponent } from './library/library.component';
-import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+import { UserLibraryComponent } from './user-library/user-library.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
+import { RatingComponent } from './rating/rating.component';
+import { LoginRedirectDialogComponent } from './components/login-redirect-dialog/login-redirect-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriesComponent,
     BookComponent,
-    BookDialogComponent,
     AuthorsListComponentComponent,
-    AuthorDialogComponent,
     AddAuthorComponent,
     EditAuthorComponent,
     AddBookComponent,
@@ -70,24 +72,27 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     ProfileComponent,
     AdminComponent,
     NotFoundComponent,
-    RatingComponent,
     GetCategouryComponent,
     GetCategoryByIdComponent,
     BooksComponent,
-    BookDetailsComponent,
-    AboutusComponent,
+    AboutUsComponent,
     FooterComponent,
-    RatingComponent,
-    ShelfItemComponent,
-    LibraryComponent,
-    ShelfItemComponent,
+    UserLibraryComponent,
     BookShelfComponent,
     AuthorListComponent,
+    RatingComponent,
+    BookDetailsComponent,
+    LoginRedirectDialogComponent,
+    ShelfItemComponent,
+    AuthorListComponent,
     AuthorDetailsComponent,
+    SpinnerComponent,
+    HomePageComponent,
 
   ],
   imports: [
-    NgbModule, // add NgbModule to the imports array
+    Ng2SearchPipeModule,
+    NgbModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
@@ -117,6 +122,7 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     NgxPaginationModule,
     MatTabsModule,
     MatFormFieldModule,
+    MatProgressSpinnerModule,
   ],
 
   providers: [

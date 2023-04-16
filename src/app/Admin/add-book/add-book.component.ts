@@ -16,9 +16,10 @@ export class AddBookComponent implements OnInit {
   categories: any[] = [];
   authors: any[] = [];
   selectedImage!: File;
-  errorMessage = '';
+  errorMessage: string | undefined;
+  isLoading: boolean = true;
 
-  constructor(private bookService: BookService, private categoryService: CategoryService, private authorService: AuthorService,private router: Router) { 
+  constructor(private bookService: BookService, private categoryService: CategoryService, private authorService: AuthorService, private router: Router) {
     this.bookForm = new FormGroup({
       name: new FormControl(''),
       category: new FormControl(''),
@@ -29,7 +30,7 @@ export class AddBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookForm = new FormGroup({
-      name: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
+      name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
       category: new FormControl(null, Validators.required),
       author: new FormControl(null, Validators.required),
       image: new FormControl(null, Validators.required),
@@ -37,14 +38,17 @@ export class AddBookComponent implements OnInit {
     });
 
     this.categoryService.getCategories().subscribe(
-      data => this.categories = data.data ,
+      data => this.categories = data.data,
       error => console.log(error)
-      
+
     );
 
-    
+
     this.authorService.getAuthors().subscribe(
-      data => this.authors = data.data,
+      data => {
+        this.authors = data.data
+        this.isLoading = false;
+      },
       error => console.log(error)
     );
   }
@@ -66,14 +70,14 @@ export class AddBookComponent implements OnInit {
           console.log('Book created successfully!');
           console.log(data);
           this.bookForm!.reset();
-          this.selectedImage!= null;
+          this.selectedImage != null;
           this.errorMessage = '';
           this.router.navigate(['Books']);
 
         },
         error => {
           console.log('Error creating book: ', error);
-          this.errorMessage = error.message;
+          this.errorMessage = 'Invalid value';
         }
       );
   }

@@ -1,0 +1,81 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+<div class="card-wrapper">
+
+    <div style="width: 100rem; height:50rem; padding:4rem 2rem" class="shadow-sm rounded  card">
+        <!-- card left -->
+        <div class="product-imgs">
+            <img crossorigin="anonymous" src={{imageURL}} alt="book image">
+
+        </div>
+        <!-- card right -->
+        <div class=" product-content">
+            <h2 class="product-title">{{book?.name}}</h2>
+            <a href="#" class="product-link">by {{book?.author?.firstName}} {{book?.author?.lastName}}</a>
+            <div class="product-rating">
+                <app-rating [rating]="book?.avgRating" type="avg" class="col-4 "></app-rating>
+
+                <span class="col-3 ps-3">{{roundRating( book?.avgRating)}} ({{book?.totalRatings}})</span>
+            </div>
+
+            <div class="product-price">
+                <p class="last-price">Category: <span style="text-transform: capitalize;">{{book?.category.name}}</span>
+                </p>
+            </div>
+
+            <div style="width:100%;" class="product-detail">
+                <h2>Reviews </h2>
+                <div *ngIf="reviewIsEmpty()" style="height:100px" class="bg-light shadow-sm rounded text-center  ">
+                    <span class="text-muted ">-----&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No
+                        Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----</span>
+                </div>
+                <div *ngIf="!reviewIsEmpty()" style="width:100%" class="bg-light shadow-sm rounded carousel-wrapper">
+                    <div id="carouselExampleDark" style="height: 200px" class="carousel carousel-dark slide"
+                        data-bs-ride="carousel">
+                        <div class="carousel-inner w-100">
+                            <div *ngFor="let review of book?.reviews" class="carousel-item active"
+                                data-bs-interval="10000">
+                                <div class="reviewItem text-center ">
+
+                                    <p>{{review}}</p>
+                                </div>
+                            </div>
+
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="purchase-info">
+                    <select *ngIf="isLoggedIn && userRole === 'user'" #shelfSelected id="shelf-select"
+                        class="form-select" aria-label="Default select example" (change)="shelf=shelfSelected.value">
+                        <option [selected]="shelf === 'none' " selected [value]="'none'">
+                            -- Select A Shelf --
+                        </option>
+                        <option [selected]="shelf=== 'READING' " [value]="'READING'">
+                            Reading
+                        </option>
+                        <option [selected]="shelf=== 'READ' " [value]="'READ'">
+                            Read
+                        </option>
+                        <option [selected]="shelf=== 'WANT_TO_READ' " [value]="'WANT_TO_READ'">
+                            Want To Read</option>
+                    </select>
+                    <button type="button" (click)="addBook(book?._id,shelf)" class="pb-2 btn">Add to My
+                        Library</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
