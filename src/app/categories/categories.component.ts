@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Category } from '../_models/Category';
 import { CategoryService } from '../_services/category.service';
 import { Subscription } from 'rxjs';
+import { notOnlySpacesValidator } from '../_services/customValidation';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class CategoriesComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.categoryForm = this.formBuilder.group({
-      name: ['', Validators.required]
+      name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15),notOnlySpacesValidator()])],
     });
 
   }
@@ -41,10 +42,10 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
-  
+
 
   }
- 
+
   getCategories(): void {
     this.subscription =this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;

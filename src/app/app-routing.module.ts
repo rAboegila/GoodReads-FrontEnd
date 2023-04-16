@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: "profile/shelves", component: UserLibraryComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'cate', component: CategoriesComponent, canActivate: [AdminGuard] },
-  { path: 'author', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
+  { path: 'auhtor', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
   { path: 'admin/add-author', component: AddAuthorComponent, canActivate: [AdminGuard] },
   { path: 'edit-author/:id', component: EditAuthorComponent, canActivate: [AdminGuard] },
   { path: 'Books', component: BookComponent, canActivate: [AdminGuard] },

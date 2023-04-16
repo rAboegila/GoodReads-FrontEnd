@@ -11,6 +11,8 @@
   <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['required']">First name is required.</div>
   <div *ngIf=" authorForm &&  authorForm.get('firstName')?.errors?.['minlength']">First name must be at least {{ authorForm.get('firstName')?.errors?.['minlength'].requiredLength }} characters long.</div>
   <div *ngIf=" authorForm && authorForm.get('firstName')?.errors?.['maxlength']">First name cannot be longer than {{ authorForm.get('firstName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+  <!-- <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['notOnlySpaces']">Last name cannot be only spaces.</div> -->
+
 </div>
 
 
@@ -23,6 +25,8 @@
       <div *ngIf="authorForm && authorForm.get('lastName')?.errors?.['required']">lastName  is required.</div>
       <div *ngIf=" authorForm &&  authorForm.get('lastName')?.errors?.['minlength']">lastName must be at least {{ authorForm.get('lastName')?.errors?.['minlength'].requiredLength }} characters long.</div>
       <div *ngIf=" authorForm && authorForm.get('lastName')?.errors?.['maxlength']">lastName cannot be longer than {{ authorForm.get('lastName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+      <!-- <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['notOnlySpaces']">Last name cannot be only spaces.</div> -->
+
     </div>
 
   </div>
