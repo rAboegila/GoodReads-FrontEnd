@@ -20,4 +20,5 @@ export interface Library {
     rating: number;
     shelve: BookShelf;
     book?: Book;
+    new?: boolean;
 }

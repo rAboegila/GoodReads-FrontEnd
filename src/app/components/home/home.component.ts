@@ -29,6 +29,7 @@ export class HomeComponent {
 
     this._bookService.getPopularBooks().subscribe(response => {
       this.popularBooks = response.data.popularBooks;
+      this.popularBooks.forEach(book => book.avgRating = Math.round((book.avgRating || 0) * 100) / 100);
       this.popularAuthors = response.data.popularAuthor;
 
       // populate author fullname into book object

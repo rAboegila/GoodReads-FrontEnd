@@ -11,4 +11,9 @@
 
 .book-name{
     color: darkcyan;
+    cursor: pointer;
+}
+
+.book-image{
+    cursor: pointer;
 }

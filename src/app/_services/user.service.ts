@@ -53,13 +53,11 @@ export class UserService {
       }));
   }
 
-  getProfile(): Observable<any> {
+  getProfile(): Observable<User> {
     return this.http.get<User>(`${baseUrl}/api/auth/me`);
   }
 
   updateLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
-
-
     return this.http.put<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
       .pipe(map(res => {
         this.userSubject.next(res.data);
@@ -74,7 +72,22 @@ export class UserService {
         localStorage.setItem('user', JSON.stringify(res.data));
         return res;
       }));
+  }
 
+  addLibrary(bookID: string, updatedShelf: BookShelf, updatedRating: number) {
+    return this.http.post<User>(`${baseUrl}/api/user/${bookID}/book`, { shelve: updatedShelf, rating: updatedRating })
+      .pipe(map(res => {
+        this.userSubject.next(res.data);
 
+        if (localStorage.getItem('user')) {
+          const data: any = localStorage.getItem('user');
+          const token = JSON.parse(data).token;
+          const success = JSON.parse(data).success;
+          res.data.success = success;
+          res.data.token = token;
+        }
+        localStorage.setItem('user', JSON.stringify(res.data));
+        return res;
+      }));
   }
 }
