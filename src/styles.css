@@ -2,14 +2,29 @@
 
 html,
 body {
-  height: 100%;
   background: rgb(248, 246, 234);
 
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-#footer {
+html {
+  height: 100% !important;
+}
+body {
+  min-height: 100% !important;
+}
+
+body,
+#page-content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+#page-content,
+.dont-raise-footer {
+  flex-grow: 1 !important;
+}
+/* #footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-}
+} */

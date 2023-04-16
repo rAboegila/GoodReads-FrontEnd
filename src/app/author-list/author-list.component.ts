@@ -22,7 +22,7 @@ export class AuthorListComponent {
       .subscribe(data => {
         this.authors = data.data;
         console.log(this.authors);
-        this.isLoading = true;
+        this.isLoading = false;
       });
   }
 

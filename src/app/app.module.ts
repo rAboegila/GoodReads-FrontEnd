@@ -53,7 +53,7 @@ import { ShelfItemComponent } from './components/shelf-item/shelf-item.component
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +87,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AuthorListComponent,
     AuthorDetailsComponent,
     SpinnerComponent,
+    HomePageComponent,
 
   ],
   imports: [

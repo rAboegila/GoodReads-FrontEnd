@@ -24,9 +24,12 @@ import { AuthorListComponent } from './author-list/author-list.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent, pathMatch: "full" },
+  // { path: "", component: HomeComponent, pathMatch: "full" },
+  { path: "", component: HomePageComponent, pathMatch: "full" },
+
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "about", component: AboutUsComponent },
@@ -42,8 +45,8 @@ const routes: Routes = [
   { path: 'EditBook/:id', component: EditBookComponent1, canActivate: [AdminGuard] },
   { path: 'showCategory', component: GetCategouryComponent, canActivate: [AuthGuard] },
   { path: 'category/:id', component: GetCategoryByIdComponent, canActivate: [AuthGuard] },
-  { path: 'showBooks', component: BooksComponent, canActivate: [AuthGuard] },
-  { path: 'showAuthor', component: AuthorListComponent, canActivate: [AuthGuard] },
+  { path: 'showBooks', component: BooksComponent },
+  { path: 'showAuthor', component: AuthorListComponent },
   { path: 'book-details/:id', component: BookDetailsComponent },
   { path: 'author-details/:id', component: AuthorDetailsComponent, canActivate: [AuthGuard] },
   { path: "**", component: NotFoundComponent },
