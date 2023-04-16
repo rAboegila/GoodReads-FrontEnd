@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/user.service';
-
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup'
 
 export class CustomValidators {
   static MatchValidator(source: string, target: string): ValidatorFn {
@@ -31,7 +30,7 @@ export class RegisterComponent {
   myForm: FormGroup;
   image: any;
 
-  constructor(private _userService: UserService, private _router: Router) {
+  constructor(private _userService: UserService, private _router: Router, private _toast: NgToastService) {
 
     this.myForm = new FormGroup({
       firstName: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
@@ -56,14 +55,17 @@ export class RegisterComponent {
     formData.append('image', this.image);
 
     this._userService.register(formData)
-      .pipe(first())
       .subscribe({
         next: () => {
           this._router.navigate(['/']);
+          this._toast.success({ detail: "You have successfully registered", summary: "Registeration Success", duration: 5000 });
         },
         error: res => {
-          console.log(res.error);
-          alert(res.error.errors);
+          if (res.error.errors) {
+            res.error.errors.forEach((error: any) => {
+              this._toast.error({ detail: "Failed To Register!", summary: error.msg ? error.msg : error, duration: 5000 });
+            })
+          }
         }
       });
   }

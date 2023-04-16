@@ -5,12 +5,13 @@ import { catchError } from 'rxjs/operators';
 import { Author } from '../_models/Author';
 import { baseUrl } from './helper';
 import { environment } from 'environments/environment.prod';
+import { Book } from '../_models/Book';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorService  {
 
-  // private url = 'http://localhost:5000/api/authors';
+  private url = 'http://localhost:5000/api/authors';
 
     // private API_URL = 'http://localhost:5000/api';
 
@@ -48,5 +49,9 @@ export class AuthorService  {
       // });
       console.log(id);
       return this.http.delete(`${this.API_URL}/authors/${id}`)
+    }
+
+    getAuthorBooks(id: string): Observable<any> {
+      return this.http.get<any>(`${this.API_URL}/authors/${id}/books`);
     }
   }

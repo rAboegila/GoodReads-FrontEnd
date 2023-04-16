@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgToastModule } from 'ng-angular-popup'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +42,6 @@ import { BooksComponent } from './landingPage/books/books.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SingleBookComponent } from './components/single-book/single-book.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { UserLibraryComponent } from './user-library/user-library.component';
@@ -53,6 +53,7 @@ import { LoginRedirectDialogComponent } from './components/login-redirect-dialog
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 
 
 @NgModule({
@@ -79,7 +80,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BooksComponent,
     AboutusComponent,
     FooterComponent,
-    SingleBookComponent,
     UserLibraryComponent,
     BookShelfComponent,
     AuthorListComponent,
@@ -87,6 +87,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BookDetailsComponent,
     LoginRedirectDialogComponent,
     ShelfItemComponent,
+    AuthorListComponent,
+    AuthorDetailsComponent,
 
   ],
   imports: [
@@ -121,15 +123,14 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     NgxPaginationModule,
     MatTabsModule,
     MatFormFieldModule,
-    MatProgressSpinnerModule
-
+    MatProgressSpinnerModule,
+    // NgToastModule,
   ],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  // entryComponents: [BookDialogComponent],
 
 })
 export class AppModule { }

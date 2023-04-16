@@ -22,6 +22,7 @@ import { UserLibraryComponent } from './user-library/user-library.component';
 import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -30,7 +31,6 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "profile/shelves", component: UserLibraryComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
-
   { path: 'cate', component: CategoriesComponent, canActivate: [AdminGuard] },
   { path: 'author', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
   { path: 'admin/add-author', component: AddAuthorComponent, canActivate: [AdminGuard] },
@@ -43,11 +43,8 @@ const routes: Routes = [
   { path: 'showBooks', component: BooksComponent, canActivate: [AuthGuard] },
   { path: 'showAuthor', component: AuthorListComponent, canActivate: [AuthGuard] },
   { path: 'book-details/:id', component: BookDetailsComponent },
-
+  { path: 'author-details/:id', component: AuthorDetailsComponent, canActivate: [AuthGuard] },
   { path: "**", component: NotFoundComponent },
-
-
-
 ];
 
 @NgModule({
