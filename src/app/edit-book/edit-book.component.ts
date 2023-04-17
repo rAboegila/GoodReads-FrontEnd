@@ -34,6 +34,7 @@ export class EditBookComponent1 implements OnInit {
   authors: Author[] = [];
   errorMessage :string | undefined;
   selectedImage!: File | null;
+  cate!:string;
   Book: Book = {
     _id: '',
     name: '',
@@ -60,7 +61,7 @@ export class EditBookComponent1 implements OnInit {
 
   ) { }
 
- 
+
 
     ngOnInit(): void {
       this.activatedRoute.params.subscribe((params) => {
@@ -90,7 +91,7 @@ export class EditBookComponent1 implements OnInit {
     this.createEditbookForm();
   }
 
-   
+
   onFileSelected(event: any) {
     if (event.target.files && event.target.files[0]) {
       this.selectedImage = event.target.files[0];
@@ -105,7 +106,7 @@ export class EditBookComponent1 implements OnInit {
     });
   }
 
-  
+
   getBook(id: string) {
     this.bookService.getBook(id).subscribe(
       (res) => {

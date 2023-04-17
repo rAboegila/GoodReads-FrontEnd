@@ -17,31 +17,45 @@
                 <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
                 <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
+
+
                 <form #form="ngForm" (ngSubmit)="submitForm(form)" class="card bg-glass pb-1 pt-1">
                     <div class="card-body px-4 py-5 px-md-5">
+                      <div *ngIf="errorMessage" class="alert alert-danger">
+                        {{ errorMessage }}
+                      </div>
 
                         <!-- Username input -->
                         <div class="form-outline mb-4">
                             <label class="form-label fw-bold" for="username">Username</label>
                             <input ngModel name="username" #username="ngModel" id="username" class="form-control"
-                                required
+                            pattern="^[\w\d_]+$"    required
                                 [ngClass]="username.touched ? username.errors?.['required'] || username.errors?.['username'] ? 'not-valid' : 'valid' : ''" />
                             <p *ngIf="username.touched && username.errors?.['required']" class="text-danger">
                                 Username is required</p>
                             <p *ngIf="username.touched && username.errors?.['username']" class="text-danger">Username
                                 is invalid</p>
+
+                            <p *ngIf="username.touched && username.errors?.['required']" class="text-danger">
+                                Username is required</p>
+                            <p *ngIf="username.touched && username.errors?.['pattern']" class="text-danger">Username is invalid</p>
+                            <p *ngIf="username.touched && username.errors?.['minlength']" class="text-danger">Username should be at least 3 characters long</p>
+                            <p *ngIf="username.touched && username.errors?.['maxlength']" class="text-danger">Username cannot be longer than 20 characters</p>
+
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
                             <label class="form-label fw-bold" for="password">Password</label>
                             <input ngModel name="password" #password="ngModel" id="password" type="password"
-                                class="form-control" required minlength="8"
+                                class="form-control" pattern="^[^\s]+$" required minlength="8"
                                 [ngClass]="password.touched ? password.errors?.['required'] || password.errors?.['minlength'] ? 'not-valid' : 'valid' : ''" />
                             <p *ngIf="password.touched && password.errors?.['required']" class="text-danger">
                                 Password is required</p>
                             <p *ngIf="password.touched && password.errors?.['minlength']" class="text-danger">
                                 Password minLength is 8 characters</p>
+                                <p *ngIf="password.touched && password.errors?.['pattern']" class="text-danger">password is invalid</p>
+
                         </div>
 
                         <!-- Submit button -->

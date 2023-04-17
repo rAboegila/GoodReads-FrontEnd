@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
 
   users!: User[];
+  errorMessage!:string;
+
   isLoading: boolean = false;
 
   constructor(private _userService: UserService, private _router: Router, private snackBar: MatSnackBar) {
@@ -24,12 +26,14 @@ export class LoginComponent {
       .subscribe({
         next: () => {
           form.reset();
+          this.errorMessage = '';
           this._router.navigate(['/']);
           this.isLoading = false;
           // Snackbar that opens with success background
           this.snackBar.open('You have successfully logged in!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
         },
         error: res => {
+          this.errorMessage = 'invalid data';
           if (res.error.errors) {
             res.error.errors.forEach((error: any) => {
               this.isLoading = false;

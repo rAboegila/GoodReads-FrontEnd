@@ -18,20 +18,24 @@
         <div class="author-modal-body">
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="Author.firstName"      formControlName="firstName" required>
+            <input type="text" class="form-control" id="firstName" name="Author.firstName"      formControlName="firstName" pattern="^[\w\d_]+( [\w\d_]+)?$" required>
             <div *ngIf="authorFormEdit && authorFormEdit.get('firstName') && authorFormEdit.get('firstName')?.invalid && (authorFormEdit.get('firstName')?.dirty || authorFormEdit.get('firstName')?.touched)" class="alert alert-danger">
               <div *ngIf="authorFormEdit && authorFormEdit.get('firstName')?.errors?.['required']">First name is required.</div>
               <div *ngIf=" authorFormEdit &&  authorFormEdit.get('firstName')?.errors?.['minlength']">First name must be at least {{ authorFormEdit.get('firstName')?.errors?.['minlength'].requiredLength }} characters long.</div>
               <div *ngIf=" authorFormEdit && authorFormEdit.get('firstName')?.errors?.['maxlength']">First name cannot be longer than {{ authorFormEdit.get('firstName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+              <div *ngIf=" authorFormEdit && authorFormEdit.get('firstName')?.errors?.['pattern']">First name {{ authorFormEdit.get('firstName')?.errors?.['pattern'].requiredLength }}  no valid  .</div>
+
             </div>
           </div>
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName"  name="Author.lastName"  name="lastName" formControlName="lastName" required>
+            <input type="text" class="form-control" id="lastName"  name="Author.lastName"  name="lastName" formControlName="lastName" pattern="^[\w\d_]+( [\w\d_]+)?$" required>
             <div *ngIf="authorFormEdit && authorFormEdit.get('lastName') && authorFormEdit.get('lastName')?.invalid && (authorFormEdit.get('lastName')?.dirty || authorFormEdit.get('lastName')?.touched)" class="alert alert-danger">
               <div *ngIf="authorFormEdit && authorFormEdit.get('lastName')?.errors?.['required']">lastName  is required.</div>
               <div *ngIf=" authorFormEdit &&  authorFormEdit.get('lastName')?.errors?.['minlength']">lastName must be at least {{ authorFormEdit.get('lastName')?.errors?.['minlength'].requiredLength }} characters long.</div>
               <div *ngIf=" authorFormEdit && authorFormEdit.get('lastName')?.errors?.['maxlength']">lastName  cannot be longer than {{ authorFormEdit.get('lastName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+              <div *ngIf=" authorFormEdit && authorFormEdit.get('lastName')?.errors?.['pattern']">lastName {{ authorFormEdit.get('lastName')?.errors?.['pattern'].requiredLength }}   no valid  .</div>
+
             </div>
           </div>
           <div class="form-group">
