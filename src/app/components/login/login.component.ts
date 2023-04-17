@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/user.service';
-// import { NgToastService } from 'ng-angular-popup'
 
 @Component({
   selector: 'app-login',
@@ -13,22 +12,24 @@ import { UserService } from 'src/app/_services/user.service';
 export class LoginComponent {
 
   users!: User[];
-
+  isLoading: boolean = false;
   constructor(private _userService: UserService, private _router: Router) {
   }
 
   submitForm(form: NgForm): void {
+    this.isLoading = true;
     this._userService.login(form.value['username'], form.value['password'])
       .subscribe({
         next: () => {
           form.reset();
           this._router.navigate(['/']);
-          // this._toast.success({ detail: "You have successfully logged in", summary: "Login Success", duration: 5000 });
+          this.isLoading = false;
         },
         error: res => {
           if (res.error.errors) {
             res.error.errors.forEach((error: any) => {
-              // this._toast.error({ detail: "Failed To Login!", summary: (error.msg ? error.msg : error).split(',')[1], duration: 5000 });
+              this.isLoading = false;
+
             })
           }
 

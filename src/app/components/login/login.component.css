@@ -68,6 +68,5 @@
 
 .register:hover {
   color: hsl(29, 98%, 23%);
-  font: bolder;
-  /* text-shadow: 1px 1px hsl(29, 98%, 23%); */
+  font-weight: 900;
 }
