@@ -30,7 +30,7 @@ export class CategoriesComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.categoryForm = this.formBuilder.group({
-      name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15),notOnlySpacesValidator()])],
+      name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
     });
 
   }
