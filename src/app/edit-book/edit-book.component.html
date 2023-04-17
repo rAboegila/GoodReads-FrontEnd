@@ -6,7 +6,7 @@
 <form [formGroup]="EditbookForm">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" name="book.name" id="name" formControlName="name">
+    <input type="text" class="form-control" name="book.name" id="name" formControlName="name" pattern="^[\w\d_]+( [\w\d_]+)?$">
   </div>
   <div
     *ngIf="EditbookForm && EditbookForm.get('name') && EditbookForm.get('name')?.invalid && (EditbookForm.get('name')?.dirty || EditbookForm.get('name')?.touched)"
@@ -16,6 +16,9 @@
       EditbookForm.get('name')?.errors?.['minlength'].requiredLength }} characters long.</div>
     <div *ngIf=" EditbookForm && EditbookForm.get('name')?.errors?.['maxlength']"> name cannot be longer than {{
       EditbookForm.get('name')?.errors?.['maxlength'].requiredLength }} characters.</div>
+
+      <div *ngIf=" EditbookForm && EditbookForm.get('name')?.errors?.['pattern']"> name {{
+        EditbookForm.get('name')?.errors?.['pattern'].requiredLength }} not valid.</div>
   </div>
   <div class="form-group">
     <label for="category" class="form-control" formControlName="category">Category</label>
