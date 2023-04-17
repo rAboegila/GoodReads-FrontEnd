@@ -3,11 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/user.service';
-<<<<<<< HEAD
 import { MatSnackBar } from '@angular/material/snack-bar';
-=======
-// import { NgToastService } from 'ng-angular-popup'
->>>>>>> rawan
 
 @Component({
   selector: 'app-login',
