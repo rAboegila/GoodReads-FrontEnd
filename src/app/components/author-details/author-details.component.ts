@@ -6,7 +6,7 @@ import { Book, BookShelf } from 'src/app/_models/Book';
 import { Library } from 'src/app/_models/User';
 import { AuthorService } from 'src/app/_services/author.service';
 import { UserService } from 'src/app/_services/user.service';
-// import { NgToastService } from 'ng-angular-popup'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-author-details',
@@ -15,13 +15,14 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class AuthorDetailsComponent {
 
-  url = `${environment.url}authors/`
+  authorsUrl = `${environment.url}authors/`
+  booksUrl = `${environment.url}books/`
   authorLib: Library[] = [];
   authorBooks: Book[] = [];
   userLib: Library[] = [];
   author: Author = { _id: '', firstName: '', lastName: '', dob: new Date(), image: '' };
 
-  constructor(private _activatedRoute: ActivatedRoute, private _authorService: AuthorService, private _userService: UserService) { }
+  constructor(private _activatedRoute: ActivatedRoute, private _authorService: AuthorService, private _userService: UserService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
@@ -117,11 +118,11 @@ export class AuthorDetailsComponent {
             lib.new = false;
           }
         });
-        // this._toast.success({ detail: 'Book Added To Your Shelves', summary: "Your Library Updated", duration: 5000 });
+        this.snackBar.open('Book Added To Your Library!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
       })
     } else {
       this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
-        // this._toast.success({ detail: 'Shelve updated successfully', summary: "Your Library Updated", duration: 5000 });
+        this.snackBar.open("Your Library is Updated!", 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
       })
     }
   }

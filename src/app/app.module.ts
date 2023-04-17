@@ -123,7 +123,6 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     MatTabsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    // NgToastModule,
   ],
 
   providers: [

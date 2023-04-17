@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/user.service';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class CustomValidators {
   static MatchValidator(source: string, target: string): ValidatorFn {
@@ -29,7 +30,8 @@ export class RegisterComponent {
   myForm: FormGroup;
   image: any;
   isLoading: boolean = false;
-  constructor(private _userService: UserService, private _router: Router) {
+
+  constructor(private _userService: UserService, private _router: Router, private snackBar: MatSnackBar) {
 
     this.myForm = new FormGroup({
       firstName: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
@@ -59,12 +61,14 @@ export class RegisterComponent {
         next: () => {
           this._router.navigate(['/']);
           this.isLoading = false;
+          this.snackBar.open('You have successfully registered!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
         },
         error: res => {
           if (res.error.errors) {
             res.error.errors.forEach((error: any) => {
               this.isLoading = false;
 
+              this.snackBar.open((error.msg ? error.msg : error), 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
             })
           }
         }
