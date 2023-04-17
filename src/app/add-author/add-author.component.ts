@@ -2,38 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthorService } from '../_services/author.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-add-author',
   templateUrl: './add-author.component.html',
   styleUrls: ['./add-author.component.css']
 })
 export class AddAuthorComponent implements OnInit {
-  authorForm:FormGroup | undefined;
-  errorMessage!:string;
-  selectedImage: any;
-  constructor(private formBuilder: FormBuilder, private authorService: AuthorService,private router: Router) {
+  authorForm: FormGroup | undefined;
+  errorMessage!: string;
+  selectedImage: File | null = null;
+  isLoading: boolean = true;
+  subscribtion!: Subscription;
+
+  constructor(private formBuilder: FormBuilder, private authorService: AuthorService, private router: Router) {
     this.createForm();
   }
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
-    // this.createForm()
-
-
+    this.isLoading = false;
   }
 
   createForm() {
-    // this.authorForm = this.formBuilder.group({
-    //   firstName: ['', Validators.required],
-    //   lastName: ['', Validators.required],
-    //   dob: ['', Validators.required],
-    //   image: ['']
-    // });
-
     this.authorForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       dob: ['', [Validators.required]],
-      image: [[''],[Validators.required]]
+      image: [[''], [Validators.required]]
     });
   }
 
@@ -52,23 +46,22 @@ export class AddAuthorComponent implements OnInit {
       formData.append('image', this.selectedImage, this.selectedImage.name);
     }
 
-    this.authorService.createAuthor(formData)
+    this.subscribtion = this.authorService.createAuthor(formData)
       .subscribe(
         data => {
-          console.log('Author created successfully!');
-          console.log(data);
           this.authorForm!.reset();
           this.selectedImage = null;
           this.errorMessage = '';
           this.router.navigate(['auhtor']);
         },
         error => {
-          console.log('Error creating author: ', error);
-          this.errorMessage = 'Invalid value';
-          console.log(error);
-
+          this.errorMessage = 'Invalid Data';
         }
       );
+  }
+
+  ngOnDestroy() {
+    this.subscribtion.unsubscribe();
   }
 }
 

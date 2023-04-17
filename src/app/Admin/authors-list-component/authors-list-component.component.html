@@ -1,7 +1,8 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
 
 <div class="container">
   <h2>Authors</h2>
-  <button  class="btn btn-success"  routerLink="/admin/add-author" (click)="openAddAuthorModal()">Add Author</button>
+  <button class="btn btn-success" routerLink="/admin/add-author">Add Author</button>
   <table class="table table-responsive table-striped">
     <thead>
       <tr>
@@ -20,8 +21,8 @@
         <td>{{ author.dob | date }}</td>
         <td>
           <!-- <button [routerLink]="'/admin/edit-author/' + author._id">Edit</button> -->
-          <button   class="btn btn-info  m-2"  (click)="onEditClick(author._id!)">Editt</button>
-          <button  class="btn btn-danger m-2"  (click)="deleteAuthor(author._id!)">Delete</button>
+          <button class="btn btn-info  m-2" (click)="onEditClick(author._id!)">Edit</button>
+          <button class="btn btn-danger m-2" (click)="deleteAuthor(author._id!)">Delete</button>
         </td>
       </tr>
     </tbody>

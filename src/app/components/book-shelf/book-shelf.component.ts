@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookService } from 'src/app/_services/book.service';
 import { Library } from 'src/app/_models/User';
 import { uploadsUrl } from 'src/app/_services/helper';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-book-shelf',
@@ -19,34 +20,34 @@ export class BookShelfComponent implements OnInit {
   isLoading = true;
   @Input() shelf!: string;
   @Output() updatedLib = new EventEmitter<Library[]>();
+  subscriptions: Subscription[] = []
 
   constructor(private _userService: UserService, private _bookService: BookService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
 
   }
 
   ngOnInit(): void {
-    this._userService.user.subscribe(data => {
+    this.subscriptions.push(this._userService.user.subscribe(data => {
       this.updateLibrary(data);
-      console.log(this.myLib);
       this.isLoading = false;
-    });
+    }));
   }
+
   setShelfValue(libItem: Library, rawValue: string) {
     const newValue: BookShelf = rawValue === 'READ' ? BookShelf.READ : rawValue === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
-    this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
+    this.subscriptions.push(this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
       this.myLib = res?.data?.books;
 
-    })
-
+    }))
   }
 
   setRatingValue(libItem: Library, newRating: number) {
-    this._userService.updateLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
+    this.subscriptions.push(this._userService.updateLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
       this.myLib = res?.data?.books;
 
-    })
-
+    }))
   }
+
   private updateLibrary(data: any) {
     this.myLib = data?.books || data?.data.books || [];
     if (this.myLib) {
@@ -57,10 +58,10 @@ export class BookShelfComponent implements OnInit {
 
   private populateBooks() {
     this.myLib.forEach(item => {
-      this._bookService.getBook(item.bookId).subscribe((res) => {
+      this.subscriptions.push(this._bookService.getBook(item.bookId).subscribe((res) => {
         const book = res.data;
         item.book = book;
-      });
+      }));
 
     });
     this.updatedLib.emit(this.myLib)
@@ -86,5 +87,8 @@ export class BookShelfComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 
 }

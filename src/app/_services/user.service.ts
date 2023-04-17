@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseUrl } from './helper';
 import { BookShelf } from '../_models/Book';
-import { BookDialogComponent } from '../book-dialog/book-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +35,18 @@ export class UserService {
         this.userSubject.next(user);
         return user;
       }));
+  }
+
+  getCurrentUser() {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      // Return the current user if they exist
+      return user;
+    } else {
+      // Return null if no current user exists
+      return null;
+    }
   }
 
   logout() {

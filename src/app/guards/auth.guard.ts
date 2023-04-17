@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../_services/user.service';
-// import { NgToastService } from 'ng-angular-popup';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private _router: Router, private _userService: UserService) { }
+  constructor(private _router: Router, private _userService: UserService, private snackBar: MatSnackBar) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
 
     // not logged in so redirect to login page
     this._router.navigate(['/login']);
-    // this._toast.error({ detail: "Unauthorized!", summary: "You have to login first!", duration: 5000 });
+    this.snackBar.open("Unauthorized, You have to login first!", 'Close', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
     return false;
   }
 

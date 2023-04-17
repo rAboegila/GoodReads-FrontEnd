@@ -1,37 +1,38 @@
-<div class="container">
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
+<div class="container ">
   <h2>Books</h2>
-  <button  class="btn btn-success" routerLink="/AddBook" >Add Book</button>
+  <button class="btn btn-success" routerLink="/AddBook">Add Book</button>
   <table class="table table-responsive table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Author</th>
-          <th>Image</th>
-          <th>Avg Rating</th>
-          <th>Reviews</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!--       <tr *ngFor="let author of authors | paginate: { itemsPerPage: 10, currentPage: currentPage }"> -->
-        <tr *ngFor="let book of books  | paginate: { itemsPerPage: 10, currentPage: currentPage }">
-          <td>{{ book.name }}</td>
-          <td >{{ book.category.name }}</td>
-          <td>{{ book.author.firstName }}</td>
-          <td>
-            <img  crossorigin="anonymous" [src]="url+book.image" alt="Book cover" width="50" height="50" />
-          </td>
-          <td>{{ book.avgRating }}</td>
-          
-          <td>{{ book.reviews }}</td>
-          <td>
-            <button class="btn btn-danger m-2"  (click)="deleteBook(book._id!) ">Delete</button>
-            <button  class="btn btn-info  m-2" (click)="onEditClick(book._id!)" >Edit</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Author</th>
+        <th>Image</th>
+        <th>Avg Rating</th>
+        <th>Reviews</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books  | paginate: { itemsPerPage: 10, currentPage: currentPage }">
+        <td>{{ book.name }}</td>
+        <td>{{ book.category.name }}</td>
+        <td>{{ book.author.firstName }}</td>
+        <td>
+          <img crossorigin="anonymous" [src]="url+book.image" alt="Book cover" width="50" height="50" />
+        </td>
+        <td>{{ book.avgRating }}</td>
+
+        <td>{{ book.reviews }}</td>
+        <td>
+          <button class="btn btn-danger m-2" (click)="deleteBook(book._id!) ">Delete</button>
+          <button class="btn btn-info  m-2" (click)="onEditClick(book._id!)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
 
 </div>

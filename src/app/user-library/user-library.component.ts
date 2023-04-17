@@ -6,6 +6,7 @@ import { BookShelf } from 'src/app/_models/Book';
 import { Library } from '../_models/User';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookService } from '../_services/book.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-library',
@@ -19,35 +20,31 @@ export class UserLibraryComponent {
   read = "READ";
   reading = "READING";
   wantToRead = "WANT_TO_READ";
+  subscriptions: Subscription[] = [];
 
-
-
-  constructor(private _userService: UserService, private _bookService: BookService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
-
-
+  constructor(private _bookService: BookService) {
   }
 
   updateLib(data: Library[]) {
-    console.log("update library from Child  ", data);
     this.myLib = data;
   }
 
   private updateLibrary(data: any) {
     this.myLib = data?.books || [];
-    console.log("user", data);
-    console.log("before populate", this.myLib);
     this.populateBooks();
   }
 
   private populateBooks() {
     this.myLib.forEach(item => {
-      this._bookService.getBook(item.bookId).subscribe((res) => {
+      this.subscriptions.push(this._bookService.getBook(item.bookId).subscribe((res) => {
         const book = res.data;
         item.book = book;
-      });
+      }));
 
     });
-    console.log("after populate in lib", this.myLib);
+  }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

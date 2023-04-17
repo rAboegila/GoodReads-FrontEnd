@@ -12,33 +12,25 @@ import { Subscription } from 'rxjs';
 export class GetCategoryByIdComponent implements OnInit {
   category: Category | undefined;
   books: any[] = [];
-
+  subscriptions: Subscription[] =[];
   url=`${environment.url}books/`
-  private categorySubscription!: Subscription ;
-  private bookCategorySubscription!: Subscription ;
+
   constructor(private route: ActivatedRoute, private categoryService: CategoryService) { }
 
   ngOnInit() {
     const categoryId = this.route.snapshot.params['id'];
-    this.categoryService.getCategory(categoryId).subscribe(data => {
+    this.subscriptions.push(this.categoryService.getCategory(categoryId).subscribe(data => {
       this.category = data.data;
-    });
+    }));
 
-    this.categoryService.getBookCategory(categoryId).subscribe(data => {
-      this.books = data.data;
-      console.log(this.books);
-      
-    });
+    this.subscriptions.push(this.categoryService.getBookCategory(categoryId).subscribe(data => {
+      this.books = data.data;      
+    }));
     
   }
 
   ngOnDestroy() {
-    if (this.categorySubscription) {
-      this.categorySubscription.unsubscribe();
-    }
-    if (this.bookCategorySubscription) {
-      this.bookCategorySubscription.unsubscribe();
-    }
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

@@ -1,18 +1,15 @@
-<div *ngIf="isLoading" class="overlay"><mat-progress-spinner class="loader" *ngIf="isLoading" mode="indeterminate"
-        diameter="50"></mat-progress-spinner>
-</div>
+<app-spinner [isLoading]="isLoading"></app-spinner>
 <div class="card-wrapper">
 
     <div style="width: 100rem; height:50rem; padding:4rem 2rem" class="shadow-sm rounded  card">
-        <!-- card left -->
         <div class="product-imgs">
-            <img crossorigin="anonymous" src={{imageURL}} alt="shoe image">
+            <img crossorigin="anonymous" src={{imageURL}} alt="book image">
 
         </div>
-        <!-- card right -->
         <div class=" product-content">
             <h2 class="product-title">{{book?.name}}</h2>
-            <a href="#" class="product-link">by {{book?.author?.firstName}} {{book?.author?.lastName}}</a>
+            <a [routerLink]="['/author-details', book?.author?._id]" class="product-link">by {{book?.author?.firstName}}
+                {{book?.author?.lastName}}</a>
             <div class="product-rating">
                 <app-rating [rating]="book?.avgRating" type="avg" class="col-4 "></app-rating>
 
@@ -20,7 +17,8 @@
             </div>
 
             <div class="product-price">
-                <p class="last-price">Category: <span style="text-transform: capitalize;">{{book?.category.name}}</span>
+                <p class="last-price">Category: <span
+                        style="text-transform: capitalize;">{{book?.category?.name}}</span>
                 </p>
             </div>
 
@@ -73,7 +71,7 @@
                         <option [selected]="shelf=== 'WANT_TO_READ' " [value]="'WANT_TO_READ'">
                             Want To Read</option>
                     </select>
-                    <button type="button" (click)="addBook(book?._id,shelf)" class="pb-2 btn">Add to My
+                    <button type="button" (click)="addBook(book?._id,shelf)" class="button fw-bold m-3 btn ">Add to My
                         Library</button>
                 </div>
 

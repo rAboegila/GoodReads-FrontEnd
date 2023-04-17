@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { NgToastModule } from 'ng-angular-popup';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +19,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './components/admin/admin.component';
@@ -29,9 +27,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AppComponent } from './app.component';
 import { MatSelectModule } from '@angular/material/select';
 import { BookComponent } from './Admin/book/book.component';
-import { BookDialogComponent } from './book-dialog/book-dialog.component';
 import { AuthorsListComponentComponent } from './Admin/authors-list-component/authors-list-component.component';
-import { AuthorDialogComponent } from './Admin/author-dialog/author-dialog.component';
 import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
@@ -51,19 +47,18 @@ import { AuthorListComponent } from './author-list/author-list.component';
 import { RatingComponent } from './rating/rating.component';
 import { LoginRedirectDialogComponent } from './components/login-redirect-dialog/login-redirect-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
-
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriesComponent,
     BookComponent,
-    BookDialogComponent,
     AuthorsListComponentComponent,
-    AuthorDialogComponent,
     AddAuthorComponent,
     EditAuthorComponent,
     AddBookComponent,
@@ -71,7 +66,6 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     LoginComponent,
     NavbarComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
     AdminComponent,
     NotFoundComponent,
@@ -86,9 +80,10 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     RatingComponent,
     BookDetailsComponent,
     LoginRedirectDialogComponent,
-    ShelfItemComponent,
     AuthorListComponent,
     AuthorDetailsComponent,
+    SpinnerComponent,
+    HomePageComponent,
 
   ],
   imports: [
@@ -124,7 +119,7 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     MatTabsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    // NgToastModule,
+    FontAwesomeModule
   ],
 
   providers: [

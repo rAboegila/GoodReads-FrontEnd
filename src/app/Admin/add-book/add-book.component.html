@@ -1,16 +1,24 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
 <div class="container py-5">
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
-  
-  <form  [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="needs-validation" >
-    <div class="form-group">
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="needs-validation">
+    <div class="form-group" >
       <label for="name">Name</label>
-      <input type="text" id="name" formControlName="name" class="form-control" required>
-      <div *ngIf="bookForm && bookForm.get('name') && bookForm.get('name')?.invalid && (bookForm.get('name')?.dirty || bookForm.get('name')?.touched)" class="alert alert-danger">
+      <input type="text" id="name" formControlName="name" class="form-control" required pattern="^[\w\d_]+( [\w\d_]+)?$" required>
+      <div
+        *ngIf="bookForm && bookForm.get('name') && bookForm.get('name')?.invalid && (bookForm.get('name')?.dirty || bookForm.get('name')?.touched)"
+        class="alert alert-danger">
         <div *ngIf="bookForm && bookForm.get('name')?.errors?.['required']"> name is required.</div>
-        <div *ngIf=" bookForm &&  bookForm.get('name')?.errors?.['minlength']"> name must be at least {{ bookForm.get('name')?.errors?.['minlength'].requiredLength }} characters long.</div>
-        <div *ngIf=" bookForm && bookForm.get('name')?.errors?.['maxlength']"> name cannot be longer than {{ bookForm.get('name')?.errors?.['maxlength'].requiredLength }} characters.</div>
+        <div *ngIf=" bookForm &&  bookForm.get('name')?.errors?.['minlength']"> name must be at least {{
+          bookForm.get('name')?.errors?.['minlength'].requiredLength }} characters long.</div>
+        <div *ngIf=" bookForm && bookForm.get('name')?.errors?.['maxlength']"> name cannot be longer than {{
+          bookForm.get('name')?.errors?.['maxlength'].requiredLength }} characters.</div>
+          <div *ngIf=" bookForm && bookForm.get('name')?.errors?.['pattern']">Name {{bookForm.get('name')?.errors?.['pattern'].requiredLength }} not valied.</div>
+
       </div>
     </div>
     <div class="form-group">
@@ -19,7 +27,9 @@
         <option value="">-- Select Category --</option>
         <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
       </select>
-      <div *ngIf="bookForm && bookForm.get('category') && bookForm.get('category')?.invalid && (bookForm.get('category')?.dirty || bookForm.get('category')?.touched)" class="alert alert-danger">
+      <div
+        *ngIf="bookForm && bookForm.get('category') && bookForm.get('category')?.invalid && (bookForm.get('category')?.dirty || bookForm.get('category')?.touched)"
+        class="alert alert-danger">
         <div *ngIf="bookForm && bookForm.get('category')?.errors?.['required']">Category is required.</div>
       </div>
     </div>
@@ -30,24 +40,29 @@
         <option value="">-- Select Author --</option>
         <option *ngFor="let author of authors" [value]="author._id">{{ author.firstName }}</option>
       </select>
-      <div *ngIf="bookForm && bookForm.get('author') && bookForm.get('author')?.invalid && (bookForm.get('author')?.dirty || bookForm.get('category')?.touched)" class="alert alert-danger">
+      <div
+        *ngIf="bookForm && bookForm.get('author') && bookForm.get('author')?.invalid && (bookForm.get('author')?.dirty || bookForm.get('category')?.touched)"
+        class="alert alert-danger">
         <div *ngIf="bookForm && bookForm.get('author')?.errors?.['required']">Author is required.</div>
       </div>
     </div>
 
     <div class="form-group py-2">
-      <label   id="image"  for="image">Image URL</label>
+      <label id="image" for="image">Image URL</label>
       <div class="custom-file">
-        <input type="file" id="image" class="form-control" (change)="onImageSelected($event)" class="custom-file-input" required>
+        <input type="file" id="image" class="form-control" (change)="onImageSelected($event)" class="custom-file-input"
+          required>
         <label class="custom-file-label" for="image">Choose file</label>
-        <div *ngIf="bookForm.get('image')?.invalid && (bookForm.get('image')?.dirty || bookForm.get('image')?.touched)" class="invalid-feedback">
+        <div *ngIf="bookForm.get('image')?.invalid && (bookForm.get('image')?.dirty || bookForm.get('image')?.touched)"
+          class="invalid-feedback">
           <div *ngIf="bookForm.get('image')?.errors?.['required']">Image is required.</div>
-          <div *ngIf="bookForm.get('image')?.errors?.['fileType']">Invalid file type. Allowed types are .jpg, .jpeg, .png.</div>
+          <div *ngIf="bookForm.get('image')?.errors?.['fileType']">Invalid file type. Allowed types are .jpg, .jpeg,
+            .png.</div>
           <div *ngIf="bookForm.get('image')?.errors?.['fileSize']">File size must be less than 2 MB.</div>
         </div>
       </div>
     </div>
 
-    <button type="submit"  class="btn btn-primary" >Add Book</button>
+    <button type="submit" class="btn btn-primary">Add Book</button>
   </form>
 </div>

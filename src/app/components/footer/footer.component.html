@@ -1,78 +1,43 @@
-<div class="mt-5 parent">
+<div *ngIf="footer.visible" id="footer" class=" fixed-bottom  parent">
     <footer class="text-center text-lg-start text-black footer-style">
         <div class="container p-4 pb-0">
             <section class="">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
-                        <h4 class="fs-1 fw-bold">
-                            <span style="color: darkcyan">Good<span class="fw-bold" style="color: #fbd309">Reads</span></span>
+                <div class="mt-4 row">
+                    <div class="col-lg-8 col-md-6 mb-4 mb-md-0">
+                        <h4 id="logo" class="fs-1 fw-bold">
+                            <span>Good<span class="fw-bold">Reads</span></span>
                         </h4>
-                        <p id="para" class="m-auto m-lg-0" style="color: hsl(220, 24%, 50%)">
+                        <p id="para" class="m-auto  m-lg-0 text-light">
                             ©2023 GoodReads. All Rights Reserved.
                         </p>
                     </div>
-                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                        <h5 class="fs-5 fw-bold">Explore</h5>
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="fs-5 text-light fw-bold">Explore</h5>
                         <ul class="list-unstyled mb-0 ul-design">
-                            <li>
-                                <a href="#!" class="">About Us</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Books</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Authors</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Library</a>
-                            </li>
+                            <div class=" d-inline-block">
+                                <li>
+                                    <a href="#!" class="text-light">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-light">Books</a>
+                                </li>
+                            </div>
+                            <div class="d-inline-block">
+                                <li>
+                                    <a href="#!" class="text-light">Authors</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-light">Library</a>
+                                </li>
+                            </div>
                         </ul>
                     </div>
-                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                        <h5 class="fs-5 fw-bold">Policy</h5>
-                        <ul class="list-unstyled mb-0 ul-design">
-                            <li>
-                                <a href="#!" class="">Reading Guides</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Pictorial & Gifts</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Special Offers</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">FAQs</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                        <h5 class="fs-5 fw-bold">Categories</h5>
 
-                        <ul class="list-unstyled mb-0 ul-design">
-                            <li>
-                                <a href="#!" class="">Adventure Travel</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Art And Culture</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Wildlife And Nature</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="">Food And Drink</a>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
             </section>
             <hr class="mb-0" />
-            <section class="text-center icons">
-                <a class="btn btn-floating m-1" href="#" role="button"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-floating m-1" href="#" role="button"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-floating m-1" href="#" role="button"><i class="fab fa-instagram"></i></a>
-                <a class="btn btn-floating m-1" href="#" role="button"><i class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-floating m-1" href="#" role="button"><i class="fab fa-youtube"></i></a>
-            </section>
+
         </div>
     </footer>
 </div>

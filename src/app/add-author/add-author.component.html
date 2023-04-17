@@ -1,50 +1,72 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
 <h2>Create Author</h2>
 
 <div *ngIf="errorMessage" class="alert alert-danger">
   {{ errorMessage }}
 </div>
 
-<form #form="ngForm"  [formGroup]="authorForm!" (ngSubmit)="onSubmit()" class="p-3 border rounded">
+<form #form="ngForm" [formGroup]="authorForm!" (ngSubmit)="onSubmit()" class="p-3 border rounded">
   <label for="firstName">First Name</label>
-<input type="text" class="form-control" id="firstName" formControlName="firstName">
-<div *ngIf="authorForm && authorForm.get('firstName') && authorForm.get('firstName')?.invalid && (authorForm.get('firstName')?.dirty || authorForm.get('firstName')?.touched)" class="alert alert-danger">
-  <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['required']">First name is required.</div>
-  <div *ngIf=" authorForm &&  authorForm.get('firstName')?.errors?.['minlength']">First name must be at least {{ authorForm.get('firstName')?.errors?.['minlength'].requiredLength }} characters long.</div>
-  <div *ngIf=" authorForm && authorForm.get('firstName')?.errors?.['maxlength']">First name cannot be longer than {{ authorForm.get('firstName')?.errors?.['maxlength'].requiredLength }} characters.</div>
-</div>
+  <input type="text" class="form-control" id="firstName" formControlName="firstName" pattern="^[\w\d_]+( [\w\d_]+)?$"
+    required>
+  <div
+    *ngIf="authorForm && authorForm.get('firstName') && authorForm.get('firstName')?.invalid && (authorForm.get('firstName')?.dirty || authorForm.get('firstName')?.touched)"
+    class="alert alert-danger">
+    <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['required']">First name is required.</div>
+    <div *ngIf=" authorForm &&  authorForm.get('firstName')?.errors?.['minlength']">First name must be at least {{
+      authorForm.get('firstName')?.errors?.['minlength'].requiredLength }} characters long.</div>
+    <div *ngIf=" authorForm && authorForm.get('firstName')?.errors?.['maxlength']">First name cannot be longer than {{
+      authorForm.get('firstName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+    <div *ngIf=" authorForm && authorForm.get('firstName')?.errors?.['pattern']">First name
+      {{authorForm.get('firstName')?.errors?.['pattern'].requiredLength }} not valied.</div>
+
+  </div>
+
 
 
 
 
   <div class="form-group">
     <label for="lastName">Last Name</label>
-    <input type="text" class="form-control" id="lastName" formControlName="lastName">
-    <div *ngIf="authorForm && authorForm.get('lastName') && authorForm.get('lastName')?.invalid && (authorForm.get('lastName')?.dirty || authorForm.get('lastName')?.touched)" class="alert alert-danger">
-      <div *ngIf="authorForm && authorForm.get('lastName')?.errors?.['required']">lastName  is required.</div>
-      <div *ngIf=" authorForm &&  authorForm.get('lastName')?.errors?.['minlength']">lastName must be at least {{ authorForm.get('lastName')?.errors?.['minlength'].requiredLength }} characters long.</div>
-      <div *ngIf=" authorForm && authorForm.get('lastName')?.errors?.['maxlength']">lastName cannot be longer than {{ authorForm.get('lastName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+    <input type="text" class="form-control" id="lastName" formControlName="lastName" pattern="^[\w\d_]+( [\w\d_]+)?$"
+      required>
+    <div
+      *ngIf="authorForm && authorForm.get('lastName') && authorForm.get('lastName')?.invalid && (authorForm.get('lastName')?.dirty || authorForm.get('lastName')?.touched)"
+      class="alert alert-danger">
+      <div *ngIf="authorForm && authorForm.get('lastName')?.errors?.['required']">lastName is required.</div>
+      <div *ngIf=" authorForm &&  authorForm.get('lastName')?.errors?.['minlength']">lastName must be at least {{
+        authorForm.get('lastName')?.errors?.['minlength'].requiredLength }} characters long.</div>
+      <div *ngIf=" authorForm && authorForm.get('lastName')?.errors?.['maxlength']">lastName cannot be longer than {{
+        authorForm.get('lastName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+      <div *ngIf=" authorForm && authorForm.get('lastName')?.errors?.['pattern']">lastName
+        {{authorForm.get('lastName')?.errors?.['pattern'].requiredLength }} not valied.</div>
+
     </div>
 
   </div>
   <div class="form-group">
     <label for="dob">Date of Birth</label>
     <input type="date" class="form-control" id="dob" formControlName="dob">
-    <div *ngIf="authorForm && authorForm.get('dob')?.invalid && (authorForm.get('dob')?.dirty || authorForm.get('dob')?.touched)" class="alert alert-danger">
+    <div
+      *ngIf="authorForm && authorForm.get('dob')?.invalid && (authorForm.get('dob')?.dirty || authorForm.get('dob')?.touched)"
+      class="alert alert-danger">
       <div *ngIf="authorForm &&  authorForm.get('dob')?.errors?.['required']">Date of birth is required.</div>
     </div>
   </div>
   <div class="form-group">
-    <label   id="image"  for="image">Image URL</label>
-    <input type="file" class="form-control" accept=".jpg,.png,.jpeg" (change)="onFileSelected($event)" >
-    <div *ngIf="authorForm && authorForm.get('image')?.invalid && (authorForm.get('image')?.dirty || authorForm.get('image')?.touched)" class="invalid-feedback">
+    <label id="image" for="image">Image URL</label>
+    <input type="file" class="form-control" accept=".jpg,.png,.jpeg" (change)="onFileSelected($event)">
+    <div
+      *ngIf="authorForm && authorForm.get('image')?.invalid && (authorForm.get('image')?.dirty || authorForm.get('image')?.touched)"
+      class="invalid-feedback">
       <div *ngIf=" authorForm && authorForm.get('image')?.errors?.['required']">Image is required.</div>
-      <div *ngIf="authorForm &&  authorForm.get('image')?.errors?.['fileType']">Invalid file type. Allowed types are .jpg, .jpeg, .png.</div>
+      <div *ngIf="authorForm &&  authorForm.get('image')?.errors?.['fileType']">Invalid file type. Allowed types are
+        .jpg, .jpeg, .png.</div>
       <div *ngIf="authorForm &&  authorForm.get('image')?.errors?.['fileSize']">File size must be less than 2 MB.</div>
     </div>
   </div>
   <!-- <button type="submit"   class="btn btn-primary">Create</button> -->
-  <button type="submit"  [disabled]="form.invalid" class="btn btn-primary mt-3" >Create</button>
+  <button type="submit" [disabled]="form.invalid" class="btn btn-primary mt-3">Create</button>
 
 </form>
-
-

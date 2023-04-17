@@ -11,18 +11,18 @@ import { BookService } from 'src/app/_services/book.service';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
-hover: any;
-currentPage = 1;
-searchTerm: string ='';
-// url='http://localhost:5000/uploads/books/'
-url=`${environment.url}books/`
-private subscription!: Subscription;
-
+  hover: any;
+  currentPage = 1;
+  searchTerm: string = '';
+  url = `${environment.url}books/`
+  private subscription!: Subscription;
+  isLoading: boolean = true;
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
     this.subscription = this.bookService.getBooks(1).subscribe(data => {
       this.books = data.data;
+      this.isLoading = false;
     });
   }
 
