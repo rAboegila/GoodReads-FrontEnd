@@ -31,7 +31,7 @@ const routes: Routes = [
   // { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "", component: HomePageComponent, pathMatch: "full" },
 
-  { path: "register", component: RegisterComponent },
+  { path: "register", component: RegisterComponent, canActivate: [LoginGuard] },
   { path: "login", component: LoginComponent ,canActivate: [LoginGuard]},
   { path: "about", component: AboutUsComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
