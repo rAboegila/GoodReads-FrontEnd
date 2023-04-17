@@ -1,35 +1,40 @@
-<div class="container">
+<app-spinner [isLoading]="isLoading"></app-spinner>
 
-  <div class="row">
+<div class="container mb-3">
 
-    <div class="search pt-5 my-5">
+  <div class="pt-5 row">
+    <h1 id="title">All Books</h1>
 
-      <input type="text" [(ngModel)]="searchTerm"  class="form-control search-input"  placeholder="Search by books">
-    <button class="m-3 btn btn-info" (click)="clearSearchTerm()">Clear</button>
+    <div id="searchBar" class=" d-flex flex-row align-items-center shadow-sm rounded-4 pt-2 mt-2 mb-5">
 
-  </div>
+      <input type="text" [(ngModel)]="searchTerm" class="form-control search-input" placeholder="Search by books">
+      <button class="button fw-bold text-light m-3 btn " (click)="clearSearchTerm()">Clear</button>
+
+    </div>
 
     <div class="col-md-12">
-      <h2>All Books</h2>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let book of books |filter:searchTerm | paginate: { itemsPerPage: 10, currentPage: currentPage }">
+  <div class="row p-5 bg-light rounded-4 shadow-sm">
+    <div class="col-md-4 mb-4"
+      *ngFor="let book of books |filter:searchTerm | paginate: { itemsPerPage: 10, currentPage: currentPage }">
 
-      <div class="card h-100">
-        <img  crossorigin="anonymous" class="card-img-top" src="{{url+book.image}}" alt="{{book.name}}" [style.transform]="hover ? 'scale(1.1)' : 'none'" (mouseover)="hover = true" (mouseout)="hover = false">
-        <div class="card-body">
-          <h5 class="card-title">{{book.name}}</h5>
-          <p class="card-text">Author: {{book.author.firstName}}</p>
-          <a [routerLink]="['/book-details', book._id]" class="btn btn-success">View Details</a>
+      <div class="card h-100 p-2 ">
+        <img class="width:70%; height:90%" crossorigin="anonymous" class="card-img-top" src="{{url+book.image}}"
+          alt="{{book.name}}">
+        <div class="align-content-end card-body">
+          <h5 style="color:#333; text-transform: capitalize;" class="fw-bold fs-4 card-title">{{book.name}}</h5>
+          <p style="text-transform: capitalize;" class="fs-5 card-text">Author: {{book.author.firstName}}</p>
+
+          <a [routerLink]="['/book-details', book._id]" class="button btn btn-block mb-4 fw-bold text-light">View
+            Details</a>
         </div>
 
       </div>
     </div>
 
-    <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls>
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
 
   </div>
 
 </div>
-

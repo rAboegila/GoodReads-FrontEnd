@@ -30,11 +30,10 @@ export class LoginComponent {
           if (this._userService.userValue?.role === 'admin') {
             this._router.navigate(['/admin']);
           }
-          else{
+          else {
             this._router.navigate(['/']);
           }
           this.isLoading = false;
-          // Snackbar that opens with success background
           this.snackBar.open('You have successfully logged in!', 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
         },
         error: res => {

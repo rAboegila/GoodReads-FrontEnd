@@ -1,0 +1,17 @@
+#searchBar {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+#title {
+  color: #333333;
+  font-weight: 900;
+  font-family: "Raleway", sans-serif !important;
+  font-size: 2rem;
+}
+.button {
+  background-color: hsl(29, 100%, 33%);
+  border: none;
+}
+.button:hover {
+  color: hsl(29, 98%, 23%);
+  font-weight: 900;
+}

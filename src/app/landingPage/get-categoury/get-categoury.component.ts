@@ -12,13 +12,14 @@ export class GetCategouryComponent implements OnInit {
   categories: Category[] | undefined;
   searchTerm: string = '';
   private subscription!: Subscription;
-
+  isLoading: boolean = true;
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.subscription = this.categoryService.getCategories().subscribe(data => {
       this.categories = data.data;
+      this.isLoading = false;
     });
   }
   clearSearchTerm() {

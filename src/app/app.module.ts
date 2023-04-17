@@ -19,7 +19,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './components/admin/admin.component';
@@ -48,7 +47,6 @@ import { AuthorListComponent } from './author-list/author-list.component';
 import { RatingComponent } from './rating/rating.component';
 import { LoginRedirectDialogComponent } from './components/login-redirect-dialog/login-redirect-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -68,7 +66,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     NavbarComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
     AdminComponent,
     NotFoundComponent,
@@ -83,7 +80,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RatingComponent,
     BookDetailsComponent,
     LoginRedirectDialogComponent,
-    ShelfItemComponent,
     AuthorListComponent,
     AuthorDetailsComponent,
     SpinnerComponent,

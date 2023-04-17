@@ -16,7 +16,7 @@ body {
 }
 
 img {
-  width: 100%;
+  width: 80%;
   display: block;
 }
 .img-display {
@@ -90,7 +90,7 @@ img {
   font-size: 0.9rem;
   display: inline-block;
   margin-bottom: 0.5rem;
-  background: #256eff;
+  background: hsl(29, 100%, 33%);
   color: #fff;
   padding: 0 0.3rem;
   transition: all 0.5s ease;
@@ -222,9 +222,22 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: auto;
+
+    height: auto;
   }
 
   .product-content {
     padding-top: 0;
   }
+}
+.button {
+  background-color: hsl(29, 100%, 33%) !important;
+  border: none !important;
+  color: antiquewhite;
+}
+.button:hover {
+  color: hsl(29, 98%, 23%) !important;
+  font-weight: 900 !important;
+  background-color: antiquewhite !important;
 }

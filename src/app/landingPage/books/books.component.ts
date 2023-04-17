@@ -16,12 +16,13 @@ export class BooksComponent implements OnInit {
   searchTerm: string = '';
   url = `${environment.url}books/`
   private subscription!: Subscription;
-
+  isLoading: boolean = true;
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
     this.subscription = this.bookService.getBooks(1).subscribe(data => {
       this.books = data.data;
+      this.isLoading = false;
     });
   }
 

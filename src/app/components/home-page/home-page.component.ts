@@ -40,8 +40,8 @@ export class HomePageComponent {
 
       this.popularAuthors.forEach(author => {
         author.image = `${uploadsUrl}/authors/${author?.image}`;
+        this.isLoading = false;
       });
-      this.isLoading = false;
     }));
   }
 

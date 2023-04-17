@@ -8,7 +8,6 @@ import { BookComponent } from './Admin/book/book.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -19,7 +18,6 @@ import { GetCategouryComponent } from './landingPage/get-categoury/get-categoury
 import { GetCategoryByIdComponent } from './get-category-by-id/get-category-by-id.component';
 import { BooksComponent } from './landingPage/books/books.component';
 import { UserLibraryComponent } from './user-library/user-library.component';
-import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
@@ -28,11 +26,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  // { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "", component: HomePageComponent, pathMatch: "full" },
-
   { path: "register", component: RegisterComponent, canActivate: [LoginGuard] },
-  { path: "login", component: LoginComponent ,canActivate: [LoginGuard]},
+  { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
   { path: "about", component: AboutUsComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "profile/shelves", component: UserLibraryComponent, canActivate: [AuthGuard] },

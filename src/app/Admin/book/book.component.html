@@ -1,6 +1,6 @@
 <app-spinner [isLoading]="isLoading"></app-spinner>
 
-<div class="container">
+<div class="container ">
   <h2>Books</h2>
   <button class="btn btn-success" routerLink="/AddBook">Add Book</button>
   <table class="table table-responsive table-striped">
@@ -16,7 +16,6 @@
       </tr>
     </thead>
     <tbody>
-      <!--       <tr *ngFor="let author of authors | paginate: { itemsPerPage: 10, currentPage: currentPage }"> -->
       <tr *ngFor="let book of books  | paginate: { itemsPerPage: 10, currentPage: currentPage }">
         <td>{{ book.name }}</td>
         <td>{{ book.category.name }}</td>

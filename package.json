@@ -6,6 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "compodoc": "npx compodoc -p tsconfig.doc.json",
+    "compodoc:build": "compodoc -p tsconfig.doc.json",
+    "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
+    "compodoc:serve": "compodoc -s",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
