@@ -1,15 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Book } from '../_models/Book';
 import { baseUrl } from './helper';
 import { environment } from 'environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
-export class BookService  {
-
-  // private apiUrl = 'http://localhost:5000/api/books';
+export class BookService {
 
   private apiUrl = `${environment.baseUrl}/books`;
 
@@ -24,21 +21,11 @@ export class BookService  {
   }
 
   createBook(book: FormData): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
-    });
-    return this.http.post<any>(`${this.apiUrl}`, book,{
-      headers
-    });
+    return this.http.post<any>(`${this.apiUrl}`, book);
   }
 
   updateBook(id: string, book: FormData): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzI5YmE2YzY0MDBmMzc0NzVmNDEwOSIsImlhdCI6MTY4MTA4NTY1NywiZXhwIjoxNjgzNjc3NjU3fQ.A8T54Y__MVpmCEFpqeMF5ILSPzT3XrP1Oee4Y-H6RzA',
-    });
-    return this.http.put<any>(`${this.apiUrl}/${id}`, book,{
-      headers
-    });
+    return this.http.put<any>(`${this.apiUrl}/${id}`, book);
   }
 
   deleteBook(id: string): Observable<any> {

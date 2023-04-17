@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Author } from 'src/app/_models/Author';
 import { Book } from 'src/app/_models/Book';
 import { Category } from 'src/app/_models/Category';
@@ -19,15 +20,16 @@ export class HomeComponent {
   popularBooks: Book[] = [];
   authorImage: string = '';
   bookImage: string = '';
+  subscriptions: Subscription[] = [];
 
   constructor(private _categoryService: CategoryService, private _authorService: AuthorService, private _bookService: BookService) { }
 
   ngOnInit(): void {
-    this._categoryService.getPopularCategory().subscribe(response => {
+    this.subscriptions.push(this._categoryService.getPopularCategory().subscribe(response => {
       this.popularCategories = response.Popularcategories;
-    });
+    }));
 
-    this._bookService.getPopularBooks().subscribe(response => {
+    this.subscriptions.push(this._bookService.getPopularBooks().subscribe(response => {
       this.popularBooks = response.data.popularBooks;
       this.popularBooks.forEach(book => book.avgRating = Math.round((book.avgRating || 0) * 100) / 100);
       this.popularAuthors = response.data.popularAuthor;
@@ -41,7 +43,11 @@ export class HomeComponent {
         author.image = `${uploadsUrl}/authors/${author?.image}`;
       });
 
-    });
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

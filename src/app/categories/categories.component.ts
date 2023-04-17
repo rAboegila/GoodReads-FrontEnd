@@ -22,7 +22,7 @@ export class CategoriesComponent implements OnInit {
   pageSize: number = 10;
   collectionSize: number = 0;
   public totalItems: number = 0;
-  private subscription!: Subscription;
+  subscrption!: Subscription;
   isLoading: boolean = true;
   constructor(
     private categoryService: CategoryService,
@@ -47,13 +47,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategories(): void {
-     this.categoryService.getCategories().subscribe(res => {
-    this.subscription = this.categoryService.getCategories().subscribe(res => {
+    this.subscrption = this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;
       this.collectionSize = res.data;
       this.isLoading = false;
-    });
-  })}
+    })
+  };
+
   get categoriesOnPage() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
@@ -123,10 +123,8 @@ export class CategoriesComponent implements OnInit {
     this.categoryForm.reset();
   }
 
-  // ngOnDestroy() {
-  //   if (this.subscription) {
-  //     this.subscription.unsubscribe();
-  //   }
-  // }
+  ngOnDestroy() {
+    this.subscrption.unsubscribe();
+  }
 
 }

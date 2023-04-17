@@ -21,7 +21,6 @@ export class AuthorListComponent {
     this.subscription = this.authorService.getAuthors()
       .subscribe(data => {
         this.authors = data.data;
-        console.log(this.authors);
         this.isLoading = false;
       });
   }

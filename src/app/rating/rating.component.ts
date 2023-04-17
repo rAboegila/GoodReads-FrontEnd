@@ -3,6 +3,8 @@ import { UserService } from 'src/app/_services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Library } from 'src/app/_models/User';
 import { Book, BookShelf } from '../_models/Book';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
@@ -18,19 +20,18 @@ export class RatingComponent {
 
   private snackBarDuration: number = 2000;
   ratingArr: number[] = [];
+  subscriptions: Subscription[] = [];
 
   constructor(private _userService: UserService, private snackBar: MatSnackBar) {
 
   }
 
   ngOnInit() {
-    // console.log("a " + this.starCount)
     for (let index = 0; index < this.starCount; index++) {
       this.ratingArr.push(index);
     }
-
-
   }
+
   onClick(rating: number) {
     this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
       duration: this.snackBarDuration
@@ -38,16 +39,12 @@ export class RatingComponent {
     this.rating = rating;
     this.ratingUpdated.emit(rating);
     if ("bookId" in this.libItem) {
-      this._userService.updateLibrary(this.libItem.bookId, this.libItem.shelve, rating).subscribe(
-        (res) => { console.log(res); }
-
-      );
+      this.subscriptions.push(this._userService.updateLibrary(this.libItem.bookId, this.libItem.shelve, rating).subscribe(
+      ));
     }
     else if ("name" in this.libItem && this.libItem._id) {
-      this._userService.updateLibrary(this.libItem._id, BookShelf.ALL, rating).subscribe(
-        (res) => { console.log(res); }
-
-      );
+      this.subscriptions.push(this._userService.updateLibrary(this.libItem._id, BookShelf.ALL, rating).subscribe(
+      ));
     }
     return false;
   }
@@ -65,8 +62,12 @@ export class RatingComponent {
 
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 
 }
+
 export enum StarRatingColor {
   primary = "primary",
   accent = "accent",

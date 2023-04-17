@@ -10,7 +10,7 @@ import { CategoryService } from 'src/app/_services/category.service';
 })
 export class GetCategouryComponent implements OnInit {
   categories: Category[] | undefined;
-  searchTerm: string ='';
+  searchTerm: string = '';
   private subscription!: Subscription;
 
 

@@ -28,7 +28,7 @@ export class LoginComponent {
           form.reset();
           this.errorMessage = '';
           if (this._userService.userValue?.role === 'admin') {
-            this._router.navigate(['/Books']);
+            this._router.navigate(['/admin']);
           }
           else{
             this._router.navigate(['/']);
