@@ -30,7 +30,7 @@ export class LoginComponent {
           this._router.navigate(['/']);
           this.isLoading = false;
           // Snackbar that opens with success background
-          this.snackBar.open('You have successfully logged in!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
+          this.snackBar.open('You have successfully logged in!', 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
         },
         error: res => {
           this.errorMessage = 'invalid data';
@@ -38,7 +38,7 @@ export class LoginComponent {
             res.error.errors.forEach((error: any) => {
               this.isLoading = false;
 
-              this.snackBar.open("Could not log in: Wrong Username or Password", 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
+              this.snackBar.open("Could not log in: Wrong Username or Password", 'Close', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
             })
           }
         }

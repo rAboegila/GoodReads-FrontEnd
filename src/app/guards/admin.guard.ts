@@ -23,7 +23,7 @@ export class AdminGuard implements CanActivate {
 
     // not logged in so redirect to home page with unauthorized alert message
     this._router.navigate(['/']);
-    this.snackBar.open("Unauthorized, You are not an administrator!", 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
+    this.snackBar.open("Unauthorized, You are not an administrator!", 'Close', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
     return false;
   }
 

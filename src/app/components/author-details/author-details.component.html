@@ -19,32 +19,44 @@
         <div class="row">
 
             <div class="col-2 card-header border-0 shadow m-3">
-                <img crossorigin="anonymous" src={{booksUrl+lib.book?.image}} alt="{{lib.book?.name}}" class="img-fluid book-image" [routerLink]="['/book-details', lib.book?._id]">
+                <img crossorigin="anonymous" src={{booksUrl+lib.book?.image}} alt="{{lib.book?.name}}"
+                    class="img-fluid book-image" [routerLink]="['/book-details', lib.book?._id]">
             </div>
 
             <div class="col-6">
-                <h4 class="card-title fs-4 book-name" [routerLink]="['/book-details', lib.book?._id]">{{lib.book?.name}}</h4>
-                <p class="card-text fst-italic">{{lib.book?.totalRatings}} ratings</p>
-                <p class="card-text fst-italic">{{lib.book?.avgRating}}</p>
+                <h4 class="card-title fs-4 book-name" [routerLink]="['/book-details', lib.book?._id]">{{lib.book?.name}}
+                </h4>
+                <p class="card-text fst-italic">{{lib.book?.avgRating}} ({{lib.book?.totalRatings}})</p>
                 <app-rating [libItem]="lib" type='avg' [rating]="lib.book?.avgRating"></app-rating>
             </div>
 
-            <div class="col-2">
-                <app-rating [libItem]="lib" type='norm' (ratingUpdated)="setRatingValue(lib,$event)"
-                    [rating]="lib.rating"></app-rating>
 
-                <select #shelfSelected [id]="'shelf-select'" class="form-select" aria-label="Default select example"
-                    (change)="setShelfValue(lib, shelfSelected.value)">
-                    <option [selected]="lib.shelve === 'READING' " [value]="'READING'">
-                        Reading
-                    </option>
-                    <option [selected]="lib.shelve === 'READ'" [value]="'READ'">
-                        Read
-                    </option>
-                    <option [selected]="lib.shelve === 'WANT_TO_READ' " [value]="'WANT_TO_READ'">
-                        Want To Read</option>
-                </select>
+            <div class="col-2" (click)="checkLoggedIn()">
 
+                <div [ngClass]="!isLoggedIn ? 'disable-content' : ''">
+                    <div (click)="checkAddedToLib(lib)">
+                        <div [ngClass]="lib.new ? 'disable-content' : ''">
+                            <app-rating [libItem]="lib" type='norm' (ratingUpdated)="setRatingValue(lib,$event)"
+                                [rating]="lib.rating"></app-rating>
+                        </div>
+                    </div>
+
+                    <select #shelfSelected [id]="'shelf-select'" class="form-select" aria-label="Default select example"
+                        (change)="setShelfValue(lib, shelfSelected.value)">
+                        <option [selected]="lib.shelve === 'READING' " [value]="'READING'">
+                            Reading
+                        </option>
+                        <option [selected]="lib.shelve === 'READ'" [value]="'READ'">
+                            Read
+                        </option>
+                        <option [selected]="lib.shelve === 'WANT_TO_READ' " [value]="'WANT_TO_READ'">
+                            Want To Read</option>
+                        <option [selected]="lib.new " selected [value]="'none'">
+                            Select A Shelf
+                        </option>
+                    </select>
+
+                </div>
             </div>
 
         </div>

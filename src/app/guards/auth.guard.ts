@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
 
     // not logged in so redirect to login page
     this._router.navigate(['/login']);
-    this.snackBar.open("Unauthorized, You have to login first!", 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
+    this.snackBar.open("Unauthorized, You have to login first!", 'Close', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
     return false;
   }
 

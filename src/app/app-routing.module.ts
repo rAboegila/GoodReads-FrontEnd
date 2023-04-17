@@ -43,12 +43,12 @@ const routes: Routes = [
   { path: 'Books', component: BookComponent, canActivate: [AdminGuard] },
   { path: 'AddBook', component: AddBookComponent, canActivate: [AdminGuard] },
   { path: 'EditBook/:id', component: EditBookComponent1, canActivate: [AdminGuard] },
-  { path: 'showCategory', component: GetCategouryComponent, canActivate: [AuthGuard] },
-  { path: 'category/:id', component: GetCategoryByIdComponent, canActivate: [AuthGuard] },
+  { path: 'showCategory', component: GetCategouryComponent },
+  { path: 'category/:id', component: GetCategoryByIdComponent },
   { path: 'showBooks', component: BooksComponent },
   { path: 'showAuthor', component: AuthorListComponent },
   { path: 'book-details/:id', component: BookDetailsComponent },
-  { path: 'author-details/:id', component: AuthorDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'author-details/:id', component: AuthorDetailsComponent },
   { path: "**", component: NotFoundComponent },
 ];
 

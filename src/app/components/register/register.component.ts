@@ -61,14 +61,14 @@ export class RegisterComponent {
         next: () => {
           this._router.navigate(['/']);
           this.isLoading = false;
-          this.snackBar.open('You have successfully registered!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
+          this.snackBar.open('You have successfully registered!', 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
         },
         error: res => {
           if (res.error.errors) {
             res.error.errors.forEach((error: any) => {
               this.isLoading = false;
 
-              this.snackBar.open((error.msg ? error.msg : error), 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
+              this.snackBar.open((error.msg ? error.msg : error), 'Close', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
             })
           }
         }
