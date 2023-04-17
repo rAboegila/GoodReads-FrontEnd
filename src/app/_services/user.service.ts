@@ -37,6 +37,18 @@ export class UserService {
       }));
   }
 
+  getCurrentUser() {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      // Return the current user if they exist
+      return user;
+    } else {
+      // Return null if no current user exists
+      return null;
+    }
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');

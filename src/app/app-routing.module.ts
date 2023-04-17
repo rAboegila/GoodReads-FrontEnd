@@ -25,13 +25,14 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   // { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "", component: HomePageComponent, pathMatch: "full" },
 
   { path: "register", component: RegisterComponent },
-  { path: "login", component: LoginComponent },
+  { path: "login", component: LoginComponent ,canActivate: [LoginGuard]},
   { path: "about", component: AboutUsComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "profile/shelves", component: UserLibraryComponent, canActivate: [AuthGuard] },
