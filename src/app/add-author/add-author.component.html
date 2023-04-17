@@ -8,17 +8,7 @@
 
 <form #form="ngForm" [formGroup]="authorForm!" (ngSubmit)="onSubmit()" class="p-3 border rounded">
   <label for="firstName">First Name</label>
-<<<<<<< HEAD
-<input type="text" class="form-control" id="firstName" formControlName="firstName">
-<div *ngIf="authorForm && authorForm.get('firstName') && authorForm.get('firstName')?.invalid && (authorForm.get('firstName')?.dirty || authorForm.get('firstName')?.touched)" class="alert alert-danger">
-  <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['required']">First name is required.</div>
-  <div *ngIf=" authorForm &&  authorForm.get('firstName')?.errors?.['minlength']">First name must be at least {{ authorForm.get('firstName')?.errors?.['minlength'].requiredLength }} characters long.</div>
-  <div *ngIf=" authorForm && authorForm.get('firstName')?.errors?.['maxlength']">First name cannot be longer than {{ authorForm.get('firstName')?.errors?.['maxlength'].requiredLength }} characters.</div>
-  <!-- <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['notOnlySpaces']">Last name cannot be only spaces.</div> -->
-
-</div>
-=======
-  <input type="text" class="form-control" id="firstName" formControlName="firstName">
+  <input type="text" class="form-control" id="firstName" formControlName="firstName" pattern="^[\w\d_]+( [\w\d_]+)?$" required>
   <div
     *ngIf="authorForm && authorForm.get('firstName') && authorForm.get('firstName')?.invalid && (authorForm.get('firstName')?.dirty || authorForm.get('firstName')?.touched)"
     class="alert alert-danger">
@@ -27,23 +17,17 @@
       authorForm.get('firstName')?.errors?.['minlength'].requiredLength }} characters long.</div>
     <div *ngIf=" authorForm && authorForm.get('firstName')?.errors?.['maxlength']">First name cannot be longer than {{
       authorForm.get('firstName')?.errors?.['maxlength'].requiredLength }} characters.</div>
+      <div *ngIf=" authorForm && authorForm.get('firstName')?.errors?.['pattern']">First name {{authorForm.get('firstName')?.errors?.['pattern'].requiredLength }} not valied.</div>
+
   </div>
->>>>>>> 5af2ab1dda5c76fbc688ed9aec4392213af6e140
+
 
 
 
 
   <div class="form-group">
     <label for="lastName">Last Name</label>
-    <input type="text" class="form-control" id="lastName" formControlName="lastName">
-<<<<<<< HEAD
-    <div *ngIf="authorForm && authorForm.get('lastName') && authorForm.get('lastName')?.invalid && (authorForm.get('lastName')?.dirty || authorForm.get('lastName')?.touched)" class="alert alert-danger">
-      <div *ngIf="authorForm && authorForm.get('lastName')?.errors?.['required']">lastName  is required.</div>
-      <div *ngIf=" authorForm &&  authorForm.get('lastName')?.errors?.['minlength']">lastName must be at least {{ authorForm.get('lastName')?.errors?.['minlength'].requiredLength }} characters long.</div>
-      <div *ngIf=" authorForm && authorForm.get('lastName')?.errors?.['maxlength']">lastName cannot be longer than {{ authorForm.get('lastName')?.errors?.['maxlength'].requiredLength }} characters.</div>
-      <!-- <div *ngIf="authorForm && authorForm.get('firstName')?.errors?.['notOnlySpaces']">Last name cannot be only spaces.</div> -->
-
-=======
+    <input type="text" class="form-control" id="lastName" formControlName="lastName" pattern="^[\w\d_]+( [\w\d_]+)?$" required>
     <div
       *ngIf="authorForm && authorForm.get('lastName') && authorForm.get('lastName')?.invalid && (authorForm.get('lastName')?.dirty || authorForm.get('lastName')?.touched)"
       class="alert alert-danger">
@@ -52,7 +36,8 @@
         authorForm.get('lastName')?.errors?.['minlength'].requiredLength }} characters long.</div>
       <div *ngIf=" authorForm && authorForm.get('lastName')?.errors?.['maxlength']">lastName cannot be longer than {{
         authorForm.get('lastName')?.errors?.['maxlength'].requiredLength }} characters.</div>
->>>>>>> 5af2ab1dda5c76fbc688ed9aec4392213af6e140
+        <div *ngIf=" authorForm && authorForm.get('lastName')?.errors?.['pattern']">lastName  {{authorForm.get('lastName')?.errors?.['pattern'].requiredLength }} not valied.</div>
+
     </div>
 
   </div>

@@ -6,9 +6,9 @@
   </div>
 
   <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="needs-validation">
-    <div class="form-group">
+    <div class="form-group" >
       <label for="name">Name</label>
-      <input type="text" id="name" formControlName="name" class="form-control" required>
+      <input type="text" id="name" formControlName="name" class="form-control" required pattern="^[\w\d_]+( [\w\d_]+)?$" required>
       <div
         *ngIf="bookForm && bookForm.get('name') && bookForm.get('name')?.invalid && (bookForm.get('name')?.dirty || bookForm.get('name')?.touched)"
         class="alert alert-danger">
@@ -17,6 +17,8 @@
           bookForm.get('name')?.errors?.['minlength'].requiredLength }} characters long.</div>
         <div *ngIf=" bookForm && bookForm.get('name')?.errors?.['maxlength']"> name cannot be longer than {{
           bookForm.get('name')?.errors?.['maxlength'].requiredLength }} characters.</div>
+          <div *ngIf=" bookForm && bookForm.get('name')?.errors?.['pattern']">Name {{bookForm.get('name')?.errors?.['pattern'].requiredLength }} not valied.</div>
+
       </div>
     </div>
     <div class="form-group">
