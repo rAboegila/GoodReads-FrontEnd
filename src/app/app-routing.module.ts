@@ -25,30 +25,31 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   // { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "", component: HomePageComponent, pathMatch: "full" },
 
-  { path: "register", component: RegisterComponent },
-  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent, canActivate: [LoginGuard] },
+  { path: "login", component: LoginComponent ,canActivate: [LoginGuard]},
   { path: "about", component: AboutUsComponent },
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "profile/shelves", component: UserLibraryComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'cate', component: CategoriesComponent, canActivate: [AdminGuard] },
-  { path: 'author', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
+  { path: 'auhtor', component: AuthorsListComponentComponent, canActivate: [AdminGuard] },
   { path: 'admin/add-author', component: AddAuthorComponent, canActivate: [AdminGuard] },
   { path: 'edit-author/:id', component: EditAuthorComponent, canActivate: [AdminGuard] },
   { path: 'Books', component: BookComponent, canActivate: [AdminGuard] },
   { path: 'AddBook', component: AddBookComponent, canActivate: [AdminGuard] },
   { path: 'EditBook/:id', component: EditBookComponent1, canActivate: [AdminGuard] },
-  { path: 'showCategory', component: GetCategouryComponent, canActivate: [AuthGuard] },
-  { path: 'category/:id', component: GetCategoryByIdComponent, canActivate: [AuthGuard] },
+  { path: 'showCategory', component: GetCategouryComponent },
+  { path: 'category/:id', component: GetCategoryByIdComponent },
   { path: 'showBooks', component: BooksComponent },
   { path: 'showAuthor', component: AuthorListComponent },
   { path: 'book-details/:id', component: BookDetailsComponent },
-  { path: 'author-details/:id', component: AuthorDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'author-details/:id', component: AuthorDetailsComponent },
   { path: "**", component: NotFoundComponent },
 ];
 

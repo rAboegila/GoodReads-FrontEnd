@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Category } from '../_models/Category';
 import { CategoryService } from '../_services/category.service';
 import { Subscription } from 'rxjs';
+import { notOnlySpacesValidator } from '../_services/customValidation';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class CategoriesComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.categoryForm = this.formBuilder.group({
-      name: ['', Validators.required]
+      name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
     });
 
   }
@@ -46,12 +47,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategories(): void {
+     this.categoryService.getCategories().subscribe(res => {
     this.subscription = this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;
       this.collectionSize = res.data;
       this.isLoading = false;
     });
-  }
+  })}
   get categoriesOnPage() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
@@ -121,10 +123,10 @@ export class CategoriesComponent implements OnInit {
     this.categoryForm.reset();
   }
 
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.subscription) {
+  //     this.subscription.unsubscribe();
+  //   }
+  // }
 
 }

@@ -7,6 +7,8 @@ import { Library } from 'src/app/_models/User';
 import { AuthorService } from 'src/app/_services/author.service';
 import { UserService } from 'src/app/_services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginRedirectDialogComponent } from '../login-redirect-dialog/login-redirect-dialog.component';
 
 @Component({
   selector: 'app-author-details',
@@ -17,12 +19,17 @@ export class AuthorDetailsComponent {
 
   authorsUrl = `${environment.url}authors/`
   booksUrl = `${environment.url}books/`
+  isLoggedIn: boolean = false;
   authorLib: Library[] = [];
   authorBooks: Book[] = [];
   userLib: Library[] = [];
   author: Author = { _id: '', firstName: '', lastName: '', dob: new Date(), image: '' };
 
-  constructor(private _activatedRoute: ActivatedRoute, private _authorService: AuthorService, private _userService: UserService, private snackBar: MatSnackBar) { }
+  constructor(private _activatedRoute: ActivatedRoute, private _authorService: AuthorService, private _userService: UserService, private snackBar: MatSnackBar, public dialog: MatDialog) {
+    this._userService.user.subscribe((x) => {
+      this.isLoggedIn = !!x;
+    });
+  }
 
   ngOnInit(): void {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
@@ -36,6 +43,21 @@ export class AuthorDetailsComponent {
       this.authorBooks.forEach(book => book.avgRating = Math.round((book.avgRating || 0) * 100) / 100);
 
       // get user libraries
+      if (!this.isLoggedIn) {
+        this.userLib = this.authorBooks.map((book: Book) => {
+          return {
+            _id: book._id as string,
+            bookId: book._id as string,
+            // default values for rating and shelve
+            rating: 0,
+            shelve: BookShelf.READING,
+            book: book,
+            new: true,
+          }
+        });
+        return
+      };
+
       this._userService.getProfile().subscribe((res) => {
         this.userLib = res.data.books;
 
@@ -73,24 +95,10 @@ export class AuthorDetailsComponent {
   }
 
   setRatingValue(libItem: Library, newRating: number) {
-    // check if library already exists for user
-    if (libItem.new) {
-      this._userService.addLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
-        // update library item new value status
-        this.userLib.forEach((lib: Library) => {
-          if (lib.bookId === libItem.bookId) {
-            lib.new = false;
-          }
-        });
-        // update author books avg ratings
-        this.updateAuthoBooksRatings();
-      })
-    } else {
-      this._userService.updateLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
-        // update author books avg ratings
-        this.updateAuthoBooksRatings();
-      })
-    }
+    this._userService.updateLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
+      // update author books avg ratings
+      this.updateAuthoBooksRatings();
+    })
   }
 
   updateAuthoBooksRatings() {
@@ -118,13 +126,37 @@ export class AuthorDetailsComponent {
             lib.new = false;
           }
         });
-        this.snackBar.open('Book Added To Your Library!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
+        this.snackBar.open('Book Added To Your Library!', 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
       })
     } else {
       this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
-        this.snackBar.open("Your Library is Updated!", 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
+        if (rawValue === 'none') return;
+        this.snackBar.open("Your Library is Updated!", 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
       })
     }
+  }
+
+  checkLoggedIn() {
+    if (!this.isLoggedIn) {
+      this.openDialog('0ms', '0ms');
+    }
+  }
+
+  checkAddedToLib(libItem: Library) {
+    if (libItem.new) {
+      this.snackBar.open('Please Add Book To Your Library First!', '', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['info-snackbar'] });
+    }
+  }
+
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.dialog.open(LoginRedirectDialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
 }

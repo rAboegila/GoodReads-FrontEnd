@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AddAuthorComponent implements OnInit {
   authorForm: FormGroup | undefined;
   errorMessage!: string;
-  selectedImage: any;
+  selectedImage: File | null = null;
   isLoading: boolean = true;
   constructor(private formBuilder: FormBuilder, private authorService: AuthorService, private router: Router) {
     this.createForm();
@@ -20,13 +20,6 @@ export class AddAuthorComponent implements OnInit {
   }
 
   createForm() {
-    // this.authorForm = this.formBuilder.group({
-    //   firstName: ['', Validators.required],
-    //   lastName: ['', Validators.required],
-    //   dob: ['', Validators.required],
-    //   image: ['']
-    // });
-
     this.authorForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],

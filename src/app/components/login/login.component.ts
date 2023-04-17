@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
 
   users!: User[];
+  errorMessage!: string;
+
   isLoading: boolean = false;
 
   constructor(private _userService: UserService, private _router: Router, private snackBar: MatSnackBar) {
@@ -24,17 +26,24 @@ export class LoginComponent {
       .subscribe({
         next: () => {
           form.reset();
-          this._router.navigate(['/']);
+          this.errorMessage = '';
+          if (this._userService.userValue?.role === 'admin') {
+            this._router.navigate(['/Books']);
+          }
+          else{
+            this._router.navigate(['/']);
+          }
           this.isLoading = false;
           // Snackbar that opens with success background
-          this.snackBar.open('You have successfully logged in!', 'OK', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
+          this.snackBar.open('You have successfully logged in!', 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
         },
         error: res => {
+          this.errorMessage = 'invalid data';
           if (res.error.errors) {
             res.error.errors.forEach((error: any) => {
               this.isLoading = false;
 
-              this.snackBar.open((error.msg ? error.msg : error), 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
+              this.snackBar.open("Could not log in: Wrong Username or Password", 'Close', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
             })
           }
         }
