@@ -50,7 +50,6 @@ export class BookDetailsComponent implements OnInit {
       if (bookID) {
         this._userService.addBookToLibrary(bookID, shelf).subscribe((res) => {
           this.book = res.data;
-          console.log(this.book);
         });
       }
     } else if (this.isLoggedIn && this.libItem) {

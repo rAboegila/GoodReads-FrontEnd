@@ -9,6 +9,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginRedirectDialogComponent } from '../login-redirect-dialog/login-redirect-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-author-details',
@@ -24,6 +25,7 @@ export class AuthorDetailsComponent {
   authorBooks: Book[] = [];
   userLib: Library[] = [];
   author: Author = { _id: '', firstName: '', lastName: '', dob: new Date(), image: '' };
+  subscriptions: Subscription[] = [];
 
   constructor(private _activatedRoute: ActivatedRoute, private _authorService: AuthorService, private _userService: UserService, private snackBar: MatSnackBar, public dialog: MatDialog) {
     this._userService.user.subscribe((x) => {
@@ -33,12 +35,12 @@ export class AuthorDetailsComponent {
 
   ngOnInit(): void {
     const id = this._activatedRoute.snapshot.paramMap.get('id');
-    this._authorService.getAuthorById(id as string).subscribe(data => {
+    this.subscriptions.push(this._authorService.getAuthorById(id as string).subscribe(data => {
       this.author = data.data;
-    });
+    }));
 
     // get author books
-    this._authorService.getAuthorBooks(id as string).subscribe(data => {
+    this.subscriptions.push(this._authorService.getAuthorBooks(id as string).subscribe(data => {
       this.authorBooks = data.data;
       this.authorBooks.forEach(book => book.avgRating = Math.round((book.avgRating || 0) * 100) / 100);
 
@@ -58,7 +60,7 @@ export class AuthorDetailsComponent {
         return
       };
 
-      this._userService.getProfile().subscribe((res) => {
+      this.subscriptions.push(this._userService.getProfile().subscribe((res) => {
         this.userLib = res.data.books;
 
         // merge them and filter out the books that don't belong to the author
@@ -89,37 +91,35 @@ export class AuthorDetailsComponent {
           }
         }
         this.userLib = dummy;
-        // console.log(this.userLib);
-      });
-    });
+      }));
+    }));
   }
 
   setRatingValue(libItem: Library, newRating: number) {
-    this._userService.updateLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
+    this.subscriptions.push(this._userService.updateLibrary(libItem.bookId, libItem.shelve, newRating).subscribe((res) => {
       // update author books avg ratings
       this.updateAuthoBooksRatings();
     })
-  }
+  )}
 
   updateAuthoBooksRatings() {
-    this._authorService.getAuthorBooks(this.author._id as string).subscribe((res) => {
+    this.subscriptions.push(this._authorService.getAuthorBooks(this.author._id as string).subscribe((res) => {
       this.authorBooks.forEach((book: Book) => {
         res.data.forEach((newBook: Book) => {
-          console.log(newBook);
           if (newBook._id === book._id) {
             book.avgRating = Math.round((newBook.avgRating || 0) * 100) / 100;
             book.totalRatings = newBook.totalRatings;
           }
         });
       });
-    });
+    }));
   }
 
   setShelfValue(libItem: Library, rawValue: string) {
     const newValue: BookShelf = rawValue === 'READ' ? BookShelf.READ : rawValue === 'READING' ? BookShelf.READING : BookShelf.WANT_TO_READ;
     // check if library already exists for user
     if (libItem.new) {
-      this._userService.addLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
+      this.subscriptions.push(this._userService.addLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
         // update library item new value status
         this.userLib.forEach((lib: Library) => {
           if (lib.bookId === libItem.bookId) {
@@ -128,12 +128,12 @@ export class AuthorDetailsComponent {
         });
         this.snackBar.open('Book Added To Your Library!', 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
       })
-    } else {
-      this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
+    )} else {
+      this.subscriptions.push(this._userService.updateLibrary(libItem.bookId, newValue, libItem.rating).subscribe((res) => {
         if (rawValue === 'none') return;
         this.snackBar.open("Your Library is Updated!", 'OK', { duration: 2000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['success-snackbar'] });
       })
-    }
+    )}
   }
 
   checkLoggedIn() {
@@ -156,6 +156,12 @@ export class AuthorDetailsComponent {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub: Subscription) => {
+      sub.unsubscribe();
     });
   }
 

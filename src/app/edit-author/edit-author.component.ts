@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorService } from '../_services/author.service';
 import { Author } from '../_models/Author';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'environments/environment.prod';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-edit-author',
   templateUrl: './edit-author.component.html',
@@ -13,14 +13,14 @@ import { environment } from 'environments/environment.prod';
 export class EditAuthorComponent {
   authorFormEdit: FormGroup | undefined;
   selectedImage: any;
-  authorID:any;
-  errorMessage :string | undefined;
+  authorID: any;
+  errorMessage: string | undefined;
+  subscriptions: Subscription[] = [];
 
-  // url='http://localhost:5000/uploads/authors/'
-  url=`${environment.url}authors/`
+  url = `${environment.url}authors/`
 
   Author: Author = {
-    _id:'',
+    _id: '',
     firstName: '',
     lastName: '',
     dob: new Date(),
@@ -28,31 +28,26 @@ export class EditAuthorComponent {
   };
   constructor(
     private formBuilder: FormBuilder,
-    // public activeModal: NgbActiveModal,
     private authorService: AuthorService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
+    this.subscriptions.push(this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
-      this.authorID=params['id']
-      console.log(params['id']);
+      this.authorID = params['id']
       if (id) {
         this.getAuthor(id);
       }
-    });
+    }));
     this.createForm();
   }
   getAuthor(id: string) {
-    this.authorService.getAuthorById(id).subscribe(
+    this.subscriptions.push(this.authorService.getAuthorById(id).subscribe(
       (res) => {
         this.Author = res.data;
-        console.log(res.data);
-
-        // console.log(this.course);
         this.authorFormEdit = this.formBuilder.group({
           firstName: [this.Author.firstName, Validators.required],
           lastName: [this.Author.lastName, Validators.required],
@@ -60,24 +55,12 @@ export class EditAuthorComponent {
           image: [null, Validators.required],
         });
 
-
       },
       (err) => {
         console.log('Error updating Author ', err);
-        console.log(err);
       }
-    );
+    ));
   }
-
-  // ngOnInit(): void {
-  //   this.authorFormEdit = this.formBuilder.group({
-  //     firstName: [this.data.author.firstName, Validators.required],
-  //     lastName: [this.data.author.lastName, Validators.required],
-  //     dob: [new Date(this.data.author.dob).toISOString().slice(0, 10), Validators.required],
-  //     image: ['']
-  //   });
-  // }
-
 
   createForm() {
     this.authorFormEdit = this.formBuilder.group({
@@ -106,7 +89,6 @@ export class EditAuthorComponent {
     const formData = new FormData();
     formData.append('firstName', author.firstName);
     formData.append('lastName', author.lastName);
-    // formData.append('dob', author.dob.toString());
     if (this.authorFormEdit) {
       const authorData = this.authorFormEdit.value;
       authorData.id = this.Author._id;
@@ -118,20 +100,17 @@ export class EditAuthorComponent {
           formData.append(key, authorData[key]);
         }
       }
-      }
+    }
 
     if (this.selectedImage) {
       formData.append('image', this.selectedImage, this.selectedImage.name);
     }
 
-    this.authorService.updateAuthor(this.authorID,formData).subscribe(
+    this.subscriptions.push(this.authorService.updateAuthor(this.authorID, formData).subscribe(
       (response) => {
-        console.log(response);
-        // this.activeModal.close();
         this.router.navigate(['auhtor']);
-        // this.errorMessage = '';
         this.authorFormEdit!.reset();
-        this.selectedImage!= null;
+        this.selectedImage != null;
         this.errorMessage = '';
 
       },
@@ -139,8 +118,8 @@ export class EditAuthorComponent {
         console.log(error);
         this.errorMessage = 'Invalid value';
 
-       }
-    );
+      }
+    ));
   }
 
   updateAuthor() {
@@ -160,17 +139,19 @@ export class EditAuthorComponent {
     }
 
     const authorId = ''; // Set the author ID to the ID of the author you want to update
-    this.authorService.updateAuthor(authorId, formData).subscribe(
+    this.subscriptions.push(this.authorService.updateAuthor(authorId, formData).subscribe(
       (response) => {
-        console.log(response);
         // this.activeModal.close();
         this.errorMessage = '';
 
       },
       (error) => {
-        console.log(error);
         this.errorMessage = error.message;
       }
-    );
+    ));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

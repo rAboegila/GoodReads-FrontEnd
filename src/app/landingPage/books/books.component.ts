@@ -11,12 +11,11 @@ import { BookService } from 'src/app/_services/book.service';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
-hover: any;
-currentPage = 1;
-searchTerm: string ='';
-// url='http://localhost:5000/uploads/books/'
-url=`${environment.url}books/`
-private subscription!: Subscription;
+  hover: any;
+  currentPage = 1;
+  searchTerm: string = '';
+  url = `${environment.url}books/`
+  private subscription!: Subscription;
 
   constructor(private bookService: BookService) { }
 

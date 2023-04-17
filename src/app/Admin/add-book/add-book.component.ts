@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Book } from 'src/app/_models/Book';
 import { AuthorService } from 'src/app/_services/author.service';
 import { BookService } from 'src/app/_services/book.service';
@@ -18,6 +19,7 @@ export class AddBookComponent implements OnInit {
   selectedImage!: File;
   errorMessage: string | undefined;
   isLoading: boolean = true;
+  subscrbtions: Subscription[] = [];
 
   constructor(private bookService: BookService, private categoryService: CategoryService, private authorService: AuthorService, private router: Router) {
     this.bookForm = new FormGroup({
@@ -37,20 +39,19 @@ export class AddBookComponent implements OnInit {
       avgRating: new FormControl(0)
     });
 
-    this.categoryService.getCategories().subscribe(
+    this.subscrbtions.push(this.categoryService.getCategories().subscribe(
       data => this.categories = data.data,
       error => console.log(error)
+    ));
 
-    );
 
-
-    this.authorService.getAuthors().subscribe(
+    this.subscrbtions.push(this.authorService.getAuthors().subscribe(
       data => {
         this.authors = data.data
         this.isLoading = false;
       },
       error => console.log(error)
-    );
+    ));
   }
 
   onSubmit() {
@@ -64,11 +65,9 @@ export class AddBookComponent implements OnInit {
       formData.append('image', this.selectedImage, this.selectedImage.name);
     }
 
-    this.bookService.createBook(formData)
+    this.subscrbtions.push(this.bookService.createBook(formData)
       .subscribe(
         data => {
-          console.log('Book created successfully!');
-          console.log(data);
           this.bookForm!.reset();
           this.selectedImage != null;
           this.errorMessage = '';
@@ -79,12 +78,16 @@ export class AddBookComponent implements OnInit {
           console.log('Error creating book: ', error);
           this.errorMessage = 'Invalid value';
         }
-      );
+      ));
   }
 
   onImageSelected(event: any) {
     const file: File = event.target.files[0];
     this.selectedImage = file;
+  }
+
+  ngOnDestroy() {
+    this.subscrbtions.forEach(sub => sub.unsubscribe());
   }
 
 }
