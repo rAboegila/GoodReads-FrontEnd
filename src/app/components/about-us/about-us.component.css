@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  place-items: center;
+}
+.background-radial-gradient {
+  background-color: rgb(218, 205, 205);
+  background-image: radial-gradient(
+      650px circle at 0% 0%,
+      rgba(224, 200, 200, 0.65) 15%,
+      rgba(255, 227, 186, 0.5) 35%,
+      rgba(255, 212, 212, 0.4) 75%,
+      rgba(218, 205, 205, 0.29) 80%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1250px circle at 100% 100%,
+      rgba(224, 200, 200, 0.65) 15%,
+      rgba(255, 227, 186, 0.5) 35%,
+      rgba(255, 212, 212, 0.4) 75%,
+      rgba(218, 205, 205, 0.29) 80%,
+      transparent 100%
+    );
+}
+.hero {
+  background-color: rgba(252, 252, 246, 0.8);
+}
+.section {
+  background-color: rgba(252, 252, 246, 1);
+}
+.link-button {
+  background-color: #534444;
+}
+.link-button:hover {
+  background-color: rgb(250, 239, 227);
+  color: #534444 !important;
+  font-weight: bolder;
+}
+.teamCard {
+  background-color: rgb(255, 241, 219, 0.7);
+  border: none;
+}
+
+#angular {
+  color: #e01b24;
+}
+#bootstrap {
+  color: #1a5fb4;
+}
+#mongo {
+  color: #2ec27e;
+}
+#node {
+  color: #26a269;
+}
+#github {
+  color: #4078c0;
+}
+
+.cardDescription {
+  color: #bd2c00;
+}
+
+@media (width <= 768px) {
+  .hide {
+    display: none !important;
+  }
+  .navbar-nav {
+    flex-direction: row;
+    margin-top: 5px;
+    margin-top: 20px;
+    margin-left: 31px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #docSection {
+    flex-direction: column;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+  }
+
+  .hero {
+    width: 95%;
+    margin-left: 0.7rem;
+  }
+}
+.bi-linkedin:hover {
+  color: #1a5fb4;
+}
+.bi-github:hover {
+  color: #c9510c;
+}

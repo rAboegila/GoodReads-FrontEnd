@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { NgToastModule } from 'ng-angular-popup';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -54,6 +53,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -123,6 +123,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     MatTabsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    FontAwesomeModule
   ],
 
   providers: [

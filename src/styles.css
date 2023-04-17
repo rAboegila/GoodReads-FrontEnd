@@ -9,16 +9,12 @@ body {
 }
 
 html {
-  height: 100% !important;
+  min-height: 100vh !important;
 }
 
 body {
-  min-height: 100% !important;
-}
-
-html,
-body {
-  height: 100%;
+  min-height: 100vh !important;
+  margin-bottom: 157px !important;
 }
 
 body {
@@ -42,7 +38,6 @@ body {
   --mdc-snackbar-container-color: var(--info);
 }
 
-body,
 #page-content {
   display: flex !important;
   flex-direction: column !important;
@@ -52,9 +47,3 @@ body,
 .dont-raise-footer {
   flex-grow: 1 !important;
 }
-
-/* #footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-} */
