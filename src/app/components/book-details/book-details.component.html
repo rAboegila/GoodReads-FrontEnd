@@ -10,7 +10,7 @@
         <!-- card right -->
         <div class=" product-content">
             <h2 class="product-title">{{book?.name}}</h2>
-            <a href="#" class="product-link">by {{book?.author?.firstName}} {{book?.author?.lastName}}</a>
+            <a [routerLink]="['/author-details', book?.author?._id]" class="product-link">by {{book?.author?.firstName}} {{book?.author?.lastName}}</a>
             <div class="product-rating">
                 <app-rating [rating]="book?.avgRating" type="avg" class="col-4 "></app-rating>
 
