@@ -1,12 +1,10 @@
-<div *ngIf="isLoading" class="overlay"><mat-progress-spinner class="loader" *ngIf="isLoading" mode="indeterminate"
-        diameter="50"></mat-progress-spinner>
-</div>
+<app-spinner [isLoading]="isLoading"></app-spinner>
 <div class="card-wrapper">
 
     <div style="width: 100rem; height:50rem; padding:4rem 2rem" class="shadow-sm rounded  card">
         <!-- card left -->
         <div class="product-imgs">
-            <img crossorigin="anonymous" src={{imageURL}} alt="shoe image">
+            <img crossorigin="anonymous" src={{imageURL}} alt="book image">
 
         </div>
         <!-- card right -->

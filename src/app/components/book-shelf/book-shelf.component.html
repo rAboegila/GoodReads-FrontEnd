@@ -1,6 +1,5 @@
-<div *ngIf="isLoading" class="overlay"><mat-progress-spinner class="loader" *ngIf="isLoading" mode="indeterminate"
-        diameter="50"></mat-progress-spinner>
-</div>
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
 <div class="table-responsive">
     <table class="table align-items-center table-flush">
         <thead class="thead-light">

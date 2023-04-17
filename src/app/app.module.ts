@@ -29,9 +29,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AppComponent } from './app.component';
 import { MatSelectModule } from '@angular/material/select';
 import { BookComponent } from './Admin/book/book.component';
-import { BookDialogComponent } from './book-dialog/book-dialog.component';
 import { AuthorsListComponentComponent } from './Admin/authors-list-component/authors-list-component.component';
-import { AuthorDialogComponent } from './Admin/author-dialog/author-dialog.component';
 import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AddBookComponent } from './Admin/add-book/add-book.component';
@@ -54,16 +52,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ShelfItemComponent } from './components/shelf-item/shelf-item.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
-
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriesComponent,
     BookComponent,
-    BookDialogComponent,
     AuthorsListComponentComponent,
-    AuthorDialogComponent,
     AddAuthorComponent,
     EditAuthorComponent,
     AddBookComponent,
@@ -89,6 +86,8 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     ShelfItemComponent,
     AuthorListComponent,
     AuthorDetailsComponent,
+    SpinnerComponent,
+    HomePageComponent,
 
   ],
   imports: [
@@ -124,7 +123,6 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     MatTabsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    // NgToastModule,
   ],
 
   providers: [

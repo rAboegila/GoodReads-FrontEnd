@@ -1,12 +1,16 @@
+<app-spinner [isLoading]="isLoading"></app-spinner>
+
+
 <section class="background-radial-gradient overflow-hidden">
 
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div class="row gx-lg-5 align-items-center mb-5">
             <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                    Login to <br />
-                    <span style="color: hsl(218, 81%, 75%)">GoodReads</span>
+                <h1 class="mb-4" style="font-size: 4rem; color: hsl(29, 100%, 33%)">
+                    Login to
+
                 </h1>
+                <h2 class="fw-bold" style="font-size: 2.5rem; " id="logo">GoodReads</h2>
             </div>
 
             <div class="col-lg-6 mb-5 mb-lg-0 position-relative pt-5 pb-5">
@@ -23,8 +27,13 @@
 
                         <!-- Username input -->
                         <div class="form-outline mb-4">
+<<<<<<< HEAD
                             <label class="form-label" for="username">Username</label>
                             <!-- <input ngModel name="username" #username="ngModel" id="username" class="form-control"
+=======
+                            <label class="form-label fw-bold" for="username">Username</label>
+                            <input ngModel name="username" #username="ngModel" id="username" class="form-control"
+>>>>>>> 5af2ab1dda5c76fbc688ed9aec4392213af6e140
                                 required
                                 [ngClass]="username.touched ? username.errors?.['required'] || username.errors?.['username'] ? 'not-valid' : 'valid' : ''" />
                             <p *ngIf="username.touched && username.errors?.['required']" class="text-danger">
@@ -45,6 +54,7 @@
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
+<<<<<<< HEAD
                           <label class="form-label" for="password">Password</label>
                                 <input ngModel name="password" #password="ngModel" id="password" type="password"
                                     class="form-control" required minlength="8"
@@ -53,16 +63,28 @@
                                     Password is required</p>
                                 <p *ngIf="password.touched && password.errors?.['minlength']" class="text-danger">
                                     Password should be at least 8 characters long</p>
+=======
+                            <label class="form-label fw-bold" for="password">Password</label>
+                            <input ngModel name="password" #password="ngModel" id="password" type="password"
+                                class="form-control" required minlength="8"
+                                [ngClass]="password.touched ? password.errors?.['required'] || password.errors?.['minlength'] ? 'not-valid' : 'valid' : ''" />
+                            <p *ngIf="password.touched && password.errors?.['required']" class="text-danger">
+                                Password is required</p>
+                            <p *ngIf="password.touched && password.errors?.['minlength']" class="text-danger">
+                                Password minLength is 8 characters</p>
+>>>>>>> 5af2ab1dda5c76fbc688ed9aec4392213af6e140
                         </div>
 
                         <!-- Submit button -->
-                        <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block mb-4">
+                        <button type="submit" [disabled]="form.invalid"
+                            style='background-color: hsl(29, 100%, 33%); border:none; '
+                            class="btn btn-block mb-4 fw-bold text-light">
                             Login
                         </button><br>
 
                         <span style="color: hsl(219, 80%, 8%)">
                             Don't have an account?
-                            <span [routerLink]="['/register']" style="color: hsl(218, 85%, 56%)"
+                            <span [routerLink]="['/register']" style="color: hsl(29, 100%, 33%)"
                                 class="register">SignUp</span>
                         </span>
 

@@ -1,20 +1,26 @@
+.navbar {
+  background-color: #333333 !important;
+}
 .nav-item {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .nav-img {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    margin: auto;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin: auto;
 }
 
-.nav-img-link{
-    padding: 0px;
+.nav-img-link {
+  padding: 0px;
 }
 
-.active{
-    color: darkcyan;
-    font: bold;
-    text-shadow: 1px 1px darkcyan;
+.navbar-nav > li > a {
+  color: #fff;
+}
+#logo {
+  color: #fff !important;
+  font: bold !important;
+  font-family: "Raleway", sans-serif !important;
 }

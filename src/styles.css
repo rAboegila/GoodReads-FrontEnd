@@ -2,14 +2,59 @@
 
 html,
 body {
-  height: 100%;
-}
-body {
   background: rgb(248, 246, 234);
 
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+  height: 100% !important;
+}
+
+body {
+  min-height: 100% !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.success-snackbar {
+  --mdc-snackbar-container-color: var(--success);
+}
+
+.error-snackbar {
+  --mdc-snackbar-container-color: var(--danger);
+}
+
+.warning-snackbar {
+  --mdc-snackbar-container-color: var(--warning);
+}
+
+.info-snackbar {
+  --mdc-snackbar-container-color: var(--info);
+}
+
+body,
+#page-content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#page-content,
+.dont-raise-footer {
+  flex-grow: 1 !important;
+}
+
+/* #footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+} */

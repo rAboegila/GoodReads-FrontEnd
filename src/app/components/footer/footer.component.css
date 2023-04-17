@@ -1,16 +1,25 @@
+/* .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+} */
+
 .ul-design li a {
-    text-decoration: none;
-    color: #848484;
+  text-decoration: none;
+  color: #848484;
 }
 
 .ul-design li {
-    padding: 5px;
+  padding: 5px;
 }
 
-.footer-style {
-    background-color: #F9F9FB;
+footer {
+  background-color: #333333 !important;
 }
 
-.icons:hover {
-    color: #fbd309;
+#logo {
+  color: #fff !important;
+  font: bold !important;
+  font-family: "Raleway", sans-serif !important;
 }
