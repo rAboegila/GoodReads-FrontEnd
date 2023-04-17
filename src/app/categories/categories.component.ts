@@ -47,7 +47,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.subscription =this.categoryService.getCategories().subscribe(res => {
+     this.categoryService.getCategories().subscribe(res => {
       this.categories = res.data;
       this.collectionSize = res.data;
     });
@@ -121,10 +121,10 @@ export class CategoriesComponent implements OnInit {
     this.categoryForm.reset();
   }
 
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.subscription) {
+  //     this.subscription.unsubscribe();
+  //   }
+  // }
 
 }
