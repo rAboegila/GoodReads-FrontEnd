@@ -25,8 +25,9 @@
                             <label class="fw-bold form-label" for="firstName">First Name</label>
 
                             <input name="firstName" formControlName="firstName" id="firstName" type="text"
-                                class="form-control" pattern="^[\w\d_]+( [\w\d_]+)?$"  required minlength="3" maxlength="20"
-                                [ngClass]="myForm.get('firstName')?.touched ? myForm.get('firstName')?.errors?.['required'] || myForm.get('firstName')?.errors?.['minlength'] || myForm.get('firstName')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+                                class="form-control" pattern="^[\w\d_]+( [\w\d_]+)?$" required minlength="3"
+                                maxlength="20"
+                                [ngClass]="myForm.get('firstName')?.touched ? myForm.get('firstName')?.errors?.['required'] || myForm.get('firstName')?.errors?.['minlength'] || myForm.get('firstName')?.errors?.['maxlength'] || myForm.get('firstName')?.errors?.['pattern'] ? 'not-valid' : 'valid' : ''" />
 
                             <p *ngIf="myForm.get('firstName')?.touched && myForm.get('firstName')?.errors?.['required']"
                                 class="text-danger">
@@ -38,10 +39,9 @@
                                 class="text-danger">
                                 First Name maxLength is 20 characters</p>
 
-                                <p *ngIf="myForm.get('firstName')?.touched && myForm.get('firstName')?.errors?.['pattern']"
+                            <p *ngIf="myForm.get('firstName')?.touched && myForm.get('firstName')?.errors?.['pattern']"
                                 class="text-danger">
                                 First Name is not valid</p>
-
 
                         </div>
 
@@ -50,8 +50,9 @@
                             <label class="fw-bold form-label" for="lastName">Last Name</label>
 
                             <input name="lastName" formControlName="lastName" id="lastName" type="text"
-                                class="form-control" pattern="^[\w\d_]+( [\w\d_]+)?$" required minlength="3" maxlength="20"
-                                [ngClass]="myForm.get('lastName')?.touched ? myForm.get('lastName')?.errors?.['required'] || myForm.get('lastName')?.errors?.['minlength'] || myForm.get('lastName')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+                                class="form-control" pattern="^[\w\d_]+( [\w\d_]+)?$" required minlength="3"
+                                maxlength="20"
+                                [ngClass]="myForm.get('lastName')?.touched ? myForm.get('lastName')?.errors?.['required'] || myForm.get('lastName')?.errors?.['minlength'] || myForm.get('lastName')?.errors?.['maxlength'] || myForm.get('lastName')?.errors?.['pattern'] ? 'not-valid' : 'valid' : ''" />
 
                             <p *ngIf="myForm.get('lastName')?.touched && myForm.get('lastName')?.errors?.['required']"
                                 class="text-danger">
@@ -63,7 +64,7 @@
                                 class="text-danger">
                                 Last Name maxLength is 20 characters</p>
 
-                                <p *ngIf="myForm.get('lastName')?.touched && myForm.get('lastName')?.errors?.['pattern']"
+                            <p *ngIf="myForm.get('lastName')?.touched && myForm.get('lastName')?.errors?.['pattern']"
                                 class="text-danger">
                                 Last Name is not valid</p>
 
@@ -75,7 +76,7 @@
 
                             <input name="username" formControlName="username" id="username" type="text"
                                 class="form-control" pattern="^[\w\d_]+$" required minlength="3" maxlength="20"
-                                [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['required'] || myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] ? 'not-valid' : 'valid' : ''" />
+                                [ngClass]="myForm.get('username')?.touched ? myForm.get('username')?.errors?.['required'] || myForm.get('username')?.errors?.['minlength'] || myForm.get('username')?.errors?.['maxlength'] || myForm.get('username')?.errors?.['pattern'] ? 'not-valid' : 'valid' : ''" />
 
                             <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['required']"
                                 class="text-danger">
@@ -87,9 +88,9 @@
                                 class="text-danger">
                                 Username maxLength is 20 characters</p>
 
-                                <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['pattern']"
+                            <p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.errors?.['pattern']"
                                 class="text-danger">
-                                username is not valid</p>
+                                Username is not valid</p>
 
                         </div>
 
@@ -97,16 +98,12 @@
                         <div class="form-outline mb-4">
                             <label class="fw-bold form-label" for="email">Email</label>
                             <input name="email" formControlName="email" id="email" type="email" class="form-control"
-                            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"   required email
-                                [ngClass]="myForm.get('email')?.touched ? myForm.get('email')?.errors?.['required'] || myForm.get('email')?.errors?.['email'] ? 'not-valid' : 'valid' : ''" />
+                                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" required email
+                                [ngClass]="myForm.get('email')?.touched ? myForm.get('email')?.errors?.['required'] || myForm.get('email')?.errors?.['email'] || myForm.get('email')?.errors?.['pattern'] ? 'not-valid' : 'valid' : ''" />
                             <p *ngIf="myForm.get('email')?.touched && myForm.get('email')?.errors?.['required']"
                                 class="text-danger">
                                 Email is required</p>
-                            <p *ngIf="myForm.get('email')?.touched && myForm.get('email')?.errors?.['email']"
-                                class="text-danger">Email
-                                is invalid</p>
-                            <!-- <p *ngIf="errMsg" class="text-danger">{{errMsg}}</p> -->
-                            <p *ngIf="myForm.get('email')?.touched && myForm.get('email')?.errors?.['pattern']"
+                            <p *ngIf="myForm.get('email')?.touched && myForm.get('email')?.errors?.['email'] || myForm.get('email')?.errors?.['pattern']"
                                 class="text-danger">Email
                                 is invalid</p>
                         </div>
@@ -116,18 +113,13 @@
                             <label class="fw-bold form-label" for="password">Password</label>
                             <input name="password" formControlName="password" id="password" type="password"
                                 class="form-control" pattern="^[^\s]+$" required minlength="6"
-                                [ngClass]="myForm.get('password')?.touched ? myForm.get('password')?.errors?.['required'] || myForm.get('password')?.errors?.['minlength'] ? 'not-valid' : 'valid' : ''" />
+                                [ngClass]="myForm.get('password')?.touched ? myForm.get('password')?.errors?.['required'] || myForm.get('password')?.errors?.['minlength'] || myForm.get('password')?.errors?.['pattern'] ? 'not-valid' : 'valid' : ''" />
                             <p *ngIf="myForm.get('password')?.touched && myForm.get('password')?.errors?.['required']"
                                 class="text-danger">
                                 Password is required</p>
-                            <p *ngIf="myForm.get('password')?.touched && myForm.get('password')?.errors?.['minlength']"
+                            <p *ngIf="myForm.get('password')?.touched && myForm.get('password')?.errors?.['minlength'] || myForm.get('password')?.errors?.['pattern']"
                                 class="text-danger">
-                                Password minLength is 8 characters</p>
-
-
-                                <p *ngIf="myForm.get('password')?.touched && myForm.get('password')?.errors?.['pattern']"
-                                class="text-danger">
-                                Password not valid</p>
+                                Password minLength is 8 characters, shouldn't contain white spaces.</p>
 
                         </div>
 
@@ -136,19 +128,15 @@
                             <label class="fw-bold form-label" for="password">Confirm Password</label>
                             <input name="confirmPassword" formControlName="confirmPassword" id="confirmPassword"
                                 type="password" class="form-control" pattern="^[^\s]+$" required minlength="6"
-                                [ngClass]="myForm.get('confirmPassword')?.touched ? myForm.get('confirmPassword')?.errors?.['required'] || myForm.get('confirmPassword')?.errors?.['minlength'] || passwordMatchError ? 'not-valid' : 'valid' : ''" />
+                                [ngClass]="myForm.get('confirmPassword')?.touched ? myForm.get('confirmPassword')?.errors?.['required'] || myForm.get('confirmPassword')?.errors?.['minlength'] || passwordMatchError || myForm.get('confirmPassword')?.errors?.['pattern'] ? 'not-valid' : 'valid' : ''" />
                             <p *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.errors?.['required']"
                                 class="text-danger">
-                                Password is required</p>
-                            <p *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.errors?.['minlength']"
+                                Confirm Password is required</p>
+                            <p *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.errors?.['minlength'] || myForm.get('confirmPassword')?.errors?.['pattern']"
                                 class="text-danger">
-                                Password minLength is 8 characters</p>
+                                Confirm Password minLength is 8 characters, shouldn't contain white spaces.</p>
                             <p *ngIf="myForm.get('confirmPassword')?.touched && passwordMatchError" class="text-danger">
-                                Password does not match</p>
-
-                                <p *ngIf="myForm.get('confirmPassword')?.touched && myForm.get('confirmPassword')?.errors?.['pattern']"
-                                class="text-danger">
-                                confirmPassword not valid</p>
+                                Confirm Password does not match</p>
 
                         </div>
 

@@ -38,7 +38,7 @@ export class LoginComponent {
             res.error.errors.forEach((error: any) => {
               this.isLoading = false;
 
-              this.snackBar.open((error.msg ? error.msg : error), 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
+              this.snackBar.open("Could not log in: Wrong Username or Password", 'Close', { duration: 4000, verticalPosition: 'top', horizontalPosition: 'end', panelClass: ['error-snackbar'] });
             })
           }
         }
